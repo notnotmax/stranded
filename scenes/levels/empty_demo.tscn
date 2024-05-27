@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://bw6mwxb8yrm3t"]
+[gd_scene load_steps=17 format=3 uid="uid://bw6mwxb8yrm3t"]
 
 [ext_resource type="Script" path="res://scenes/levels/Player.gd" id="1_2nl1q"]
 [ext_resource type="PackedScene" uid="uid://d3lstvim7ia7x" path="res://scenes/backgrounds/background_1.tscn" id="1_gsbvf"]
 [ext_resource type="Texture2D" uid="uid://bw6iaxhfblh3" path="res://assets/ship.png" id="3_rv1sj"]
+[ext_resource type="PackedScene" uid="uid://74jno6cnh4s4" path="res://scenes/menus/pause_menu.tscn" id="4_cjkj6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qvx18"]
 atlas = ExtResource("3_rv1sj")
@@ -127,5 +128,8 @@ sprite_frames = SubResource("SpriteFrames_b7u4d")
 position = Vector2(5, 0)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_37e5u")
+
+[node name="PauseMenu" parent="." instance=ExtResource("4_cjkj6")]
+layout_mode = 1
 
 [connection signal="body_entered" from="Player" to="Player" method="_on_body_entered"]
