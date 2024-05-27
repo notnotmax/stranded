@@ -1,7 +1,116 @@
-[gd_scene load_steps=3 format=3 uid="uid://csuqd7yr3wp8r"]
+[gd_scene load_steps=15 format=3 uid="uid://csuqd7yr3wp8r"]
 
-[ext_resource type="Texture2D" uid="uid://d2qq0vpyqt3ft" path="res://assets/icon.svg" id="1_btmwg"]
 [ext_resource type="Script" path="res://scenes/menus/main_menu.gd" id="1_unqdc"]
+[ext_resource type="PackedScene" uid="uid://d3lstvim7ia7x" path="res://scenes/backgrounds/background_1.tscn" id="2_1h2no"]
+[ext_resource type="Texture2D" uid="uid://bw6iaxhfblh3" path="res://assets/ship.png" id="3_jejjc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88bbd"]
+atlas = ExtResource("3_jejjc")
+region = Rect2(0, 0, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kau11"]
+atlas = ExtResource("3_jejjc")
+region = Rect2(24, 0, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70g7n"]
+atlas = ExtResource("3_jejjc")
+region = Rect2(0, 16, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2y4q"]
+atlas = ExtResource("3_jejjc")
+region = Rect2(24, 16, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fx7tg"]
+atlas = ExtResource("3_jejjc")
+region = Rect2(0, 32, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tejqq"]
+atlas = ExtResource("3_jejjc")
+region = Rect2(24, 32, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_koa37"]
+atlas = ExtResource("3_jejjc")
+region = Rect2(0, 48, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ys5oj"]
+atlas = ExtResource("3_jejjc")
+region = Rect2(24, 48, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55ctq"]
+atlas = ExtResource("3_jejjc")
+region = Rect2(0, 64, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtnyb"]
+atlas = ExtResource("3_jejjc")
+region = Rect2(24, 64, 24, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hg2x5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88bbd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kau11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88bbd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kau11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70g7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2y4q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70g7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2y4q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fx7tg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tejqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fx7tg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tejqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_koa37")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ys5oj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_koa37")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ys5oj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55ctq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtnyb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55ctq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtnyb")
+}],
+"loop": true,
+"name": &"main_menu_ship",
+"speed": 5.0
+}]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -9,6 +118,8 @@ anchors_preset = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 script = ExtResource("1_unqdc")
+
+[node name="Background1" parent="." instance=ExtResource("2_1h2no")]
 
 [node name="MenuButtons" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -29,14 +140,9 @@ layout_mode = 2
 theme_override_constants/separation = 15
 alignment = 1
 
-[node name="LogoPlaceholder" type="TextureRect" parent="MenuButtons/VBoxContainer"]
-layout_mode = 2
-texture = ExtResource("1_btmwg")
-stretch_mode = 3
-
 [node name="Label" type="Label" parent="MenuButtons/VBoxContainer"]
 layout_mode = 2
-text = "georbital dash"
+text = "Stranded"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -51,3 +157,9 @@ text = "Settings"
 [node name="QuitButton" type="Button" parent="MenuButtons/VBoxContainer"]
 layout_mode = 2
 text = "Quit"
+
+[node name="Spaceship" type="AnimatedSprite2D" parent="."]
+position = Vector2(640, 254)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_hg2x5")
+animation = &"main_menu_ship"
