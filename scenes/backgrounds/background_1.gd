@@ -11,7 +11,6 @@ func _ready():
 func _process(delta):
 	scroll -= speed
 	$Stars.motion_offset = Vector2(scroll * 0.05, 0)
-	$PlanetsMedium.motion_offset = Vector2(scroll * 0.1, 0)
 	$Dust.motion_offset = Vector2(scroll * 0.05, 0)
 	$PlanetsSmall.motion_offset = Vector2(scroll * 0.15, 0)
 	
