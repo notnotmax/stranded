@@ -10,6 +10,5 @@ func _ready():
 func _physics_process(delta):
 	position += transform.x * speed * delta
 
-func _on_area_entered(area):
-	print("bullet hit")
+func _on_area_entered(_area):
 	queue_free()
