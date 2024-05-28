@@ -11,11 +11,12 @@ var fire_rate = 15
 func _ready():
 	# Lock the cursor to the center of the screen and hide it
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	position.x = 1280 / 2
-	position.y = 720 / 2
+	# placeholder starting position
+	position.x = 100
+	position.y = 360
 	$AnimatedSprite2D.play()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	# decrease shooting cooldown
 	if shot_cooldown > 0:
 		shot_cooldown -= 1

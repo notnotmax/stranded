@@ -13,7 +13,7 @@ config_version=5
 config/name="Stranded"
 run/main_scene="res://scenes/menus/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://assets/icon.svg"
+config/icon="res://assets/player/icon.png"
 
 [display]
 
