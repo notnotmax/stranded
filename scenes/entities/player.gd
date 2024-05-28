@@ -29,5 +29,4 @@ func _input(event):
 		elif event.relative.y >= -3:
 			$AnimatedSprite2D.play("moving_up_slow")
 		else:
-			print("ASD")
 			$AnimatedSprite2D.play("moving_up_fast")
