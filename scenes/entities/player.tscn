@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://ul0krf1vltwb"]
 
-[ext_resource type="Script" path="res://scenes/levels/player.gd" id="1_3iw55"]
+[ext_resource type="Script" path="res://scenes/entities/player.gd" id="1_3iw55"]
 [ext_resource type="Texture2D" uid="uid://bw6iaxhfblh3" path="res://assets/ship.png" id="2_517qp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qvx18"]

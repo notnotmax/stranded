@@ -20,13 +20,14 @@ func _input(event):
 		position.x = clamp(position.x, 16, get_viewport_rect().size.x - 24)
 		position.y = clamp(position.y, 16, get_viewport_rect().size.y - 16)
 		# change movement sprite
-		if event.relative.y > 4:
+		if event.relative.y >= 3:
 			$AnimatedSprite2D.play("moving_down_fast")
-		elif event.relative.y > 0:
+		elif event.relative.y >= 1:
 			$AnimatedSprite2D.play("moving_down_slow")
-		elif event.relative.y == 0:
+		elif event.relative.y >= -1:
 			$AnimatedSprite2D.play("default")
-		elif event.relative.y > -4:
+		elif event.relative.y >= -3:
 			$AnimatedSprite2D.play("moving_up_slow")
 		else:
-			$AnimatedSprite2D.play("moving_up fast")
+			print("ASD")
+			$AnimatedSprite2D.play("moving_up_fast")
