@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scenes/menus/level_complete.gd" id="1_h8rb3"]
 
 [node name="LevelComplete" type="Control"]
+top_level = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
