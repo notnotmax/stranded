@@ -1,0 +1,86 @@
+[gd_scene load_steps=12 format=3 uid="uid://dvyldhptcpsr"]
+
+[ext_resource type="Script" path="res://scenes/entities/asteroid_1.gd" id="1_ntt2m"]
+[ext_resource type="Texture2D" uid="uid://dum413bvrplo0" path="res://assets/environment/asteroid_1.png" id="2_p1grw"]
+[ext_resource type="Texture2D" uid="uid://o0rnoarmmj4t" path="res://assets/enemies/explosion.png" id="3_2e8h7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_max1n"]
+atlas = ExtResource("3_2e8h7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y83f8"]
+atlas = ExtResource("3_2e8h7")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i75h3"]
+atlas = ExtResource("3_2e8h7")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dju0m"]
+atlas = ExtResource("3_2e8h7")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0j35y"]
+atlas = ExtResource("3_2e8h7")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ig115"]
+atlas = ExtResource("2_p1grw")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mpewo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_max1n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y83f8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i75h3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dju0m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0j35y")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ig115")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yr043"]
+radius = 11.0
+height = 26.0
+
+[node name="Asteroid1" type="Area2D"]
+collision_layer = 32
+collision_mask = 10
+script = ExtResource("1_ntt2m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_mpewo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_yr043")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-1, 0.5)
+scale = Vector2(1.3, 1.15)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

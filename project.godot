@@ -37,6 +37,7 @@ enabled=PackedStringArray()
 2d_physics/layer_3="Enemy character"
 2d_physics/layer_4="Player attack"
 2d_physics/layer_5="Enemy attack"
+2d_physics/layer_6="Environmental obstacle"
 
 [maaacks_menus_template]
 
