@@ -1,11 +1,16 @@
 extends Area2D
 
 var alive = true
+var health = 10
+var velocity = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$AnimatedSprite2D.play("default")
 
+
+func _physics_process(delta):
+	position -= velocity
 
 # destroy the player on impact
 func _on_area_entered(area):
@@ -23,9 +28,10 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
 
 
-# this asteroid is destroyed in one hit
 func damage(dmg):
-	die()
+	health -= dmg
+	if health <= 0:
+		die()
 
 
 func die():
