@@ -8,6 +8,7 @@ var shot_cooldown = 0
 # shoot every (fire_rate / 60) seconds
 var fire_rate = 15
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Lock the cursor to the center of the screen and hide it
@@ -16,6 +17,7 @@ func _ready():
 	position.x = 100
 	position.y = 360
 	$AnimatedSprite2D.play("default")
+
 
 func _physics_process(_delta):
 	if alive:
@@ -29,6 +31,7 @@ func _physics_process(_delta):
 				owner.add_child(bullet)
 				bullet.transform = $Gun.global_transform
 			shot_cooldown += fire_rate
+
 
 func _input(event):
 	if alive:
@@ -55,14 +58,19 @@ func _input(event):
 				is_firing = event.pressed
 
 
+# for picking up things like powerups/effects only
+# death collision is handled by the enemy instance
 func _on_area_entered(area):
-	if alive:
-		# layer 4 for enemies, pickupable items in future layers
-		if area.get_collision_layer() == 4:
-			alive = false
-			$AnimatedSprite2D.play("death")
+	pass
 
 
 func _on_animated_sprite_2d_animation_finished():
 	if !alive:
 		queue_free()
+
+
+# enemy instances call this upon collision with player to kill them
+func die():
+	if alive:
+		alive = false
+		$AnimatedSprite2D.play("death")
