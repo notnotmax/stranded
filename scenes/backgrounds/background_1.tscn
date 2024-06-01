@@ -13,10 +13,12 @@ script = ExtResource("1_2y47r")
 motion_mirroring = Vector2(1280, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Stars"]
+modulate = Color(0.85098, 0.85098, 0.85098, 1)
 texture = ExtResource("2_vbdm7")
 centered = false
 
 [node name="PlanetsMedium" type="ParallaxLayer" parent="."]
+modulate = Color(0.75, 0.75, 0.75, 1)
 motion_mirroring = Vector2(1280, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="PlanetsMedium"]
@@ -24,6 +26,7 @@ texture = ExtResource("3_hvqij")
 centered = false
 
 [node name="Dust" type="ParallaxLayer" parent="."]
+modulate = Color(0.75, 0.75, 0.75, 1)
 motion_mirroring = Vector2(2560, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Dust"]
@@ -31,6 +34,7 @@ texture = ExtResource("4_ha0as")
 centered = false
 
 [node name="PlanetsSmall" type="ParallaxLayer" parent="."]
+modulate = Color(0.75, 0.75, 0.75, 1)
 motion_mirroring = Vector2(1280, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="PlanetsSmall"]
