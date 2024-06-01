@@ -15,5 +15,6 @@ func _on_quit_button_pressed():
 
 
 func _on_empty_demo_level_completed():
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	get_tree().paused = true
 	self.show()

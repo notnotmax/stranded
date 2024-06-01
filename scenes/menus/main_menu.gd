@@ -3,6 +3,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Spaceship.play()
 	var play_button = $MenuButtons/VBoxContainer/PlayButton
 	var settings_button = $MenuButtons/VBoxContainer/SettingsButton
 	var quit_button = $MenuButtons/VBoxContainer/QuitButton
@@ -12,11 +13,11 @@ func _ready():
 
 
 func _on_play_button_pressed():
-	get_tree().change_scene_to_file("res://scenes/levels/empty_demo.tscn")
+	get_tree().change_scene_to_file("res://scenes/levels/demo_level.tscn")
 
 
 func _on_settings_button_pressed():
-	pass
+	get_tree().change_scene_to_file("res://scenes/levels/debug_level.tscn")
 
 
 func _on_quit_button_pressed():

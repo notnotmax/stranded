@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="Georbital Dash"
+config/name="Stranded"
 run/main_scene="res://scenes/menus/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://assets/icon.svg"
+config/icon="res://assets/player/icon.png"
 
 [display]
 
@@ -29,6 +29,15 @@ version_control/autoload_on_startup=true
 [editor_plugins]
 
 enabled=PackedStringArray()
+
+[layer_names]
+
+2d_physics/layer_1="Default"
+2d_physics/layer_2="Player character"
+2d_physics/layer_3="Enemy character"
+2d_physics/layer_4="Player attack"
+2d_physics/layer_5="Enemy attack"
+2d_physics/layer_6="Environmental obstacle"
 
 [maaacks_menus_template]
 
