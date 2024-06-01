@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dqaolwhtpgtj"]
+[gd_scene load_steps=12 format=3 uid="uid://dqaolwhtpgtj"]
 
 [ext_resource type="Script" path="res://scenes/levels/demo_level.gd" id="1_b3qps"]
 [ext_resource type="PackedScene" uid="uid://dvyldhptcpsr" path="res://scenes/entities/asteroid_1.tscn" id="2_iwdtc"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://74jno6cnh4s4" path="res://scenes/menus/pause_menu.tscn" id="5_8pfkd"]
 [ext_resource type="PackedScene" uid="uid://yo5y28li3dlc" path="res://scenes/entities/asteroid_4.tscn" id="5_nqn3c"]
 [ext_resource type="PackedScene" uid="uid://gjr8inabdhiu" path="res://scenes/menus/level_complete.tscn" id="6_xnwjb"]
+[ext_resource type="PackedScene" uid="uid://b5rhxpvglaf3f" path="res://scenes/menus/level_failed.tscn" id="9_f5jwo"]
 
 [sub_resource type="Curve2D" id="Curve2D_i0b7r"]
 _data = {
@@ -48,6 +49,9 @@ one_shot = true
 visible = false
 layout_mode = 1
 
+[node name="LevelFailed" parent="." instance=ExtResource("9_f5jwo")]
+layout_mode = 1
+
 [node name="LevelComplete" parent="." instance=ExtResource("6_xnwjb")]
 visible = false
 layout_mode = 1
@@ -58,7 +62,6 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 23.0
 grow_horizontal = 2
-text = "Insert Level Name Here"
 horizontal_alignment = 1
 
 [node name="Path2D" type="Path2D" parent="."]
@@ -72,3 +75,4 @@ rotation = 1.5708
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="AsteroidTimer" to="." method="_on_asteroid_timer_timeout"]
 [connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]
+[connection signal="player_died" from="Player" to="LevelFailed" method="_on_player_player_died"]
