@@ -58,7 +58,6 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 23.0
 grow_horizontal = 2
-text = "Insert Level Name Here"
 horizontal_alignment = 1
 
 [node name="Path2D" type="Path2D" parent="."]

@@ -151,6 +151,7 @@ layout_mode = 2
 text = "Play"
 
 [node name="SettingsButton" type="Button" parent="MenuButtons/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Settings"
 
