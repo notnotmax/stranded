@@ -1,5 +1,6 @@
 extends Area2D
 @export var Bullet : PackedScene
+signal player_died
 
 var alive: bool = true
 var is_firing: bool = false
@@ -60,12 +61,13 @@ func _input(event):
 
 # for picking up things like powerups/effects only
 # death collision is handled by the enemy instance
-func _on_area_entered(area):
+func _on_area_entered(_area):
 	pass
 
 
 func _on_animated_sprite_2d_animation_finished():
 	if !alive:
+		player_died.emit()
 		queue_free()
 
 
