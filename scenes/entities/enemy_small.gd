@@ -4,40 +4,23 @@ extends Area2D
 
 var alive: bool = true
 var health: int = 30
-var speed: float = 0
-var direction: Vector2 = Vector2.ZERO
-var is_firing: bool = false
-var shot_cooldown: int = 0
-var fire_rate: int = 15
-var player
+var path_follow: PathFollow2D = PathFollow2D.new()
+var duration: float
 
 
-func with_params(p_position: Vector2, p_speed: float,
-	p_direction: Vector2):
-	position = p_position
-	speed = p_speed
-	direction = p_direction.normalized()
+func with_params(p_path: Path2D, p_duration: float,
+		p_firing_delay: float, p_fire_rate: float):
+	p_path.add_child(path_follow)
+	path_follow.add_child(self)
+	duration = p_duration
+	$ShootingStartDelay.wait_time = p_firing_delay
+	$ShootingTimer.wait_time = p_fire_rate
 	return self
 
 
 func _ready():
 	$AnimatedSprite2D.play("default")
-
-
-func _physics_process(_delta):
-	position += direction * speed
-	if alive:
-		if shot_cooldown > 0:
-			shot_cooldown -= 1
-		if shot_cooldown <= 0:
-			if is_firing:
-				var bullet = Bullet.instantiate().with_params(
-					self.global_position,
-					3,
-					(player.global_position - self.global_position).normalized(),
-				)
-				owner.add_child(bullet)
-			shot_cooldown += fire_rate
+	$ShootingStartDelay.start()
 
 
 func _on_area_entered(area):
@@ -48,17 +31,27 @@ func _on_area_entered(area):
 
 func _on_animated_sprite_2d_animation_finished():
 	if !alive:
-		queue_free()
+		path_follow.queue_free()
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
-	queue_free()
+	path_follow.queue_free()
+
+
+func _on_shooting_start_delay_timeout():
+	shoot() # should start shooting immediately
+	$ShootingTimer.start()
+
+
+func _on_shooting_timer_timeout():
+	shoot()
 
 
 func damage(dmg):
-	health -= dmg
-	if health <= 0:
-		die()
+	if alive:
+		health -= dmg
+		if health <= 0:
+			die()
 
 
 func die():
@@ -68,5 +61,17 @@ func die():
 		$AnimatedSprite2D.play("death")
 
 
-func set_firing(p_firing):
-	is_firing = p_firing
+func move():
+	var tween: Tween = create_tween().set_trans(Tween.TRANS_SINE)
+	tween.tween_property(path_follow, 'progress_ratio', 1, duration)
+
+
+func shoot():
+	if alive:
+		var bullet = Bullet.instantiate().with_params(
+			self.global_position,
+			7,
+			(get_tree().current_scene.player.global_position
+				- self.global_position).normalized(),
+		)
+		get_tree().current_scene.add_child(bullet)

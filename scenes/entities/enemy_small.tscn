@@ -90,6 +90,13 @@ scale = Vector2(1.6, 1.6)
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(-16, 0)
 
+[node name="ShootingStartDelay" type="Timer" parent="."]
+one_shot = true
+
+[node name="ShootingTimer" type="Timer" parent="."]
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="ShootingStartDelay" to="." method="_on_shooting_start_delay_timeout"]
+[connection signal="timeout" from="ShootingTimer" to="." method="_on_shooting_timer_timeout"]

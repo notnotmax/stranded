@@ -5,6 +5,10 @@ signal level_completed
 @export var asteroid2: PackedScene
 @export var asteroid3: PackedScene
 @export var asteroid4: PackedScene
+@export var enemy_small: PackedScene
+
+@onready var player = $Player
+@onready var enemy_path_1 = $EnemyPath1
 
 
 func _ready():
@@ -19,6 +23,7 @@ func _physics_process(_delta):
 func _on_start_timer_timeout():
 	$AsteroidTimer.start()
 	$LevelTimer.start()
+	spawn_enemy_small()
 	
 
 func _on_asteroid_timer_timeout():
@@ -80,3 +85,13 @@ func spawn_asteroid_4():
 		Vector2(-1, 0)
 		)
 	add_child(asteroid)
+
+
+func spawn_enemy_small():
+	var enemy = enemy_small.instantiate().with_params(
+		enemy_path_1,
+		5,
+		1,
+		0.25
+	)
+	enemy.move()
