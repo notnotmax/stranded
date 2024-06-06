@@ -39,52 +39,44 @@ func _on_level_timer_timeout():
 
 
 func spawn_asteroid_1():
-	var asteroid = asteroid1.instantiate()
-	
 	var location = $Path2D/PathFollow2D
 	location.progress_ratio = randf()
-	
-	asteroid.position = location.position
-	var velocity = Vector2(randf_range(1,3), 0)
-	asteroid.velocity = velocity
-	
+	var asteroid = asteroid1.instantiate().with_params(
+		location.position,
+		randf_range(1, 3),
+		Vector2(-1, 0)
+		)
 	add_child(asteroid)
 
 
 func spawn_asteroid_2():
-	var asteroid = asteroid2.instantiate()
-	
 	var location = $Path2D/PathFollow2D
 	location.progress_ratio = randf()
-	
-	asteroid.position = location.position
-	var velocity = Vector2(randf_range(1,2), 0)
-	asteroid.velocity = velocity
-	
+	var asteroid = asteroid2.instantiate().with_params(
+		location.position,
+		randf_range(1, 2),
+		Vector2(-1, 0)
+		)
 	add_child(asteroid)
 
 
 func spawn_asteroid_3():
-	var asteroid = asteroid3.instantiate()
-	
 	var location = $Path2D/PathFollow2D
 	location.progress_ratio = randf()
-	
-	asteroid.position = location.position
-	var velocity = Vector2(randf_range(0.5,1), 0)
-	asteroid.velocity = velocity
-	
+	var asteroid = asteroid3.instantiate().with_params(
+		location.position,
+		randf_range(0.5, 1),
+		Vector2(-1, 0)
+		)
 	add_child(asteroid)
 
 
 func spawn_asteroid_4():
-	var asteroid = asteroid4.instantiate()
-	
 	var location = $Path2D/PathFollow2D
 	location.progress_ratio = randf()
-	
-	asteroid.position = location.position
-	var velocity = Vector2(randf_range(0.2,1), 0)
-	asteroid.velocity = velocity
-	
+	var asteroid = asteroid4.instantiate().with_params(
+		location.position,
+		randf_range(0.2, 1),
+		Vector2(-1, 0)
+		)
 	add_child(asteroid)
