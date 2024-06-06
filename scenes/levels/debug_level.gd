@@ -6,8 +6,7 @@ var level_duration = 10 * 60
 var elapsed_frames = 0
 
 func _ready():
-	$EnemySmall.set_firing(true)
-	$EnemySmall.player = $Player
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):

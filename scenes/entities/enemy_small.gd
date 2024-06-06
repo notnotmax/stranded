@@ -10,6 +10,7 @@ var duration: float
 
 func with_params(p_path: Path2D, p_duration: float,
 		p_firing_delay: float, p_fire_rate: float):
+	path_follow.rotates = false
 	p_path.add_child(path_follow)
 	path_follow.add_child(self)
 	duration = p_duration
