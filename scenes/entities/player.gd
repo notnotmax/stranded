@@ -28,9 +28,13 @@ func _physics_process(_delta):
 		# shoot
 		if shot_cooldown <= 0:
 			if is_firing:
-				var bullet = Bullet.instantiate()
+				var bullet = Bullet.instantiate().with_params(
+					$Marker2D.global_position,
+					10,
+					Vector2(1, 0),
+					10
+				)
 				owner.add_child(bullet)
-				bullet.transform = $Gun.global_transform
 			shot_cooldown += fire_rate
 
 

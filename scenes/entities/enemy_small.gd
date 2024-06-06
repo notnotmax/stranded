@@ -28,10 +28,8 @@ func _physics_process(_delta):
 	if alive:
 		if shot_cooldown > 0:
 			shot_cooldown -= 1
-		# shoot
 		if shot_cooldown <= 0:
 			if is_firing:
-				print("HMM")
 				var bullet = Bullet.instantiate().with_params(
 					position,
 					3,
