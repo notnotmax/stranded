@@ -1,10 +1,25 @@
 extends Area2D
 
-var alive = true
+var alive: bool = true
+var health: int = 30
+var speed: float = 0
+var direction: Vector2 = Vector2.ZERO
 
-# Called when the node enters the scene tree for the first time.
+
+func with_params(p_position: Vector2, p_speed: float,
+	p_direction: Vector2):
+	position = p_position
+	speed = p_speed
+	direction = p_direction.normalized()
+	return self
+
+
 func _ready():
 	$AnimatedSprite2D.play("default")
+
+
+func _physics_process(_delta):
+	position += direction * speed
 
 
 func _on_area_entered(area):
@@ -23,7 +38,9 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 
 func damage(dmg):
-	die()
+	health -= dmg
+	if health <= 0:
+		die()
 
 
 func die():
