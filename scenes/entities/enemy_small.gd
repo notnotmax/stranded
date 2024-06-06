@@ -9,6 +9,7 @@ var direction: Vector2 = Vector2.ZERO
 var is_firing: bool = false
 var shot_cooldown: int = 0
 var fire_rate: int = 15
+var player
 
 
 func with_params(p_position: Vector2, p_speed: float,
@@ -31,9 +32,9 @@ func _physics_process(_delta):
 		if shot_cooldown <= 0:
 			if is_firing:
 				var bullet = Bullet.instantiate().with_params(
-					position,
+					self.global_position,
 					3,
-					Vector2(-1, 0)
+					(player.global_position - self.global_position).normalized(),
 				)
 				owner.add_child(bullet)
 			shot_cooldown += fire_rate
