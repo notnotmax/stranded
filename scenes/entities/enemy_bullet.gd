@@ -17,7 +17,7 @@ func _ready():
 
 
 func _physics_process(delta):
-	position += transform.x * speed * delta
+	position += direction * speed
 
 
 func _on_area_entered(area):

@@ -30,8 +30,8 @@ radius = 6.0
 height = 26.0
 
 [node name="EnemyBullet" type="Area2D"]
-collision_layer = 8
-collision_mask = 36
+collision_layer = 16
+collision_mask = 2
 script = ExtResource("1_0kctl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

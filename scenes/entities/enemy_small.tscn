@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://c8bpg7j5d5ya0"]
+[gd_scene load_steps=14 format=3 uid="uid://c8bpg7j5d5ya0"]
 
 [ext_resource type="Script" path="res://scenes/entities/enemy_small.gd" id="1_5lleb"]
 [ext_resource type="Texture2D" uid="uid://bdvhti2nlac2r" path="res://assets/enemies/enemy_small.png" id="1_wq414"]
 [ext_resource type="Texture2D" uid="uid://o0rnoarmmj4t" path="res://assets/enemies/explosion.png" id="2_l5gh1"]
+[ext_resource type="PackedScene" uid="uid://dpgnhqpwagg11" path="res://scenes/entities/enemy_bullet.tscn" id="2_vr4yx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_max1n"]
 atlas = ExtResource("2_l5gh1")
@@ -73,6 +74,7 @@ size = Vector2(32, 32)
 collision_layer = 4
 collision_mask = 10
 script = ExtResource("1_5lleb")
+Bullet = ExtResource("2_vr4yx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
@@ -84,6 +86,9 @@ shape = SubResource("RectangleShape2D_tno0o")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(2.38419e-07, 2.38419e-07)
 scale = Vector2(1.6, 1.6)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-16, 0)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
