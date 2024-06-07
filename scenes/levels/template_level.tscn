@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://d35ie48pllg52"]
+[gd_scene load_steps=7 format=3 uid="uid://d35ie48pllg52"]
 
+[ext_resource type="Script" path="res://scenes/levels/template_level.gd" id="1_h13sj"]
 [ext_resource type="PackedScene" uid="uid://d3lstvim7ia7x" path="res://scenes/backgrounds/background_1.tscn" id="7_yfhxo"]
 [ext_resource type="PackedScene" uid="uid://ul0krf1vltwb" path="res://scenes/entities/player.tscn" id="8_efaap"]
 [ext_resource type="PackedScene" uid="uid://74jno6cnh4s4" path="res://scenes/menus/pause_menu.tscn" id="9_t6jby"]
@@ -7,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://gjr8inabdhiu" path="res://scenes/menus/level_complete.tscn" id="11_yx1fe"]
 
 [node name="TemplateLevel" type="Node"]
+script = ExtResource("1_h13sj")
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("7_yfhxo")]
 

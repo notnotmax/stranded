@@ -1,5 +1,4 @@
 extends Control
-signal level_completed
 
 @export var asteroid1: PackedScene
 @export var asteroid2: PackedScene
@@ -7,7 +6,7 @@ signal level_completed
 @export var asteroid4: PackedScene
 @export var enemy_small: PackedScene
 
-@onready var player = $TemplateLevel/Player
+@onready var core = $TemplateLevel
 @onready var enemy_path_1 = $EnemyPath1
 
 
@@ -33,10 +32,10 @@ func _on_asteroid_timer_timeout():
 	
 	if randf() < 0.25:
 		spawn_asteroid_4()
-
+		
 
 func _on_level_timer_timeout():
-	level_completed.emit()
+	core.complete_level()
 
 
 func spawn_asteroid_1():
@@ -87,7 +86,8 @@ func spawn_enemy_small():
 	var enemy = enemy_small.instantiate().with_params(
 		enemy_path_1,
 		5,
+		core.get_player(),
 		1,
-		0.25
+		1
 	)
 	enemy.move()

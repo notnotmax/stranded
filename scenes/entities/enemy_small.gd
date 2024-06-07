@@ -8,15 +8,18 @@ var health: int = 30
 var path_follow: PathFollow2D = PathFollow2D.new()
 # time to finish its path
 var duration: float
+# target to shoot at
+var target: Node
 
 
-func with_params(p_path: Path2D, p_duration: float,
+func with_params(p_path: Path2D, p_duration: float, p_target: Node,
 		p_firing_delay: float, p_fire_rate: float):
 	# disable rotation when path rotates e.g. strafing
 	path_follow.rotates = false
 	p_path.add_child(path_follow)
 	path_follow.add_child(self)
 	duration = p_duration
+	target = p_target
 	$ShootingStartDelay.wait_time = p_firing_delay
 	$ShootingTimer.wait_time = p_fire_rate
 	return self
@@ -75,7 +78,6 @@ func shoot():
 		var bullet = Bullet.instantiate().with_params(
 			self.global_position,
 			7,
-			(get_tree().current_scene.player.global_position
-				- self.global_position).normalized(),
+			(target.global_position - self.global_position).normalized(),
 		)
 		get_tree().current_scene.add_child(bullet)
