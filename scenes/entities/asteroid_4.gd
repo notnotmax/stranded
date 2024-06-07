@@ -1,16 +1,27 @@
 extends Area2D
 
-var alive = true
-var health = 100
-var velocity = Vector2.ZERO
+var alive: bool = true
+var health: int = 100
+var speed: float = 0
+var direction: Vector2 = Vector2.ZERO
+
+
+# Setter function to be chained after instantiation
+func with_params(p_position: Vector2, p_speed: float,
+	p_direction: Vector2):
+	position = p_position
+	speed = p_speed
+	direction = p_direction.normalized()
+	return self
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$AnimatedSprite2D.play("default")
 
 
-func _physics_process(delta):
-	position -= velocity
+func _physics_process(_delta):
+	position += direction * speed
 	
 
 # destroy the player on impact

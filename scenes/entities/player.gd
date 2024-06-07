@@ -7,7 +7,7 @@ var is_firing: bool = false
 # cooldown timer before next shot
 var shot_cooldown = 0
 # shoot every (fire_rate / 60) seconds
-var fire_rate = 15
+var fire_rate = 6
 
 
 # Called when the node enters the scene tree for the first time.
@@ -28,9 +28,13 @@ func _physics_process(_delta):
 		# shoot
 		if shot_cooldown <= 0:
 			if is_firing:
-				var bullet = Bullet.instantiate()
-				owner.add_child(bullet)
-				bullet.transform = $Gun.global_transform
+				var bullet = Bullet.instantiate().with_params(
+					$Marker2D.global_position,
+					20,
+					Vector2(1, 0),
+					10
+				)
+				get_tree().current_scene.add_child(bullet)
 			shot_cooldown += fire_rate
 
 
