@@ -83,7 +83,7 @@ func spawn_asteroid_4():
 var wave_1_count: int = 0
 
 func spawn_wave_1():
-	wave_1_count = 10
+	wave_1_count = 20
 	$Wave1/Timer.wait_time = 0.5
 	$Wave1/Timer.start()
 
