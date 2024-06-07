@@ -13,7 +13,7 @@ func _ready():
 
 
 func _on_play_button_pressed():
-	get_tree().change_scene_to_file("res://scenes/levels/demo_level.tscn")
+	get_tree().change_scene_to_file("res://scenes/levels/level_one.tscn")
 
 
 func _on_settings_button_pressed():

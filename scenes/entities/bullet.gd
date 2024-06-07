@@ -15,7 +15,7 @@ func with_params(p_position: Vector2, p_speed: float,
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _physics_process(_delta):
 	position += direction * speed
 
 

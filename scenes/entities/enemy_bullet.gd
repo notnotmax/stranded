@@ -16,7 +16,7 @@ func _ready():
 	$AnimatedSprite2D.play()
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	position += direction * speed
 
 
