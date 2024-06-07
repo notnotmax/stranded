@@ -3,7 +3,7 @@ extends Area2D
 @export var Bullet: PackedScene
 
 var alive: bool = true
-var health: int = 30
+var health: int = 10
 # parent PathFollow2D node used to tween movement
 var path_follow: PathFollow2D = PathFollow2D.new()
 # time to finish its path
