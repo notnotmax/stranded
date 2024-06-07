@@ -34,7 +34,7 @@ func _physics_process(_delta):
 					Vector2(1, 0),
 					10
 				)
-				owner.add_child(bullet)
+				get_tree().current_scene.add_child(bullet)
 			shot_cooldown += fire_rate
 
 
