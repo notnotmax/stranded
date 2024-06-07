@@ -1,16 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://dqaolwhtpgtj"]
+[gd_scene load_steps=10 format=3 uid="uid://dqaolwhtpgtj"]
 
 [ext_resource type="Script" path="res://scenes/levels/demo_level.gd" id="1_b3qps"]
 [ext_resource type="PackedScene" uid="uid://dvyldhptcpsr" path="res://scenes/entities/asteroid_1.tscn" id="2_iwdtc"]
-[ext_resource type="PackedScene" uid="uid://d3lstvim7ia7x" path="res://scenes/backgrounds/background_1.tscn" id="3_1ooye"]
 [ext_resource type="PackedScene" uid="uid://boxr25jey47t7" path="res://scenes/entities/asteroid_2.tscn" id="3_7b872"]
-[ext_resource type="PackedScene" uid="uid://ul0krf1vltwb" path="res://scenes/entities/player.tscn" id="4_c6ef5"]
 [ext_resource type="PackedScene" uid="uid://cbf0nvx5pbanu" path="res://scenes/entities/asteroid_3.tscn" id="4_l6okt"]
-[ext_resource type="PackedScene" uid="uid://74jno6cnh4s4" path="res://scenes/menus/pause_menu.tscn" id="5_8pfkd"]
 [ext_resource type="PackedScene" uid="uid://yo5y28li3dlc" path="res://scenes/entities/asteroid_4.tscn" id="5_nqn3c"]
 [ext_resource type="PackedScene" uid="uid://c8bpg7j5d5ya0" path="res://scenes/entities/enemy_small.tscn" id="6_34d1f"]
-[ext_resource type="PackedScene" uid="uid://gjr8inabdhiu" path="res://scenes/menus/level_complete.tscn" id="6_xnwjb"]
-[ext_resource type="PackedScene" uid="uid://b5rhxpvglaf3f" path="res://scenes/menus/level_failed.tscn" id="9_f5jwo"]
+[ext_resource type="PackedScene" uid="uid://d35ie48pllg52" path="res://scenes/levels/template_level.tscn" id="7_e1oi1"]
 
 [sub_resource type="Curve2D" id="Curve2D_i0b7r"]
 _data = {
@@ -38,6 +34,8 @@ asteroid3 = ExtResource("4_l6okt")
 asteroid4 = ExtResource("5_nqn3c")
 enemy_small = ExtResource("6_34d1f")
 
+[node name="TemplateLevel" parent="." instance=ExtResource("7_e1oi1")]
+
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
@@ -48,29 +46,6 @@ wait_time = 0.5
 [node name="LevelTimer" type="Timer" parent="."]
 wait_time = 20.0
 one_shot = true
-
-[node name="ParallaxBackground" parent="." instance=ExtResource("3_1ooye")]
-
-[node name="Player" parent="." instance=ExtResource("4_c6ef5")]
-
-[node name="PauseMenu" parent="." instance=ExtResource("5_8pfkd")]
-visible = false
-layout_mode = 1
-
-[node name="LevelFailed" parent="." instance=ExtResource("9_f5jwo")]
-layout_mode = 1
-
-[node name="LevelComplete" parent="." instance=ExtResource("6_xnwjb")]
-visible = false
-layout_mode = 1
-
-[node name="LevelName" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 23.0
-grow_horizontal = 2
-horizontal_alignment = 1
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_i0b7r")
@@ -83,8 +58,6 @@ rotation = 1.5708
 position = Vector2(960, 0)
 curve = SubResource("Curve2D_2pkwk")
 
-[connection signal="level_completed" from="." to="LevelComplete" method="_on_empty_demo_level_completed"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="AsteroidTimer" to="." method="_on_asteroid_timer_timeout"]
 [connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]
-[connection signal="player_died" from="Player" to="LevelFailed" method="_on_player_player_died"]

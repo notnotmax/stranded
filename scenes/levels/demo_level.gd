@@ -7,17 +7,12 @@ signal level_completed
 @export var asteroid4: PackedScene
 @export var enemy_small: PackedScene
 
-@onready var player = $Player
+@onready var player = $TemplateLevel/Player
 @onready var enemy_path_1 = $EnemyPath1
 
 
 func _ready():
 	$StartTimer.start()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(_delta):
-	$LevelName.modulate = lerp($LevelName.modulate, Color(1,1,1,0), 0.05)
 
 
 func _on_start_timer_timeout():
@@ -34,6 +29,7 @@ func _on_asteroid_timer_timeout():
 	
 	if randf() < 0.5:
 		spawn_asteroid_3()
+		spawn_enemy_small()
 	
 	if randf() < 0.25:
 		spawn_asteroid_4()

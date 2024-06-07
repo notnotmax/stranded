@@ -4,12 +4,15 @@ extends Area2D
 
 var alive: bool = true
 var health: int = 30
+# parent PathFollow2D node used to tween movement
 var path_follow: PathFollow2D = PathFollow2D.new()
+# time to finish its path
 var duration: float
 
 
 func with_params(p_path: Path2D, p_duration: float,
 		p_firing_delay: float, p_fire_rate: float):
+	# disable rotation when path rotates e.g. strafing
 	path_follow.rotates = false
 	p_path.add_child(path_follow)
 	path_follow.add_child(self)
