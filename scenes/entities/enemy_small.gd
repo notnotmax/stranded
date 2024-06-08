@@ -54,7 +54,7 @@ func _on_shooting_timer_timeout():
 	shoot()
 
 
-func damage(dmg):
+func take_damage(dmg):
 	if alive:
 		health -= dmg
 		if health <= 0:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ci8vgmg1bikq2"]
+[gd_scene load_steps=12 format=3 uid="uid://ci8vgmg1bikq2"]
 
 [ext_resource type="Script" path="res://scenes/levels/level_one.gd" id="1_wvr5x"]
 [ext_resource type="PackedScene" uid="uid://dvyldhptcpsr" path="res://scenes/entities/asteroid_1.tscn" id="2_7rqh3"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cbf0nvx5pbanu" path="res://scenes/entities/asteroid_3.tscn" id="4_c23x5"]
 [ext_resource type="PackedScene" uid="uid://yo5y28li3dlc" path="res://scenes/entities/asteroid_4.tscn" id="5_56n85"]
 [ext_resource type="PackedScene" uid="uid://c8bpg7j5d5ya0" path="res://scenes/entities/enemy_small.tscn" id="6_bqae8"]
+[ext_resource type="PackedScene" uid="uid://dk2w3ffxunsi8" path="res://scenes/entities/fighter.tscn" id="7_bkd86"]
 [ext_resource type="PackedScene" uid="uid://d35ie48pllg52" path="res://scenes/levels/template_level.tscn" id="7_ndd44"]
 
 [sub_resource type="Curve2D" id="Curve2D_i0b7r"]
@@ -33,6 +34,7 @@ asteroid2 = ExtResource("3_6symk")
 asteroid3 = ExtResource("4_c23x5")
 asteroid4 = ExtResource("5_56n85")
 enemy_small = ExtResource("6_bqae8")
+fighter = ExtResource("7_bkd86")
 
 [node name="TemplateLevel" parent="." instance=ExtResource("7_ndd44")]
 

@@ -40,7 +40,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
 
 
-func damage(dmg):
+func take_damage(dmg):
 	health -= dmg
 	if health <= 0:
 		die()
