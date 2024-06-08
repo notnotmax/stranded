@@ -4,7 +4,6 @@ extends Node
 @export var asteroid2: PackedScene
 @export var asteroid3: PackedScene
 @export var asteroid4: PackedScene
-@export var enemy_small: PackedScene
 @export var fighter: PackedScene
 
 @onready var core = $TemplateLevel
@@ -94,11 +93,9 @@ func _on_wave_1_timer_timeout():
 		var enemy = fighter.instantiate()
 		enemy.init_fighter(Vector2(0,0), core.get_player())
 		enemy.move($Wave1/Path2D, 5, 1)
-		
-		var enemy2 = enemy_small.instantiate().with_params(
-		$Wave1/Path2D2, 5, core.get_player(), 1, 1
-		)
-		enemy2.move()
+		var enemy2 = fighter.instantiate()
+		enemy2.init_fighter(Vector2(0,0), core.get_player())
+		enemy2.move($Wave1/Path2D2, 5, 1)
 		wave_1_count -= 1
 	else:
 		$Wave1/Timer.stop()

@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://dk2w3ffxunsi8"]
 
-[ext_resource type="PackedScene" uid="uid://win6qvnp3tln" path="res://scenes/entities/enemy.tscn" id="1_gg4ka"]
+[ext_resource type="PackedScene" uid="uid://win6qvnp3tln" path="res://scenes/entities/base-classes/enemy.tscn" id="1_gqif5"]
 [ext_resource type="Script" path="res://scenes/entities/fighter.gd" id="2_dd2x2"]
 [ext_resource type="PackedScene" uid="uid://dpgnhqpwagg11" path="res://scenes/entities/enemy_bullet.tscn" id="3_1fnob"]
 [ext_resource type="Texture2D" uid="uid://o0rnoarmmj4t" path="res://assets/enemies/explosion.png" id="4_8ao5l"]
@@ -71,7 +71,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mxfig"]
 size = Vector2(32, 32)
 
-[node name="Fighter" instance=ExtResource("1_gg4ka")]
+[node name="Fighter" instance=ExtResource("1_gqif5")]
 script = ExtResource("2_dd2x2")
 Bullet = ExtResource("3_1fnob")
 initial_firing_delay = 1.0

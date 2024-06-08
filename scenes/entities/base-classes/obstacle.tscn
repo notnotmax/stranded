@@ -1,7 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://b1q003oo6cf0f"]
 
-[ext_resource type="Script" path="res://scenes/entities/obstacle.gd" id="1_qtbkr"]
+[ext_resource type="Script" path="res://scenes/entities/base-classes/obstacle.gd" id="1_qtbkr"]
 [ext_resource type="Texture2D" uid="uid://o0rnoarmmj4t" path="res://assets/enemies/explosion.png" id="2_vb6jc"]
+
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_as2oy"]
 atlas = ExtResource("2_vb6jc")

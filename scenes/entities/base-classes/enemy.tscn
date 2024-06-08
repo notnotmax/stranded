@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://win6qvnp3tln"]
 
-[ext_resource type="PackedScene" uid="uid://b1q003oo6cf0f" path="res://scenes/entities/obstacle.tscn" id="1_8q3yl"]
-[ext_resource type="Script" path="res://scenes/entities/enemy.gd" id="2_sq7a7"]
+[ext_resource type="PackedScene" uid="uid://b1q003oo6cf0f" path="res://scenes/entities/base-classes/obstacle.tscn" id="1_8q3yl"]
+[ext_resource type="Script" path="res://scenes/entities/base-classes/enemy.gd" id="2_sq7a7"]
 
 [node name="Enemy" instance=ExtResource("1_8q3yl")]
 collision_layer = 4
