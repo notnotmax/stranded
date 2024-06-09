@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://ci8vgmg1bikq2"]
 
 [ext_resource type="Script" path="res://scenes/levels/level_one.gd" id="1_wvr5x"]
-[ext_resource type="PackedScene" uid="uid://dvyldhptcpsr" path="res://scenes/entities/asteroid_1.tscn" id="2_7rqh3"]
-[ext_resource type="PackedScene" uid="uid://boxr25jey47t7" path="res://scenes/entities/asteroid_2.tscn" id="3_6symk"]
-[ext_resource type="PackedScene" uid="uid://cbf0nvx5pbanu" path="res://scenes/entities/asteroid_3.tscn" id="4_c23x5"]
-[ext_resource type="PackedScene" uid="uid://yo5y28li3dlc" path="res://scenes/entities/asteroid_4.tscn" id="5_56n85"]
+[ext_resource type="PackedScene" uid="uid://ck0q1cnv4ny10" path="res://scenes/entities/asteroid_1.tscn" id="2_7rqh3"]
+[ext_resource type="PackedScene" uid="uid://cd1exa2j6a0vt" path="res://scenes/entities/asteroid_2.tscn" id="3_6symk"]
+[ext_resource type="PackedScene" uid="uid://dcu718cvw155k" path="res://scenes/entities/asteroid_3.tscn" id="4_c23x5"]
+[ext_resource type="PackedScene" uid="uid://dotn3aecygbwb" path="res://scenes/entities/asteroid_4.tscn" id="5_56n85"]
 [ext_resource type="PackedScene" uid="uid://dk2w3ffxunsi8" path="res://scenes/entities/fighter.tscn" id="7_bkd86"]
 [ext_resource type="PackedScene" uid="uid://d35ie48pllg52" path="res://scenes/levels/template_level.tscn" id="7_ndd44"]
 

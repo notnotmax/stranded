@@ -54,7 +54,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"death",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -80,7 +80,6 @@ health = 10
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_p6o1l")
-animation = &"default"
 autoplay = "default"
 
 [node name="CollisionShape2D" parent="." index="1"]

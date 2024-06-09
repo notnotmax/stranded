@@ -1,50 +1,50 @@
-[gd_scene load_steps=12 format=3 uid="uid://boxr25jey47t7"]
+[gd_scene load_steps=12 format=3 uid="uid://cd1exa2j6a0vt"]
 
 [ext_resource type="Texture2D" uid="uid://o0rnoarmmj4t" path="res://assets/enemies/explosion.png" id="1_8ofiu"]
-[ext_resource type="Script" path="res://scenes/entities/asteroid_2.gd" id="1_rc74w"]
+[ext_resource type="PackedScene" uid="uid://duync81kgfndw" path="res://scenes/entities/base-classes/asteroid.tscn" id="1_ipklm"]
 [ext_resource type="Texture2D" uid="uid://cn0kotunrl60m" path="res://assets/environment/asteroid_2.png" id="2_ebedn"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_max1n"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_as2oy"]
 atlas = ExtResource("1_8ofiu")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y83f8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihp1s"]
 atlas = ExtResource("1_8ofiu")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_i75h3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebuhd"]
 atlas = ExtResource("1_8ofiu")
 region = Rect2(32, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dju0m"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jiwab"]
 atlas = ExtResource("1_8ofiu")
 region = Rect2(48, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0j35y"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwwnb"]
 atlas = ExtResource("1_8ofiu")
 region = Rect2(64, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rjg3q"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0v2e"]
 atlas = ExtResource("2_ebedn")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_mpewo"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_4gjht"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_max1n")
+"texture": SubResource("AtlasTexture_as2oy")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y83f8")
+"texture": SubResource("AtlasTexture_ihp1s")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_i75h3")
+"texture": SubResource("AtlasTexture_ebuhd")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dju0m")
+"texture": SubResource("AtlasTexture_jiwab")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0j35y")
+"texture": SubResource("AtlasTexture_jwwnb")
 }],
 "loop": false,
 "name": &"death",
@@ -52,35 +52,31 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rjg3q")
+"texture": SubResource("AtlasTexture_w0v2e")
 }],
 "loop": false,
 "name": &"default",
 "speed": 0.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8m85c"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kg2xw"]
 radius = 17.0
 height = 50.0
 
-[node name="Asteroid2" type="Area2D"]
+[node name="Asteroid2" instance=ExtResource("1_ipklm")]
 collision_layer = 32
-collision_mask = 10
-script = ExtResource("1_rc74w")
+health = 30
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_mpewo")
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_4gjht")
+animation = &"default"
+autoplay = "default"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(1, 1)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_8m85c")
+shape = SubResource("CapsuleShape2D_kg2xw")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(1.5, 2)
-scale = Vector2(2.55, 1.8)
-
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+position = Vector2(1, 2)
+scale = Vector2(2.6, 1.9)
