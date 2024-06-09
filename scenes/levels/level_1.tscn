@@ -2,11 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://d35ie48pllg52" path="res://scenes/levels/level.tscn" id="1_pexeh"]
 [ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="2_66nbv"]
-[ext_resource type="PackedScene" uid="uid://ck0q1cnv4ny10" path="res://scenes/entities/asteroid_1.tscn" id="3_duu43"]
-[ext_resource type="PackedScene" uid="uid://cd1exa2j6a0vt" path="res://scenes/entities/asteroid_2.tscn" id="4_244ai"]
-[ext_resource type="PackedScene" uid="uid://dcu718cvw155k" path="res://scenes/entities/asteroid_3.tscn" id="5_ho7r6"]
-[ext_resource type="PackedScene" uid="uid://dotn3aecygbwb" path="res://scenes/entities/asteroid_4.tscn" id="6_ows5l"]
-[ext_resource type="PackedScene" uid="uid://dk2w3ffxunsi8" path="res://scenes/entities/fighter.tscn" id="7_l5tg0"]
+[ext_resource type="PackedScene" uid="uid://ck0q1cnv4ny10" path="res://scenes/entities/environmental-obstacles/asteroid_1.tscn" id="3_duu43"]
+[ext_resource type="PackedScene" uid="uid://cd1exa2j6a0vt" path="res://scenes/entities/environmental-obstacles/asteroid_2.tscn" id="4_244ai"]
+[ext_resource type="PackedScene" uid="uid://dcu718cvw155k" path="res://scenes/entities/environmental-obstacles/asteroid_3.tscn" id="5_ho7r6"]
+[ext_resource type="PackedScene" uid="uid://dotn3aecygbwb" path="res://scenes/entities/environmental-obstacles/asteroid_4.tscn" id="6_ows5l"]
+[ext_resource type="PackedScene" uid="uid://dk2w3ffxunsi8" path="res://scenes/entities/enemies/fighter.tscn" id="7_l5tg0"]
 
 [sub_resource type="Curve2D" id="Curve2D_gib1s"]
 _data = {

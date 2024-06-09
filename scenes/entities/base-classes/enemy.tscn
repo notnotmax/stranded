@@ -1,13 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://win6qvnp3tln"]
 
-[ext_resource type="PackedScene" uid="uid://b1q003oo6cf0f" path="res://scenes/entities/base-classes/destroyable_obstacle.tscn" id="1_8q3yl"]
+[ext_resource type="PackedScene" uid="uid://c625q0wg78pwh" path="res://scenes/entities/base-classes/destroyable_obstacle.tscn" id="1_8q3yl"]
 [ext_resource type="Script" path="res://scenes/entities/base-classes/enemy.gd" id="2_sq7a7"]
 
 [node name="Enemy" instance=ExtResource("1_8q3yl")]
 collision_layer = 4
 script = ExtResource("2_sq7a7")
-initial_firing_delay = 0.0
-fire_rate = 0.0
+initial_firing_delay = 1.0
+fire_rate = 1.0
+health = 10
 
 [node name="ShootingStartDelay" type="Timer" parent="." index="3"]
 one_shot = true

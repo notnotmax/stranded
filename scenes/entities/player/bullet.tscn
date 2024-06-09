@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c071cjqtub7m5"]
 
-[ext_resource type="Script" path="res://scenes/entities/bullet.gd" id="1_a3mpb"]
+[ext_resource type="Script" path="res://scenes/entities/player/bullet.gd" id="1_a3mpb"]
 [ext_resource type="Texture2D" uid="uid://b873l73b3iwtc" path="res://assets/player/attack.png" id="1_uegj7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_re8ol"]
