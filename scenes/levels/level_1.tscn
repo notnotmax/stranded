@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://yrc4aif2a7tj"]
+
+[ext_resource type="PackedScene" uid="uid://d35ie48pllg52" path="res://scenes/levels/level.tscn" id="1_pexeh"]
+[ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="2_66nbv"]
+[ext_resource type="PackedScene" uid="uid://ck0q1cnv4ny10" path="res://scenes/entities/asteroid_1.tscn" id="3_duu43"]
+[ext_resource type="PackedScene" uid="uid://cd1exa2j6a0vt" path="res://scenes/entities/asteroid_2.tscn" id="4_244ai"]
+[ext_resource type="PackedScene" uid="uid://dcu718cvw155k" path="res://scenes/entities/asteroid_3.tscn" id="5_ho7r6"]
+[ext_resource type="PackedScene" uid="uid://dotn3aecygbwb" path="res://scenes/entities/asteroid_4.tscn" id="6_ows5l"]
+[ext_resource type="PackedScene" uid="uid://dk2w3ffxunsi8" path="res://scenes/entities/fighter.tscn" id="7_l5tg0"]
+
+[sub_resource type="Curve2D" id="Curve2D_gib1s"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1280, 0, 0, 0, 0, 0, 1280, 720, 0, 0, 0, 0, 1280, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_f7cf1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1576, 64, 0, 384.151, 0, -384.151, 1128, -320)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_utlsj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1344, 384, 0.738045, -383.863, -0.738045, 383.863, 896, 768)
+}
+point_count = 2
+
+[node name="Level1" instance=ExtResource("1_pexeh")]
+script = ExtResource("2_66nbv")
+asteroid1 = ExtResource("3_duu43")
+asteroid2 = ExtResource("4_244ai")
+asteroid3 = ExtResource("5_ho7r6")
+asteroid4 = ExtResource("6_ows5l")
+fighter = ExtResource("7_l5tg0")
+
+[node name="StartTimer" type="Timer" parent="." index="5"]
+wait_time = 2.0
+one_shot = true
+
+[node name="LevelTimer" type="Timer" parent="." index="6"]
+wait_time = 20.0
+one_shot = true
+
+[node name="Asteroids" type="Node" parent="." index="7"]
+
+[node name="Path2D" type="Path2D" parent="Asteroids" index="0"]
+visible = false
+curve = SubResource("Curve2D_gib1s")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Asteroids/Path2D" index="0"]
+position = Vector2(1280, 0)
+rotation = 1.5708
+
+[node name="AsteroidTimer" type="Timer" parent="Asteroids" index="1"]
+wait_time = 0.5
+
+[node name="Wave1" type="Node" parent="." index="8"]
+
+[node name="Path2D" type="Path2D" parent="Wave1" index="0"]
+position = Vector2(-232, 256)
+curve = SubResource("Curve2D_f7cf1")
+
+[node name="Path2D2" type="Path2D" parent="Wave1" index="1"]
+curve = SubResource("Curve2D_utlsj")
+
+[node name="Timer" type="Timer" parent="Wave1" index="2"]
+
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]
+[connection signal="timeout" from="Asteroids/AsteroidTimer" to="." method="_on_asteroid_timer_timeout"]
+[connection signal="timeout" from="Wave1/Timer" to="." method="_on_wave_1_timer_timeout"]

@@ -1,12 +1,10 @@
-extends Node
+extends Level
 
 @export var asteroid1: PackedScene
 @export var asteroid2: PackedScene
 @export var asteroid3: PackedScene
 @export var asteroid4: PackedScene
 @export var fighter: PackedScene
-
-@onready var core = $TemplateLevel
 
 
 func _ready():
@@ -20,7 +18,7 @@ func _on_start_timer_timeout():
 
 
 func _on_level_timer_timeout():
-	core.complete_level()
+	complete_level()
 
 ## Asteroids
 
@@ -96,10 +94,10 @@ func spawn_wave_1():
 func _on_wave_1_timer_timeout():
 	if wave_1_count > 0:
 		var enemy = fighter.instantiate()
-		enemy.init_fighter(Vector2(0,0), core.get_player())
+		enemy.init_fighter(Vector2(0,0), get_player())
 		enemy.move($Wave1/Path2D, 5, 1)
 		var enemy2 = fighter.instantiate()
-		enemy2.init_fighter(Vector2(0,0), core.get_player())
+		enemy2.init_fighter(Vector2(0,0), get_player())
 		enemy2.move($Wave1/Path2D2, 5, 1)
 		wave_1_count -= 1
 	else:
