@@ -24,6 +24,7 @@ func get_vec_towards_player() -> Vector2:
 func _ready():
 	ShootingStartDelay.wait_time = initial_firing_delay
 	ShootingTimer.wait_time = fire_rate
+	ShootingStartDelay.start()
 
 
 func _on_shooting_start_delay_timeout():

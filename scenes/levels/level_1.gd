@@ -98,8 +98,8 @@ func _on_wave_1_timer_timeout():
 		var enemy = fighter2.instantiate()
 		enemy.init_fighter(Vector2(0,0), get_player())
 		enemy.move($Wave1/Path2D, 5, 1)
-		var enemy2 = deathbomber.instantiate()
-		enemy2.init_deathbomber(Vector2(0,0), get_player())
+		var enemy2 = fighter2.instantiate()
+		enemy2.init_fighter(Vector2(0,0), get_player())
 		enemy2.move($Wave1/Path2D2, 5, 1)
 		wave_1_count -= 1
 	else:

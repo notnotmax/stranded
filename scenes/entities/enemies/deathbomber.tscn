@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://win6qvnp3tln" path="res://scenes/entities/base-classes/enemy.tscn" id="1_d1wfy"]
 [ext_resource type="Script" path="res://scenes/entities/enemies/deathbomber.gd" id="2_kafn5"]
-[ext_resource type="PackedScene" uid="uid://bxjgg8h1ty86w" path="res://scenes/entities/enemies/enemy_attack_bullet.tscn" id="3_qpx2h"]
+[ext_resource type="PackedScene" uid="uid://bxjgg8h1ty86w" path="res://scenes/entities/enemies/bullet.tscn" id="3_gnjbd"]
 [ext_resource type="Texture2D" uid="uid://4auxqgystbtu" path="res://assets/enemies/enemy_small_red.png" id="4_0i2xg"]
 [ext_resource type="Texture2D" uid="uid://o0rnoarmmj4t" path="res://assets/enemies/explosion.png" id="4_eymv1"]
 
@@ -73,7 +73,7 @@ size = Vector2(32, 32)
 
 [node name="Deathbomber" instance=ExtResource("1_d1wfy")]
 script = ExtResource("2_kafn5")
-Bullet = ExtResource("3_qpx2h")
+Bullet = ExtResource("3_gnjbd")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_dtqmy")

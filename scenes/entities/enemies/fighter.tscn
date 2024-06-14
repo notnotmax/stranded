@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://win6qvnp3tln" path="res://scenes/entities/base-classes/enemy.tscn" id="1_gqif5"]
 [ext_resource type="Script" path="res://scenes/entities/enemies/fighter.gd" id="2_dd2x2"]
-[ext_resource type="PackedScene" uid="uid://bxjgg8h1ty86w" path="res://scenes/entities/enemies/enemy_attack_bullet.tscn" id="3_v1jq3"]
+[ext_resource type="PackedScene" uid="uid://bxjgg8h1ty86w" path="res://scenes/entities/enemies/bullet.tscn" id="3_v1jq3"]
 [ext_resource type="Texture2D" uid="uid://o0rnoarmmj4t" path="res://assets/enemies/explosion.png" id="4_8ao5l"]
 [ext_resource type="Texture2D" uid="uid://bdvhti2nlac2r" path="res://assets/enemies/enemy_small.png" id="5_q5a1x"]
 
