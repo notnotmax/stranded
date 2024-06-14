@@ -5,6 +5,7 @@ extends Level
 @export var asteroid3: PackedScene
 @export var asteroid4: PackedScene
 @export var fighter: PackedScene
+@export var fighter2: PackedScene
 @export var deathbomber: PackedScene
 
 
@@ -94,9 +95,9 @@ func spawn_wave_1():
 
 func _on_wave_1_timer_timeout():
 	if wave_1_count > 0:
-		#var enemy = fighter.instantiate()
-		#enemy.init_fighter(Vector2(0,0), get_player())
-		#enemy.move($Wave1/Path2D, 5, 1)
+		var enemy = fighter2.instantiate()
+		enemy.init_fighter(Vector2(0,0), get_player())
+		enemy.move($Wave1/Path2D, 5, 1)
 		var enemy2 = deathbomber.instantiate()
 		enemy2.init_deathbomber(Vector2(0,0), get_player())
 		enemy2.move($Wave1/Path2D2, 5, 1)

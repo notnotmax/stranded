@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://yrc4aif2a7tj"]
+[gd_scene load_steps=13 format=3 uid="uid://yrc4aif2a7tj"]
 
 [ext_resource type="PackedScene" uid="uid://d35ie48pllg52" path="res://scenes/levels/level.tscn" id="1_pexeh"]
 [ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="2_66nbv"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dotn3aecygbwb" path="res://scenes/entities/environmental-obstacles/asteroid_4.tscn" id="6_ows5l"]
 [ext_resource type="PackedScene" uid="uid://dk2w3ffxunsi8" path="res://scenes/entities/enemies/fighter.tscn" id="7_l5tg0"]
 [ext_resource type="PackedScene" uid="uid://3tvkgdsry7de" path="res://scenes/entities/enemies/deathbomber.tscn" id="8_bryk2"]
+[ext_resource type="PackedScene" uid="uid://bi2okcenc8w50" path="res://scenes/entities/enemies/fighter_2.tscn" id="8_p3jpn"]
 
 [sub_resource type="Curve2D" id="Curve2D_gib1s"]
 _data = {
@@ -34,6 +35,7 @@ asteroid2 = ExtResource("4_244ai")
 asteroid3 = ExtResource("5_ho7r6")
 asteroid4 = ExtResource("6_ows5l")
 fighter = ExtResource("7_l5tg0")
+fighter2 = ExtResource("8_p3jpn")
 deathbomber = ExtResource("8_bryk2")
 
 [node name="StartTimer" type="Timer" parent="." index="5"]

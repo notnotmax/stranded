@@ -17,6 +17,10 @@ func init_enemy(p_position: Vector2 = Vector2(0, 0), p_target: Node = Node.new()
 	target = p_target
 
 
+func get_vec_towards_player() -> Vector2:
+	return (target.global_position - self.global_position).normalized()
+
+
 func _ready():
 	ShootingStartDelay.wait_time = initial_firing_delay
 	ShootingTimer.wait_time = fire_rate
