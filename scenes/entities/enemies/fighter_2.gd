@@ -13,6 +13,6 @@ func shoot():
 		for i in range(10):
 			var bullet = Bullet.instantiate()
 			bullet.init_enemy_attack(
-				self.global_position, 5, angle.rotated(delta * i)
+				self.global_position, 1, 2, angle.rotated(delta * i)
 			)
 			get_tree().current_scene.add_child(bullet)

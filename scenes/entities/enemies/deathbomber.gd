@@ -20,7 +20,7 @@ func on_death():
 	for i in range(12):
 		var bullet = Bullet.instantiate()
 		bullet.init_enemy_attack(
-			self.global_position, 5, angle
+			self.global_position, 5, 0, angle
 		)
 		get_tree().current_scene.add_child(bullet)
 		angle = angle.rotated(incr)
