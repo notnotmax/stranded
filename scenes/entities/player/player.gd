@@ -3,6 +3,8 @@ extends Area2D
 signal player_died
 
 var alive: bool = true
+var shields: int = 0
+var is_invulnerable: bool = false
 var is_firing: bool = false
 # cooldown timer before next shot
 var shot_cooldown = 0
@@ -75,8 +77,37 @@ func _on_animated_sprite_2d_animation_finished():
 		queue_free()
 
 
+func take_damage():
+	if not is_invulnerable:
+		if shields > 0:
+			shields -= 1
+			if shields == 0:
+				modulate.b = 1
+			is_invulnerable = true
+			modulate.a = 0.5
+			$InvulnerabilityTimer.start(3)
+		else:
+			die()
+
+
+func _on_invulnerability_timer_timeout():
+	modulate.a = 1
+	is_invulnerable = false
+
+
 # enemy instances call this upon collision with player to kill them
 func die():
 	if alive:
 		alive = false
 		$AnimatedSprite2D.play("death")
+
+
+func get_powerup(powerup):
+	match powerup:
+		Powerup.Types.SHIELD:
+			print(shields)
+			shields += 1
+			modulate.b = 10
+
+
+

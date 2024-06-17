@@ -9,7 +9,7 @@ func init_obstacle(p_position: Vector2 = Vector2(0, 0)) -> void:
 # destroy the player on impact
 func _on_area_entered(area):
 	if area.get_collision_layer_value(2):
-		area.die()
+		area.take_damage()
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited():

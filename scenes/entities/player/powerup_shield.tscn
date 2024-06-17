@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0gpsrkb5ixb0"]
+
+[ext_resource type="PackedScene" uid="uid://b447bssx3v33w" path="res://scenes/entities/base-classes/powerup.tscn" id="1_vjjfk"]
+[ext_resource type="Texture2D" uid="uid://do8xdvhklwspk" path="res://assets/player/shield.png" id="2_f7vdm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfp6a"]
+atlas = ExtResource("2_f7vdm")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kofcc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfp6a")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aysto"]
+radius = 17.0294
+
+[node name="Powerup" instance=ExtResource("1_vjjfk")]
+type = 1
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_kofcc")
+autoplay = "default"
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_aysto")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+position = Vector2(2.38419e-07, 2.38419e-07)
+scale = Vector2(1.6, 1.6)

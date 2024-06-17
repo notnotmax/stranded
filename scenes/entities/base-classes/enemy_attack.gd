@@ -20,5 +20,5 @@ func _physics_process(delta):
 
 func _on_area_entered(area):
 	if area.get_collision_layer_value(2):
-		area.die()
+		area.take_damage()
 		queue_free()
