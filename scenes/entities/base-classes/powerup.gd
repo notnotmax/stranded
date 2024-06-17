@@ -10,7 +10,7 @@ func init_powerup(p_position: Vector2 = Vector2(0, 0)) -> void:
 	position = p_position
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	position += Vector2.LEFT * speed
 
 

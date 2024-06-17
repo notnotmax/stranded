@@ -16,11 +16,14 @@ script = ExtResource("1_n64i4")
 
 [node name="PauseMenu" parent="." instance=ExtResource("4_s3y75")]
 visible = false
+z_index = 1
 
 [node name="LevelFailed" parent="." instance=ExtResource("5_5aexc")]
 visible = false
+z_index = 1
 
 [node name="LevelComplete" parent="." instance=ExtResource("6_hxcqo")]
 visible = false
+z_index = 1
 
 [connection signal="player_died" from="Player" to="LevelFailed" method="_on_player_player_died"]

@@ -10,9 +10,9 @@ class_name DebugLevel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var fighter = fighter.instantiate()
-	fighter.init_fighter(Vector2(1250, 360), get_player())
-	add_child(fighter)
+	var fighter1 = fighter.instantiate()
+	fighter1.init_fighter(Vector2(1250, 360), get_player())
+	add_child(fighter1)
 	
 	var shield = powerup_shield.instantiate()
 	shield.init_powerup(Vector2(1200, 360))
