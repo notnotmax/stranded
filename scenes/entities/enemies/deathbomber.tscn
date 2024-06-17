@@ -74,6 +74,8 @@ size = Vector2(32, 32)
 [node name="Deathbomber" instance=ExtResource("1_d1wfy")]
 script = ExtResource("2_kafn5")
 Bullet = ExtResource("3_gnjbd")
+health = 30
+points = 150
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_dtqmy")

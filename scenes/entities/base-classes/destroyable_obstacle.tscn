@@ -55,6 +55,7 @@ animations = [{
 [node name="DestroyableObstacle" instance=ExtResource("1_l14xj")]
 script = ExtResource("2_4e0ll")
 health = 0
+points = 0
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_hyouo")

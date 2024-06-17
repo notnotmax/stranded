@@ -14,7 +14,8 @@ func _on_quit_button_pressed():
 	get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
 
 
-func complete_level():
+func complete_level(score):
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	$MarginContainer/Score.text = "Score: " + str(score)
 	get_tree().paused = true
 	self.show()

@@ -64,12 +64,11 @@ radius = 11.0
 height = 26.0
 
 [node name="Asteroid1" instance=ExtResource("1_hq7um")]
-collision_layer = 32
 health = 10
+points = 10
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_uhwfv")
-autoplay = "default"
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(-1, 1)

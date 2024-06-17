@@ -74,6 +74,7 @@ size = Vector2(32, 32)
 [node name="Fighter" instance=ExtResource("1_gqif5")]
 script = ExtResource("2_dd2x2")
 Bullet = ExtResource("3_v1jq3")
+points = 50
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_d5yf3")
