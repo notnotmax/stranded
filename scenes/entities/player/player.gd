@@ -4,12 +4,13 @@ signal player_died
 
 var alive: bool = true
 var shields: int = 0
+var inverted_movement: bool = true
 var is_invulnerable: bool = false
 var is_firing: bool = false
 # cooldown timer before next shot
-var shot_cooldown = 0
-# shoot every (fire_rate / 60) seconds
-var fire_rate = 6
+var shot_cooldown: int = 0
+# fire rate in 1/60ths of a second
+var fire_rate: int = 6
 
 
 # Called when the node enters the scene tree for the first time.
@@ -44,17 +45,20 @@ func _input(event):
 	if alive:
 		# Player movement
 		if event is InputEventMouseMotion:
-			position += event.relative
+			var movement: Vector2 = event.relative
+			if inverted_movement:
+				movement = -movement
+			position += movement
 			position.x = clamp(position.x, 16, get_viewport_rect().size.x - 24)
 			position.y = clamp(position.y, 16, get_viewport_rect().size.y - 16)
 			# change movement sprite
-			if event.relative.y >= 3:
+			if movement.y >= 3:
 				$AnimatedSprite2D.play("moving_down_fast")
-			elif event.relative.y >= 1:
+			elif movement.y >= 1:
 				$AnimatedSprite2D.play("moving_down_slow")
-			elif event.relative.y >= -1:
+			elif movement.y >= -1:
 				$AnimatedSprite2D.play("default")
-			elif event.relative.y >= -3:
+			elif movement.y >= -3:
 				$AnimatedSprite2D.play("moving_up_slow")
 			else:
 				$AnimatedSprite2D.play("moving_up_fast")
