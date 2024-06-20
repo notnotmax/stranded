@@ -109,7 +109,6 @@ func die():
 func get_powerup(powerup):
 	match powerup:
 		Powerup.Types.SHIELD:
-			print(shields)
 			shields += 1
 			modulate.b = 10
 

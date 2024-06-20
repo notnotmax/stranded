@@ -44,10 +44,10 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
 
 
-func change_parent(new_parent: Node):
-	if get_parent():
-		get_parent().remove_child(self)
-	new_parent.add_child(self)
+func set_parent(parent: Node, child: Node):
+	if child.get_parent():
+		child.get_parent().remove_child(child)
+	parent.add_child(child)
 
 
 func move_by(vector: Vector2, duration: float):
@@ -60,13 +60,15 @@ func move_to(dest: Vector2, duration: float):
 	tween.tween_property(self, 'position', dest, duration)
 
 
+# Moves on the path exactly as visually described. Will teleport to the start
+# of the path.
 func move_on_path(path: Path2D, duration: float, endpoint: int = 1):
 	# remove the offset caused by local position
 	position = Vector2(0, 0)
-	var path_follower = PathFollow2D.new()
-	path_follower.rotates = false
-	path.add_child(path_follower)
-	change_parent(path_follower)
+	# reset for reuse
+	path_follower.progress_ratio = 0
+	set_parent(path, path_follower)
+	set_parent(path_follower, self)
 	
 	var tween = create_tween().set_trans(Tween.TRANS_SINE)
 	tween.tween_property(path_follower, 'progress_ratio', endpoint, duration)

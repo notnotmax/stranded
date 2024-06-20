@@ -27,8 +27,6 @@ func _on_timer_timeout():
 
 
 func _on_timer_2_timeout():
-	print(fighter1.get_global_position())
-	#fighter1.move_on_path($Path2D, 1, 1)
 	fighter1.move_by(Vector2(100,0), 1)
 
 
