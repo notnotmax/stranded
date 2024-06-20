@@ -10,6 +10,6 @@ func shoot():
 	if alive:
 		var bullet = Bullet.instantiate()
 		bullet.init_enemy_attack(
-			self.global_position, 5, 0, get_vec_towards_player()
+			self.global_position, 4, 2, get_vec_towards_player()
 		)
 		get_tree().current_scene.add_child(bullet)

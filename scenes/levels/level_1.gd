@@ -95,12 +95,12 @@ func spawn_wave_1():
 
 func _on_wave_1_timer_timeout():
 	if wave_1_count > 0:
-		var enemy = fighter2.instantiate()
+		var enemy = fighter.instantiate()
 		enemy.init_fighter(Vector2(0,0), get_player())
-		enemy.move($Wave1/Path2D, 5, 1)
-		var enemy2 = fighter2.instantiate()
+		enemy.move_on_path($Wave1/Path2D, 5, 1)
+		var enemy2 = fighter.instantiate()
 		enemy2.init_fighter(Vector2(0,0), get_player())
-		enemy2.move($Wave1/Path2D2, 5, 1)
+		enemy2.move_on_path($Wave1/Path2D2, 5, 1)
 		wave_1_count -= 1
 	else:
 		$Wave1/Timer.stop()
