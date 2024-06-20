@@ -4,7 +4,7 @@ signal player_died
 
 var alive: bool = true
 var shields: int = 0
-var inverted_movement: bool = true
+var inverted_movement: bool = false
 var is_invulnerable: bool = false
 var is_firing: bool = false
 # cooldown timer before next shot

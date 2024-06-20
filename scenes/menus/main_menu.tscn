@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://csuqd7yr3wp8r"]
+[gd_scene load_steps=16 format=3 uid="uid://csuqd7yr3wp8r"]
 
 [ext_resource type="Script" path="res://scenes/menus/main_menu.gd" id="1_unqdc"]
 [ext_resource type="PackedScene" uid="uid://d3lstvim7ia7x" path="res://scenes/backgrounds/background_1.tscn" id="2_1h2no"]
 [ext_resource type="Texture2D" uid="uid://bw6iaxhfblh3" path="res://assets/player/ship.png" id="3_jejjc"]
+[ext_resource type="PackedScene" uid="uid://bauw3vtckwroo" path="res://scenes/menus/level_select.tscn" id="4_fmaha"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_88bbd"]
 atlas = ExtResource("3_jejjc")
@@ -121,7 +122,14 @@ script = ExtResource("1_unqdc")
 
 [node name="Background1" parent="." instance=ExtResource("2_1h2no")]
 
-[node name="MenuButtons" type="MarginContainer" parent="."]
+[node name="Spaceship" type="AnimatedSprite2D" parent="."]
+position = Vector2(640, 254)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_hg2x5")
+animation = &"main_menu_ship"
+autoplay = "main_menu_ship"
+
+[node name="MainMenuButtons" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -135,32 +143,27 @@ offset_bottom = 133.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuButtons"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuButtons"]
 layout_mode = 2
 theme_override_constants/separation = 15
 alignment = 1
 
-[node name="Label" type="Label" parent="MenuButtons/VBoxContainer"]
+[node name="Label" type="Label" parent="MainMenuButtons/VBoxContainer"]
 layout_mode = 2
 text = "Stranded"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayButton" type="Button" parent="MenuButtons/VBoxContainer"]
+[node name="PlayButton" type="Button" parent="MainMenuButtons/VBoxContainer"]
 layout_mode = 2
 text = "Play"
 
-[node name="SettingsButton" type="Button" parent="MenuButtons/VBoxContainer"]
-visible = false
-layout_mode = 2
-text = "Settings"
-
-[node name="QuitButton" type="Button" parent="MenuButtons/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="MainMenuButtons/VBoxContainer"]
 layout_mode = 2
 text = "Quit"
 
-[node name="Spaceship" type="AnimatedSprite2D" parent="."]
-position = Vector2(640, 254)
-scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_hg2x5")
-animation = &"main_menu_ship"
+[node name="LevelSelect" parent="." instance=ExtResource("4_fmaha")]
+
+[connection signal="pressed" from="MainMenuButtons/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MainMenuButtons/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="back" from="LevelSelect" to="." method="_on_level_select_back"]
