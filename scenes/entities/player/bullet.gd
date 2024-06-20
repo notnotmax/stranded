@@ -21,7 +21,7 @@ func _physics_process(_delta):
 
 # damage enemy or environmental obstacles on impact
 func _on_area_entered(area):
-	area.damage(damage)
+	area.take_damage(damage)
 	queue_free()
 
 

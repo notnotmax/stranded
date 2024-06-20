@@ -1,0 +1,81 @@
+[gd_scene load_steps=12 format=3 uid="uid://cd1exa2j6a0vt"]
+
+[ext_resource type="Texture2D" uid="uid://o0rnoarmmj4t" path="res://assets/enemies/explosion.png" id="1_8ofiu"]
+[ext_resource type="PackedScene" uid="uid://duync81kgfndw" path="res://scenes/entities/base-classes/asteroid.tscn" id="1_ipklm"]
+[ext_resource type="Texture2D" uid="uid://cn0kotunrl60m" path="res://assets/environment/asteroid_2.png" id="2_ebedn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_as2oy"]
+atlas = ExtResource("1_8ofiu")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihp1s"]
+atlas = ExtResource("1_8ofiu")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebuhd"]
+atlas = ExtResource("1_8ofiu")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jiwab"]
+atlas = ExtResource("1_8ofiu")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwwnb"]
+atlas = ExtResource("1_8ofiu")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0v2e"]
+atlas = ExtResource("2_ebedn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4gjht"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_as2oy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihp1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebuhd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jiwab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwwnb")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0v2e")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kg2xw"]
+radius = 17.0
+height = 50.0
+
+[node name="Asteroid2" instance=ExtResource("1_ipklm")]
+health = 30
+points = 30
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_4gjht")
+animation = &"default"
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(1, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_kg2xw")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+position = Vector2(1, 2)
+scale = Vector2(2.6, 1.9)

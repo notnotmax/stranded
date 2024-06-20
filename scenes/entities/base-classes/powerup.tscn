@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://b447bssx3v33w"]
+
+[ext_resource type="Script" path="res://scenes/entities/base-classes/powerup.gd" id="1_odh43"]
+
+[node name="Powerup" type="Area2D"]
+collision_layer = 64
+collision_mask = 2
+script = ExtResource("1_odh43")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,12 +1,12 @@
-extends Node
+extends Level
 
 @export var asteroid1: PackedScene
 @export var asteroid2: PackedScene
 @export var asteroid3: PackedScene
 @export var asteroid4: PackedScene
-@export var enemy_small: PackedScene
-
-@onready var core = $TemplateLevel
+@export var fighter: PackedScene
+@export var fighter2: PackedScene
+@export var deathbomber: PackedScene
 
 
 func _ready():
@@ -20,7 +20,7 @@ func _on_start_timer_timeout():
 
 
 func _on_level_timer_timeout():
-	core.complete_level()
+	complete_level()
 
 ## Asteroids
 
@@ -39,11 +39,13 @@ func _on_asteroid_timer_timeout():
 	if randf() < 0.05:
 		spawn_asteroid_4()
 
+
 func spawn_asteroid_1():
 	asteroid_spawnpoint.progress_ratio = randf()
-	var asteroid = asteroid1.instantiate().with_params(
+	var asteroid = asteroid1.instantiate()
+	asteroid.init_asteroid(
 		asteroid_spawnpoint.position,
-		randf_range(1, 3),
+		randf_range(1,3),
 		Vector2(-1, 0)
 		)
 	add_child(asteroid)
@@ -51,7 +53,8 @@ func spawn_asteroid_1():
 
 func spawn_asteroid_2():
 	asteroid_spawnpoint.progress_ratio = randf()
-	var asteroid = asteroid2.instantiate().with_params(
+	var asteroid = asteroid2.instantiate()
+	asteroid.init_asteroid(
 		asteroid_spawnpoint.position,
 		randf_range(1, 2),
 		Vector2(-1, 0)
@@ -61,7 +64,8 @@ func spawn_asteroid_2():
 
 func spawn_asteroid_3():
 	asteroid_spawnpoint.progress_ratio = randf()
-	var asteroid = asteroid3.instantiate().with_params(
+	var asteroid = asteroid3.instantiate()
+	asteroid.init_asteroid(
 		asteroid_spawnpoint.position,
 		randf_range(0.5, 1),
 		Vector2(-1, 0)
@@ -71,7 +75,8 @@ func spawn_asteroid_3():
 
 func spawn_asteroid_4():
 	asteroid_spawnpoint.progress_ratio = randf()
-	var asteroid = asteroid4.instantiate().with_params(
+	var asteroid = asteroid4.instantiate()
+	asteroid.init_asteroid(
 		asteroid_spawnpoint.position,
 		randf_range(0.2, 1),
 		Vector2(-1, 0)
@@ -83,21 +88,19 @@ func spawn_asteroid_4():
 var wave_1_count: int = 0
 
 func spawn_wave_1():
-	wave_1_count = 20
+	wave_1_count = 10
 	$Wave1/Timer.wait_time = 0.5
 	$Wave1/Timer.start()
 
 
 func _on_wave_1_timer_timeout():
 	if wave_1_count > 0:
-		var enemy = enemy_small.instantiate().with_params(
-		$Wave1/Path2D, 5, core.get_player(), 1, 1
-		)
-		enemy.move()
-		var enemy2 = enemy_small.instantiate().with_params(
-		$Wave1/Path2D2, 5, core.get_player(), 1, 1
-		)
-		enemy2.move()
+		var enemy = fighter2.instantiate()
+		enemy.init_fighter(Vector2(0,0), get_player())
+		enemy.move($Wave1/Path2D, 5, 1)
+		var enemy2 = fighter2.instantiate()
+		enemy2.init_fighter(Vector2(0,0), get_player())
+		enemy2.move($Wave1/Path2D2, 5, 1)
 		wave_1_count -= 1
 	else:
 		$Wave1/Timer.stop()

@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://d35ie48pllg52"]
+
+[ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_n64i4"]
+[ext_resource type="PackedScene" uid="uid://d3lstvim7ia7x" path="res://scenes/backgrounds/background_1.tscn" id="2_xgdqi"]
+[ext_resource type="PackedScene" uid="uid://ul0krf1vltwb" path="res://scenes/entities/player/player.tscn" id="3_42f1v"]
+[ext_resource type="PackedScene" uid="uid://74jno6cnh4s4" path="res://scenes/menus/pause_menu.tscn" id="4_s3y75"]
+[ext_resource type="PackedScene" uid="uid://b5rhxpvglaf3f" path="res://scenes/menus/level_failed.tscn" id="5_5aexc"]
+[ext_resource type="PackedScene" uid="uid://gjr8inabdhiu" path="res://scenes/menus/level_complete.tscn" id="6_hxcqo"]
+
+[node name="Level" type="Node"]
+script = ExtResource("1_n64i4")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_xgdqi")]
+
+[node name="Player" parent="." instance=ExtResource("3_42f1v")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("4_s3y75")]
+visible = false
+z_index = 1
+
+[node name="LevelFailed" parent="." instance=ExtResource("5_5aexc")]
+visible = false
+z_index = 1
+
+[node name="LevelComplete" parent="." instance=ExtResource("6_hxcqo")]
+visible = false
+z_index = 1
+
+[connection signal="player_died" from="Player" to="LevelFailed" method="_on_player_player_died"]

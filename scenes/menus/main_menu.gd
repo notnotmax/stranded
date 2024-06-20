@@ -1,25 +1,22 @@
 extends Control
+signal return_to_main_menu
 
+@onready var main_menu_buttons = $MainMenuButtons
+@onready var level_select = $LevelSelect
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	$Spaceship.play()
-	var play_button = $MenuButtons/VBoxContainer/PlayButton
-	var settings_button = $MenuButtons/VBoxContainer/SettingsButton
-	var quit_button = $MenuButtons/VBoxContainer/QuitButton
-	play_button.connect("pressed", _on_play_button_pressed)
-	settings_button.connect("pressed", _on_settings_button_pressed)
-	quit_button.connect("pressed", _on_quit_button_pressed)
+	level_select.hide()
 
 
 func _on_play_button_pressed():
-	get_tree().change_scene_to_file("res://scenes/levels/level_one.tscn")
-
-
-func _on_settings_button_pressed():
-	pass
-	#get_tree().change_scene_to_file("res://scenes/levels/debug_level.tscn")
+	main_menu_buttons.hide()
+	level_select.show()
 
 
 func _on_quit_button_pressed():
 	get_tree().quit()
+
+
+func _on_level_select_back():
+	level_select.hide()
+	main_menu_buttons.show()
