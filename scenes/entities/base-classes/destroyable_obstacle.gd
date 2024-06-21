@@ -11,7 +11,7 @@ func _on_area_entered(area):
 		super._on_area_entered(area)
 
 
-func _on_animated_sprite_2d_animation_finished():
+func _on_death_animation_animation_finished():
 	if !alive:
 		queue_free()
 
@@ -31,5 +31,7 @@ func die():
 		alive = false
 		set_collision_layer_value(3, false)
 		set_collision_layer_value(6, false)
-		$AnimatedSprite2D.play("death")
+		$AnimatedSprite2D.hide()
+		$DeathAnimation.show()
+		$DeathAnimation.play()
 		add_score(points)

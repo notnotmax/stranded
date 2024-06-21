@@ -71,11 +71,11 @@ points = 30
 sprite_frames = SubResource("SpriteFrames_4gjht")
 animation = &"default"
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(1, 1)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_kg2xw")
 
-[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
 position = Vector2(1, 2)
 scale = Vector2(2.6, 1.9)

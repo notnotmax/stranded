@@ -6,7 +6,6 @@
 [node name="Asteroid" instance=ExtResource("1_sr38c")]
 collision_layer = 32
 script = ExtResource("2_osl3b")
-health = 0
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 animation = &"death"

@@ -10,6 +10,9 @@ initial_firing_delay = 1.0
 fire_rate = 1.0
 health = 10
 
+[node name="AnimatedSprite2D" parent="." index="0"]
+animation = &"death"
+
 [node name="ShootingStartDelay" type="Timer" parent="." index="3"]
 one_shot = true
 autostart = true
