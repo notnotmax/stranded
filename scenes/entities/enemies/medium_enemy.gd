@@ -11,27 +11,22 @@ func _on_shooting_start_delay_timeout():
 	fire_laser()
 
 
-func _on_laser_timer_timeout():
-	$Laser.set_target_position(
-			to_local(target.global_position).normalized() * get_viewport_rect().size.x
-			)
-	fire_laser()
-
-
 func fire_laser():
 	if alive:
-		$Laser.set_target(
-			to_local(target.global_position).normalized() * get_viewport_rect().size.x
-			)
-		$Laser.set_firing(true)
-		$Laser/LaserDuration.start()
+		$Laser.sweep(Vector2(-1080, 0), Vector2(-1080, 500), 3)
 
 
-func _on_laser_duration_timeout():
-	$Laser.set_firing(false)
-	$Laser/LaserTimer.start()
+func _on_laser_ended():
+	$Laser/LaserCooldown.start()
+
+
+func _on_laser_cooldown_timeout():
+	fire_laser()
 
 
 func die():
 	$Laser.set_firing(false)
 	super.die()
+
+
+

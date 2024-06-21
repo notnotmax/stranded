@@ -22,4 +22,8 @@ default_color = Color(1, 0.5, 0.5, 1)
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
 
+[node name="Duration" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Duration" to="." method="_on_duration_timeout"]

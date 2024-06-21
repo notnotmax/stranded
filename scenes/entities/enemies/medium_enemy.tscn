@@ -54,13 +54,9 @@ scale = Vector2(1.5, 3.2)
 
 [node name="Laser" parent="." index="5" instance=ExtResource("5_dxrtq")]
 
-[node name="LaserTimer" type="Timer" parent="Laser" index="3"]
+[node name="LaserCooldown" type="Timer" parent="Laser" index="3"]
 wait_time = 3.0
 one_shot = true
 
-[node name="LaserDuration" type="Timer" parent="Laser" index="4"]
-wait_time = 2.5
-one_shot = true
-
-[connection signal="timeout" from="Laser/LaserTimer" to="." method="_on_laser_timer_timeout"]
-[connection signal="timeout" from="Laser/LaserDuration" to="." method="_on_laser_duration_timeout"]
+[connection signal="ended" from="Laser" to="." method="_on_laser_ended"]
+[connection signal="timeout" from="Laser/LaserCooldown" to="." method="_on_laser_cooldown_timeout"]
