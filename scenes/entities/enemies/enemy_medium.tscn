@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7wag6oedogem"]
+
+[ext_resource type="PackedScene" uid="uid://win6qvnp3tln" path="res://scenes/entities/base-classes/enemy.tscn" id="1_wmtet"]
+[ext_resource type="Texture2D" uid="uid://dqmouwab5v2cx" path="res://assets/enemies/enemy_medium.png" id="2_fy72y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kynf"]
+atlas = ExtResource("2_fy72y")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0c77r"]
+atlas = ExtResource("2_fy72y")
+region = Rect2(0, 32, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x24bm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6kynf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0c77r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="Enemy" instance=ExtResource("1_wmtet")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_x24bm")
+animation = &"default"

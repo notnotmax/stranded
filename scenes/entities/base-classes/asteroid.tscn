@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://duync81kgfndw"]
+[gd_scene load_steps=4 format=3 uid="uid://duync81kgfndw"]
 
 [ext_resource type="PackedScene" uid="uid://c625q0wg78pwh" path="res://scenes/entities/base-classes/destroyable_obstacle.tscn" id="1_sr38c"]
 [ext_resource type="Script" path="res://scenes/entities/base-classes/asteroid.gd" id="2_osl3b"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_llht1"]
 
 [node name="Asteroid" instance=ExtResource("1_sr38c")]
 collision_layer = 32
 script = ExtResource("2_osl3b")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
-animation = &"death"
+sprite_frames = SubResource("SpriteFrames_llht1")
