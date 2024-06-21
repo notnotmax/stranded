@@ -14,7 +14,4 @@ health = 10
 one_shot = true
 autostart = true
 
-[node name="ShootingTimer" type="Timer" parent="." index="5"]
-
 [connection signal="timeout" from="ShootingStartDelay" to="." method="_on_shooting_start_delay_timeout"]
-[connection signal="timeout" from="ShootingTimer" to="." method="_on_shooting_timer_timeout"]

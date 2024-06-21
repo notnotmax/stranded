@@ -27,13 +27,13 @@ func _ready():
 	add_child(shield)
 
 
-func _on_timer_timeout():
-	fighter1.move_on_path($Path2D, 1, 1)
-
-
-func _on_timer_2_timeout():
-	fighter1.move_by(Vector2(100,0), 1)
-
-
-func _on_timer_3_timeout():
-	fighter1.move_on_path($Path2D, 1, 1)
+#func _on_timer_timeout():
+	#fighter1.move_on_path($Path2D, 1, 1)
+#
+#
+#func _on_timer_2_timeout():
+	#fighter1.move_by(Vector2(100,0), 1)
+#
+#
+#func _on_timer_3_timeout():
+	#fighter1.move_on_path($Path2D, 1, 1)

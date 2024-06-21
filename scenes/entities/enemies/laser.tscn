@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://3l4h0vcm1enb"]
+
+[ext_resource type="Script" path="res://scenes/entities/enemies/laser.gd" id="1_gdxg7"]
+
+[node name="Laser" type="RayCast2D"]
+enabled = false
+target_position = Vector2(-1280, 0)
+collision_mask = 2
+hit_from_inside = true
+collide_with_areas = true
+script = ExtResource("1_gdxg7")
+
+[node name="Warning" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 64, 0)
+width = 0.0
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 64, 0)
+width = 0.0
+default_color = Color(1, 0.5, 0.5, 1)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

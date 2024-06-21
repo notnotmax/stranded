@@ -6,10 +6,27 @@ class_name MediumEnemy
 func init_fighter(p_position: Vector2 = Vector2(0, 0), p_target: Node = Node.new()):
 	super.init_enemy(p_position, p_target)
 
+
+func _on_shooting_start_delay_timeout():
+	shoot()
+
+
 func shoot():
 	if alive:
-		var bullet = Bullet.instantiate()
-		bullet.init_enemy_attack(
-			self.global_position, 4, 2, get_vec_towards_player()
-		)
-		get_tree().current_scene.add_child(bullet)
+		fire_laser()
+
+
+func fire_laser():
+	$Laser.target_position = to_local(target.global_position).normalized() \
+		* get_viewport_rect().size.x
+	$Laser.set_firing(true)
+	$Laser/LaserDuration.start()
+
+
+func _on_laser_duration_timeout():
+	$Laser.set_firing(false)
+
+
+func die():
+	$Laser.set_firing(false)
+	super.die()

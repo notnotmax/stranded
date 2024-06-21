@@ -9,7 +9,6 @@ class_name Enemy
 var target: Node
 
 @onready var shooting_start_delay = $ShootingStartDelay
-@onready var shooting_timer = $ShootingTimer
 var path_follower: PathFollow2D
 
 
@@ -21,22 +20,16 @@ func init_enemy(p_position: Vector2 = Vector2(0, 0), p_target: Node = Node.new()
 
 
 func get_vec_towards_player() -> Vector2:
-	return (target.global_position - self.global_position).normalized()
+	return (target.global_position - self.global_position)
 
 
 func _ready():
 	shooting_start_delay.wait_time = initial_firing_delay
-	shooting_timer.wait_time = fire_rate
 	shooting_start_delay.start()
 
 
 func _on_shooting_start_delay_timeout():
-	shooting_timer.start()
-	shoot()
-
-
-func _on_shooting_timer_timeout():
-	shoot()
+	pass
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited():

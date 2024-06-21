@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dwakv3g8yoorg"]
+[gd_scene load_steps=10 format=3 uid="uid://dwakv3g8yoorg"]
 
 [ext_resource type="PackedScene" uid="uid://win6qvnp3tln" path="res://scenes/entities/base-classes/enemy.tscn" id="1_aw4ba"]
 [ext_resource type="Script" path="res://scenes/entities/enemies/medium_enemy.gd" id="2_7gc1s"]
 [ext_resource type="Texture2D" uid="uid://dqmouwab5v2cx" path="res://assets/enemies/enemy_medium.png" id="3_6d602"]
 [ext_resource type="PackedScene" uid="uid://bxjgg8h1ty86w" path="res://scenes/entities/enemies/bullet.tscn" id="3_7wmaj"]
+[ext_resource type="PackedScene" uid="uid://3l4h0vcm1enb" path="res://scenes/entities/enemies/laser.tscn" id="5_dxrtq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h3w0f"]
 atlas = ExtResource("3_6d602")
@@ -50,3 +51,11 @@ shape = SubResource("CapsuleShape2D_a1sth")
 [node name="VisibleOnScreenNotifier2D" parent="." index="3"]
 position = Vector2(0, 1.90735e-06)
 scale = Vector2(1.5, 3.2)
+
+[node name="Laser" parent="." index="5" instance=ExtResource("5_dxrtq")]
+
+[node name="LaserDuration" type="Timer" parent="Laser" index="3"]
+wait_time = 2.5
+autostart = true
+
+[connection signal="timeout" from="Laser/LaserDuration" to="." method="_on_laser_duration_timeout"]
