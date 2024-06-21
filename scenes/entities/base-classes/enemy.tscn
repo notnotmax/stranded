@@ -10,11 +10,11 @@ initial_firing_delay = 1.0
 fire_rate = 1.0
 health = 10
 
-[node name="ShootingStartDelay" type="Timer" parent="." index="3"]
+[node name="ShootingStartDelay" type="Timer" parent="." index="4"]
 one_shot = true
 autostart = true
 
-[node name="ShootingTimer" type="Timer" parent="." index="4"]
+[node name="ShootingTimer" type="Timer" parent="." index="5"]
 
 [connection signal="timeout" from="ShootingStartDelay" to="." method="_on_shooting_start_delay_timeout"]
 [connection signal="timeout" from="ShootingTimer" to="." method="_on_shooting_timer_timeout"]

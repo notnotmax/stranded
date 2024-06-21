@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6volrvtcb6yx"]
+[gd_scene load_steps=7 format=3 uid="uid://c6volrvtcb6yx"]
 
 [ext_resource type="PackedScene" uid="uid://d35ie48pllg52" path="res://scenes/levels/level.tscn" id="1_vjkjm"]
 [ext_resource type="Script" path="res://scenes/levels/debug_level.gd" id="2_a4jps"]
 [ext_resource type="PackedScene" uid="uid://b0gpsrkb5ixb0" path="res://scenes/entities/player/powerup_shield.tscn" id="3_eaori"]
 [ext_resource type="PackedScene" uid="uid://dk2w3ffxunsi8" path="res://scenes/entities/enemies/fighter.tscn" id="3_sklon"]
+[ext_resource type="PackedScene" uid="uid://dwakv3g8yoorg" path="res://scenes/entities/enemies/medium_enemy.tscn" id="4_47knx"]
 
 [sub_resource type="Curve2D" id="Curve2D_myivx"]
 _data = {
@@ -14,6 +15,7 @@ point_count = 5
 [node name="Level" instance=ExtResource("1_vjkjm")]
 script = ExtResource("2_a4jps")
 fighter = ExtResource("3_sklon")
+medium_enemy = ExtResource("4_47knx")
 powerup_shield = ExtResource("3_eaori")
 
 [node name="Timer" type="Timer" parent="." index="5"]

@@ -37,7 +37,6 @@ points = 50
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_1d4x2")
-animation = &"default"
 
 [node name="CollisionShape2D" parent="." index="2"]
 shape = SubResource("RectangleShape2D_mxfig")

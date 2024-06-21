@@ -28,7 +28,6 @@ points = 10
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_uhwfv")
-animation = &"default"
 
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(-1, 1)
