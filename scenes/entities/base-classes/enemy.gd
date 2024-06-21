@@ -65,7 +65,3 @@ func move_on_path(path: Path2D, duration: float, endpoint: int = 1):
 	
 	var tween = create_tween().set_trans(Tween.TRANS_SINE)
 	tween.tween_property(path_follower, 'progress_ratio', endpoint, duration)
-
-
-func shoot():
-	pass
