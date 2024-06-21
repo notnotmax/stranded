@@ -6,6 +6,12 @@ class_name Fighter2
 func init_fighter(p_position: Vector2 = Vector2(0, 0), p_target: Node = Node.new()):
 	super.init_enemy(p_position, p_target)
 
+
+func _on_shooting_start_delay_timeout():
+	shoot()
+	$Cooldown.start()
+
+
 func shoot():
 	if alive:
 		var angle = get_vec_towards_player().rotated(-PI / 4)
@@ -16,3 +22,7 @@ func shoot():
 				self.global_position, 1, 2, angle.rotated(delta * i)
 			)
 			get_tree().current_scene.add_child(bullet)
+
+
+func _on_cooldown_timeout():
+	shoot()
