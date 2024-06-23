@@ -1,3 +1,6 @@
+"""
+Enemy laser. Fires a warning beam before shooting.
+"""
 extends RayCast2D
 signal ended
 
@@ -31,10 +34,11 @@ func set_firing(value):
 	if is_firing:
 		# show warning laser
 		var tween = create_tween()
-		tween.tween_property($Warning, "width", 3.0, 0.1)
+		tween.tween_property($Warning, "width", 1.5, 0.1)
 		$Timer.start() # timer to actually shoot deadly laser
 	else:
 		# disable laser
+		$GPUParticles2D.emitting = false
 		var tween = create_tween()
 		tween.tween_property($Line2D, "width", 0, 0.1)
 		set_collision_mask_value(2, false)
@@ -44,6 +48,7 @@ func set_firing(value):
 
 # fires the deadly laser
 func _on_timer_timeout():
+	$GPUParticles2D.emitting = true
 	set_collision_mask_value(2, true)
 	var tween = create_tween()
 	tween.tween_property($Warning, "width", 0, 0)
@@ -52,11 +57,14 @@ func _on_timer_timeout():
 	$Duration.start()
 
 
+# stops firing after a certain duration
 func _on_duration_timeout():
 	set_firing(false)
 
 
-func sweep(from, to, p_duration):
+func sweep(p_from: Vector2, p_to: Vector2, p_duration: float):
+	var from = p_from.normalized() * 1080
+	var to = p_to.normalized() * 1080
 	self.target = to
 	self.duration = p_duration
 	$Duration.wait_time = p_duration
@@ -66,6 +74,3 @@ func sweep(from, to, p_duration):
 	$Warning.points[1] = from
 	# shoot
 	set_firing(true)
-
-
-

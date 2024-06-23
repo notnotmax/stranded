@@ -14,7 +14,10 @@ func _on_shooting_start_delay_timeout():
 
 func fire_laser():
 	if alive:
-		$Laser.sweep(Vector2(-1080, 0), Vector2(-1080, 500), 3)
+		$Laser.sweep(
+			get_vec_towards_player(),
+			get_vec_towards_player().rotated(-PI / 6),
+			5)
 
 
 func _on_laser_ended():
@@ -28,6 +31,3 @@ func _on_laser_cooldown_timeout():
 func die():
 	$Laser.set_firing(false)
 	super.die()
-
-
-
