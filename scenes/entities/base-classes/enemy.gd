@@ -1,22 +1,23 @@
 extends DestroyableObstacle
 class_name Enemy
 
-# seconds before beginning to fire
-@export var initial_firing_delay: float
-# seconds between shots
-@export var fire_rate: float
+
 # target node to fire at, usually the player
 var target: Node
-
-@onready var shooting_start_delay = $ShootingStartDelay
+# reused PathFollow2D to follow Path2D nodes
 var path_follower: PathFollow2D
+# one-time use because the timer node is not ready during init()
+var start_delay: float = 1.0
+@onready var shooting_start_delay = $ShootingStartDelay
 
 
-func init_enemy(p_position: Vector2 = Vector2(0, 0), p_target: Node = Node.new()):
+func init(p_position: Vector2 = Vector2(0, 0), p_target: Node = Node.new(),
+		p_start_delay: float = 1.0):
 	path_follower = PathFollow2D.new()
 	path_follower.rotates = false
-	super.init_obstacle(p_position)
+	super.init(p_position)
 	target = p_target
+	start_delay = p_start_delay
 
 
 func get_vec_towards_player() -> Vector2:
@@ -24,7 +25,7 @@ func get_vec_towards_player() -> Vector2:
 
 
 func _ready():
-	shooting_start_delay.wait_time = initial_firing_delay
+	shooting_start_delay.wait_time = start_delay
 	shooting_start_delay.start()
 
 

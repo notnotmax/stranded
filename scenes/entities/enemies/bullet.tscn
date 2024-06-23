@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bxjgg8h1ty86w"]
 
-[ext_resource type="PackedScene" uid="uid://kp6xsg4r0c1w" path="res://scenes/entities/base-classes/enemy_attack.tscn" id="1_k8m1o"]
+[ext_resource type="PackedScene" uid="uid://kp6xsg4r0c1w" path="res://scenes/entities/base-classes/enemy_projectile.tscn" id="1_utbls"]
 [ext_resource type="Texture2D" uid="uid://cjhytpk0skgoi" path="res://assets/enemies/bullet.png" id="2_tp7ui"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t676h"]
@@ -28,7 +28,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_yg2ym"]
 radius = 6.0
 
-[node name="Bullet" instance=ExtResource("1_k8m1o")]
+[node name="Bullet" instance=ExtResource("1_utbls")]
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 position = Vector2(1, 1)

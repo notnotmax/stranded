@@ -8,6 +8,8 @@
 [node name="Asteroid" instance=ExtResource("1_sr38c")]
 collision_layer = 32
 script = ExtResource("2_osl3b")
+health = null
+points = null
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_llht1")

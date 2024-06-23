@@ -35,7 +35,6 @@ height = 64.0
 [node name="MediumEnemy" instance=ExtResource("1_aw4ba")]
 script = ExtResource("2_7gc1s")
 Bullet = ExtResource("3_7wmaj")
-fire_rate = 3.0
 health = 100
 points = 1000
 

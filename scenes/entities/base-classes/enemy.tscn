@@ -6,12 +6,9 @@
 [node name="Enemy" instance=ExtResource("1_8q3yl")]
 collision_layer = 4
 script = ExtResource("2_sq7a7")
-initial_firing_delay = 1.0
-fire_rate = 1.0
 health = 10
 
 [node name="ShootingStartDelay" type="Timer" parent="." index="4"]
 one_shot = true
-autostart = true
 
 [connection signal="timeout" from="ShootingStartDelay" to="." method="_on_shooting_start_delay_timeout"]

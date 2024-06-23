@@ -3,8 +3,9 @@ class_name MediumEnemy
 
 @export var Bullet: PackedScene
 
-func init_fighter(p_position: Vector2 = Vector2(0, 0), p_target: Node = Node.new()):
-	super.init_enemy(p_position, p_target)
+func init(p_position: Vector2 = Vector2(0, 0), p_target: Node = Node.new(),
+		p_start_delay: float = 1.0):
+	super.init(p_position, p_target, p_start_delay)
 
 
 func _on_shooting_start_delay_timeout():

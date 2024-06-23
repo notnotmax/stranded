@@ -14,16 +14,16 @@ var fighter1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	fighter1 = fighter.instantiate()
-	fighter1.init_fighter(Vector2(1000, 360), get_player())
+	fighter1.init(Vector2(1000, 360), get_player())
 	add_child(fighter1)
 	fighter1.move_by(Vector2(50,50), 1)
 	
 	var medium = medium_enemy.instantiate()
-	medium.init_fighter(Vector2(1000, 180), get_player())
+	medium.init(Vector2(1000, 180), get_player())
 	add_child(medium)
 	
 	var shield = powerup_shield.instantiate()
-	shield.init_powerup(Vector2(1200, 360))
+	shield.init(Vector2(1200, 360))
 	add_child(shield)
 
 

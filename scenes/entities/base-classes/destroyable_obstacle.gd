@@ -5,6 +5,9 @@ var alive: bool = true
 @export var health: int
 @export var points: int
 
+func init(p_position: Vector2 = Vector2(0, 0)) -> void:
+	super.init(p_position)
+
 
 func _on_area_entered(area):
 	if alive:

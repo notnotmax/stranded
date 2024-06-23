@@ -5,8 +5,8 @@ enum Types {NONE, SHIELD}
 var speed: float = 3
 @export var type: Types
 
-# _init() does not work as a constructor, so this is a workaround
-func init_powerup(p_position: Vector2 = Vector2(0, 0)) -> void:
+
+func init(p_position: Vector2 = Vector2(0, 0)) -> void:
 	position = p_position
 
 

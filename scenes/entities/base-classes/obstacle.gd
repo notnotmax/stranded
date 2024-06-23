@@ -1,8 +1,9 @@
 extends Area2D
 class_name Obstacle
 
-# _init() does not work as a constructor, so this is a workaround
-func init_obstacle(p_position: Vector2 = Vector2(0, 0)) -> void:
+# _init() does not work properly as a constructor (things may be null instance)
+# so this is a workaround
+func init(p_position: Vector2 = Vector2(0, 0)) -> void:
 	position = p_position
 
 

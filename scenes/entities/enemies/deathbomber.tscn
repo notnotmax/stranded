@@ -38,14 +38,10 @@ points = 150
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_nx7ep")
-animation = &"default"
 
 [node name="CollisionShape2D" parent="." index="2"]
 shape = SubResource("RectangleShape2D_mxfig")
 
-[node name="ShootingStartDelay" parent="." index="3"]
-autostart = false
-
-[node name="VisibleOnScreenNotifier2D" parent="." index="5"]
+[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
 position = Vector2(-9.53674e-07, 1.19209e-06)
 scale = Vector2(1.6, 1.6)
