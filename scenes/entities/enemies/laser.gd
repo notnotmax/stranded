@@ -63,8 +63,8 @@ func _on_duration_timeout():
 
 
 func sweep(p_from: Vector2, p_to: Vector2, p_duration: float):
-	var from = p_from.normalized() * 1080
-	var to = p_to.normalized() * 1080
+	var from = p_from.normalized() * 1920
+	var to = p_to.normalized() * 1920
 	self.target = to
 	self.duration = p_duration
 	$Duration.wait_time = p_duration

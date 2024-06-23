@@ -39,6 +39,7 @@ enabled=PackedStringArray()
 2d_physics/layer_5="Enemy attack"
 2d_physics/layer_6="Environmental obstacle"
 2d_physics/layer_7="Powerups"
+2d_physics/layer_8="Player detector (for enemy)"
 
 [maaacks_menus_template]
 
