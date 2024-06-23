@@ -6,6 +6,7 @@ extends Level
 class_name DebugLevel
 
 @export var fighter: PackedScene
+@export var fighter2: PackedScene
 @export var medium_enemy: PackedScene
 @export var powerup_shield: PackedScene
 
@@ -17,6 +18,10 @@ func _ready():
 	fighter1.init(Vector2(1000, 360), get_player())
 	add_child(fighter1)
 	fighter1.move_by(Vector2(50,50), 1)
+	
+	var fighter2 = fighter2.instantiate()
+	fighter2.init(Vector2(1000, 360), get_player())
+	add_child(fighter2)
 	
 	var medium = medium_enemy.instantiate()
 	medium.init(Vector2(1000, 180), get_player())

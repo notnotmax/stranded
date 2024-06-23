@@ -23,11 +23,4 @@ func _on_cooldown_timeout():
 
 func shoot():
 	if alive:
-		var angle = get_vec_towards_player().rotated(-PI / 4)
-		var delta = deg_to_rad(10)
-		for i in range(10):
-			var bullet = Bullet.instantiate()
-			bullet.init(
-				self.global_position, 1, 2, angle.rotated(delta * i)
-			)
-			get_tree().current_scene.add_child(bullet)
+		$Gun.spread_shot(target, 1, 2, 50, 10)

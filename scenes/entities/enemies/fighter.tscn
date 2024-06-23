@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dk2w3ffxunsi8"]
+[gd_scene load_steps=10 format=3 uid="uid://dk2w3ffxunsi8"]
 
 [ext_resource type="PackedScene" uid="uid://win6qvnp3tln" path="res://scenes/entities/base-classes/enemy.tscn" id="1_gqif5"]
 [ext_resource type="Script" path="res://scenes/entities/enemies/fighter.gd" id="2_dd2x2"]
 [ext_resource type="PackedScene" uid="uid://bxjgg8h1ty86w" path="res://scenes/entities/enemies/bullet.tscn" id="3_v1jq3"]
+[ext_resource type="PackedScene" uid="uid://c5t2rvsya3h3c" path="res://scenes/entities/enemies/gun.tscn" id="5_oa4kw"]
 [ext_resource type="Texture2D" uid="uid://bdvhti2nlac2r" path="res://assets/enemies/enemy_small.png" id="5_q5a1x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4dvg5"]
@@ -46,6 +47,8 @@ position = Vector2(-9.53674e-07, 1.19209e-06)
 scale = Vector2(1.6, 1.6)
 
 [node name="Cooldown" type="Timer" parent="." index="5"]
+
+[node name="Gun" parent="." index="6" instance=ExtResource("5_oa4kw")]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

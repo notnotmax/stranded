@@ -22,8 +22,4 @@ func _on_cooldown_timeout():
 
 func shoot():
 	if alive:
-		var bullet = Bullet.instantiate()
-		bullet.init(
-			self.global_position, 4, 2, get_vec_towards_player()
-		)
-		get_tree().current_scene.add_child(bullet)
+		$Gun.one_shot(target, 4, 2)
