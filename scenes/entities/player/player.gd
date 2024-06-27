@@ -83,10 +83,11 @@ func _on_animated_sprite_2d_animation_finished():
 
 func take_damage():
 	if not is_invulnerable:
-		if lives == 1:
+		lives -= 1
+		on_damaged.emit()
+		if lives == 0:
 			die()
 		else:
-			lives -= 1
 			is_invulnerable = true
 			$Invulnerability.show()
 			$Invulnerability.play("explosion")

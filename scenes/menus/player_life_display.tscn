@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6ov8fvestk60"]
+
+[ext_resource type="Texture2D" uid="uid://ct15b0amo0vc7" path="res://assets/player/heart.png" id="1_61752"]
+
+[node name="PlayerLifeDisplay" type="HBoxContainer"]
+offset_right = 36.0
+offset_bottom = 16.0
+scale = Vector2(2, 2)
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_61752")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_61752")
+stretch_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_61752")
+stretch_mode = 2
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+visible = false
+layout_mode = 2
+texture = ExtResource("1_61752")
+stretch_mode = 2
+
+[node name="TextureRect5" type="TextureRect" parent="."]
+visible = false
+layout_mode = 2
+texture = ExtResource("1_61752")
+stretch_mode = 2
