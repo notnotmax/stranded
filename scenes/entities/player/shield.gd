@@ -1,3 +1,6 @@
+"""
+Shield for player. Blocks all enemy attacks for 5 seconds.
+"""
 extends Area2D
 
 
@@ -17,5 +20,4 @@ func _on_timer_timeout():
 
 
 func take_damage():
-	$Timer.stop()
-	disable()
+	pass
