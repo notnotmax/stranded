@@ -16,6 +16,10 @@ func get_player():
 func add_score(p_score):
 	score += p_score
 
+# usage: await delay(seconds)
+func delay(seconds: float):
+	await get_tree().create_timer(seconds).timeout
+
 
 # Signals the level as completed and show the clear screen
 func complete_level():

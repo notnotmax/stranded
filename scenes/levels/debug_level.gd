@@ -31,7 +31,6 @@ func _ready():
 	shield.init(Vector2(1200, 360))
 	add_child(shield)
 
-
 #func _on_timer_timeout():
 	#fighter1.move_on_path($Path2D, 1, 1)
 #

@@ -7,6 +7,7 @@ extends Level
 @export var fighter: PackedScene
 @export var fighter2: PackedScene
 @export var deathbomber: PackedScene
+@export var medium_enemy: PackedScene
 
 
 func _ready():
@@ -83,24 +84,31 @@ func spawn_asteroid_4():
 		)
 	add_child(asteroid)
 
-## Wave 1
-
-var wave_1_count: int = 0
 
 func spawn_wave_1():
-	wave_1_count = 10
-	$Wave1/Timer.wait_time = 0.5
-	$Wave1/Timer.start()
-
-
-func _on_wave_1_timer_timeout():
-	if wave_1_count > 0:
+	for i in range(10):
 		var enemy = fighter.instantiate()
 		enemy.init(Vector2(0,0), get_player())
 		enemy.move_on_path($Wave1/Path2D, 5, 1)
 		var enemy2 = fighter.instantiate()
 		enemy2.init(Vector2(0,0), get_player())
 		enemy2.move_on_path($Wave1/Path2D2, 5, 1)
-		wave_1_count -= 1
-	else:
-		$Wave1/Timer.stop()
+		await delay(0.5)
+	spawn_wave_2()
+
+
+func spawn_wave_2():
+	for i in range(10):
+		var enemy = fighter.instantiate()
+		enemy.init(Vector2(0,0), get_player())
+		enemy.move_on_path($Wave2/Path2D3, 10, 1)
+		await delay(0.5)
+	var enemy = fighter2.instantiate()
+	enemy.init(Vector2(0,0), get_player())
+	enemy.move_on_path($Wave2/Path2D, 1, 1)
+	var enemy2 = fighter2.instantiate()
+	enemy2.init(Vector2(0,0), get_player())
+	enemy2.move_on_path($Wave2/Path2D2, 1, 1)
+	var medium = medium_enemy.instantiate()
+	medium.init(Vector2(0,0), get_player())
+	medium.move_on_path($Wave2/Path2D4, 1, 1)
