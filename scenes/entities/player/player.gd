@@ -86,7 +86,7 @@ func take_damage():
 		if shields > 0:
 			shields -= 1
 			if shields == 0:
-				modulate.b = 1
+				$Shield.disable()
 			is_invulnerable = true
 			modulate.a = 0.5
 			$InvulnerabilityTimer.start(3)
@@ -109,8 +109,4 @@ func die():
 func get_powerup(powerup):
 	match powerup:
 		Powerup.Types.SHIELD:
-			shields += 1
-			modulate.b = 10
-
-
-
+			$Shield.enable()
