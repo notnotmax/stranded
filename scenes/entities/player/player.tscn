@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ul0krf1vltwb"]
+[gd_scene load_steps=29 format=3 uid="uid://ul0krf1vltwb"]
 
 [ext_resource type="Script" path="res://scenes/entities/player/player.gd" id="1_3iw55"]
 [ext_resource type="Texture2D" uid="uid://bw6iaxhfblh3" path="res://assets/player/ship.png" id="2_b4nb8"]
@@ -148,6 +148,54 @@ animations = [{
 radius = 15.0
 height = 36.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqike"]
+atlas = ExtResource("3_tuk1w")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iglfs"]
+atlas = ExtResource("3_tuk1w")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rs2kt"]
+atlas = ExtResource("3_tuk1w")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4eeq"]
+atlas = ExtResource("3_tuk1w")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3qck"]
+atlas = ExtResource("3_tuk1w")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_knuqf"]
+animations = [{
+"frames": [],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqike")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iglfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rs2kt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4eeq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3qck")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 10.0
+}]
+
 [node name="Player" type="Area2D"]
 collision_layer = 2
 collision_mask = 228
@@ -166,10 +214,20 @@ shape = SubResource("CapsuleShape2D_37e5u")
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(25, 0)
 
-[node name="InvulnerabilityTimer" type="Timer" parent="."]
+[node name="Invulnerability" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_knuqf")
+autoplay = "default"
+
+[node name="InvulnerabilityTimer" type="Timer" parent="Invulnerability"]
+
+[node name="InvulnerabilityFlash" type="Timer" parent="Invulnerability"]
+wait_time = 0.25
 
 [node name="Shield" parent="." instance=ExtResource("5_5uq7a")]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="timeout" from="InvulnerabilityTimer" to="." method="_on_invulnerability_timer_timeout"]
+[connection signal="animation_finished" from="Invulnerability" to="." method="_on_invulnerability_animation_finished"]
+[connection signal="timeout" from="Invulnerability/InvulnerabilityTimer" to="." method="_on_invulnerability_timer_timeout"]
+[connection signal="timeout" from="Invulnerability/InvulnerabilityFlash" to="." method="_on_invulnerability_flash_timeout"]
