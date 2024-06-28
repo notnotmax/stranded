@@ -13,12 +13,6 @@ func init(p_position: Vector2 = Vector2(0, 0), p_target: Node = Node.new(),
 	super.init(p_position, p_target, p_start_delay)
 
 
-func strafe(start: Vector2, end: Vector2, duration: float):
-	var tween = create_tween().set_loops()
-	tween.tween_property(self, "position", end, duration).from(start)
-	tween.tween_property(self, "position", start, duration).from(end)
-
-
 func _on_shooting_start_delay_timeout():
 	fire()
 
