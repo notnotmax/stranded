@@ -8,6 +8,14 @@ class_name Level
 
 var score: int = 0
 
+func _ready():
+	$Player.can_move = false
+	$Player.position = Vector2(-100, get_viewport().get_visible_rect().size.y / 2)
+	var tween = create_tween().set_trans(Tween.TRANS_SINE)
+	tween.tween_property($Player, "position", $Player.position + Vector2(200, 0), 3)
+	await delay(3.0)
+	$Player.can_move = true
+
 
 func get_player():
 	return $Player

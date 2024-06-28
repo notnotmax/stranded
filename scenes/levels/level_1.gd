@@ -11,6 +11,7 @@ extends Level
 
 
 func _ready():
+	await super._ready()
 	$LevelTimer.start()
 	spawn_asteroids()
 	spawn_wave_1()
@@ -99,9 +100,9 @@ func spawn_wave_1():
 
 func spawn_wave_2():
 	for i in range(10):
-		var enemy = fighter.instantiate()
-		enemy.init(Vector2(0,0), get_player())
-		enemy.move_on_path($Wave2/Path2D3, 10, 1)
+		var wave_enemy = fighter.instantiate()
+		wave_enemy.init(Vector2(0,0), get_player())
+		wave_enemy.move_on_path($Wave2/Path2D3, 10, 1)
 		await delay(0.5)
 	var enemy = fighter2.instantiate()
 	enemy.init(Vector2(0,0), get_player(), 2)

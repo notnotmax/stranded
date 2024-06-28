@@ -3,6 +3,7 @@ extends Area2D
 signal on_damaged # player gets damaged
 signal player_died # player dies
 
+var can_move = true
 var alive: bool = true
 var lives: int = 3
 var inverted_movement: bool = false
@@ -43,7 +44,7 @@ func _physics_process(_delta):
 
 
 func _input(event):
-	if alive:
+	if can_move and alive:
 		# Player movement
 		if event is InputEventMouseMotion:
 			var movement: Vector2 = event.relative
