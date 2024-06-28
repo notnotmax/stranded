@@ -35,13 +35,11 @@ func _on_cooldown_timeout():
 
 func fire_bullets():
 	if alive and firing_bullets:
-		$Gun.spread_shot(
-			target,
-			1,
-			2,
-			90,
-			10
-		)
+		$Gun.spread_shot(target, 1, 2, 90, 10)
+		await delay(0.2)
+		$Gun.spread_shot(target, 1, 2, 90, 10)
+		await delay(0.2)
+		$Gun.spread_shot(target, 1, 2, 90, 10)
 		start_cooldown(bullets_cooldown)
 
 
@@ -55,6 +53,7 @@ func fire_laser():
 
 
 func _on_laser_ended():
+	$Gun.spread_shot(target, 1, 2, 90, 10)
 	start_cooldown(laser_cooldown)
 
 
