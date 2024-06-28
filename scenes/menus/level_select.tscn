@@ -1,12 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://bauw3vtckwroo"]
+[gd_scene load_steps=4 format=3 uid="uid://bauw3vtckwroo"]
 
+[ext_resource type="Theme" uid="uid://c6q5tn6lrdfpy" path="res://assets/ui/theme.tres" id="1_vwgkh"]
 [ext_resource type="Script" path="res://scenes/menus/level_select.gd" id="1_wpa6l"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_h52fr"]
+font_size = 32
 
 [node name="LevelSelect" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1280.0
 offset_bottom = 720.0
+theme = ExtResource("1_vwgkh")
 script = ExtResource("1_wpa6l")
 
 [node name="MenuButtons" type="MarginContainer" parent="."]
@@ -30,7 +35,8 @@ alignment = 1
 
 [node name="Label" type="Label" parent="MenuButtons/VBoxContainer"]
 layout_mode = 2
-text = "Select a level"
+text = "Level Select"
+label_settings = SubResource("LabelSettings_h52fr")
 horizontal_alignment = 1
 vertical_alignment = 1
 

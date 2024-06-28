@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://csuqd7yr3wp8r"]
+[gd_scene load_steps=18 format=3 uid="uid://csuqd7yr3wp8r"]
 
+[ext_resource type="Theme" uid="uid://c6q5tn6lrdfpy" path="res://assets/ui/theme.tres" id="1_cisqr"]
 [ext_resource type="Script" path="res://scenes/menus/main_menu.gd" id="1_unqdc"]
 [ext_resource type="PackedScene" uid="uid://d3lstvim7ia7x" path="res://scenes/backgrounds/background_1.tscn" id="2_1h2no"]
 [ext_resource type="Texture2D" uid="uid://bw6iaxhfblh3" path="res://assets/player/ship.png" id="3_jejjc"]
@@ -113,11 +114,15 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_wo7y1"]
+font_size = 32
+
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1280.0
 offset_bottom = 720.0
+theme = ExtResource("1_cisqr")
 script = ExtResource("1_unqdc")
 
 [node name="Background1" parent="." instance=ExtResource("2_1h2no")]
@@ -151,6 +156,7 @@ alignment = 1
 [node name="Label" type="Label" parent="MainMenuButtons/VBoxContainer"]
 layout_mode = 2
 text = "Stranded"
+label_settings = SubResource("LabelSettings_wo7y1")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -163,6 +169,7 @@ layout_mode = 2
 text = "Quit"
 
 [node name="LevelSelect" parent="." instance=ExtResource("4_fmaha")]
+visible = false
 
 [connection signal="pressed" from="MainMenuButtons/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MainMenuButtons/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

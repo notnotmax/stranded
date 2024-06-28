@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c6q5tn6lrdfpy"]
+
+[ext_resource type="FontFile" uid="uid://dxfem3eymixw6" path="res://assets/ui/akashi.ttf" id="1_oi2ge"]
+
+[resource]
+default_font = ExtResource("1_oi2ge")
