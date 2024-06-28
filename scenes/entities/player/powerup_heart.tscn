@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6pudwqbohlu5"]
+
+[ext_resource type="PackedScene" uid="uid://b447bssx3v33w" path="res://scenes/entities/base-classes/powerup.tscn" id="1_n8113"]
+[ext_resource type="Texture2D" uid="uid://ct15b0amo0vc7" path="res://assets/player/heart.png" id="2_ygam4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86tqn"]
+atlas = ExtResource("2_ygam4")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_worib"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86tqn")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l2fgc"]
+radius = 14.0
+
+[node name="Powerup" instance=ExtResource("1_n8113")]
+type = 2
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_worib")
+autoplay = "default"
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(-1, -2)
+shape = SubResource("CircleShape2D_l2fgc")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+position = Vector2(-1, 0)
+scale = Vector2(1.4, 1.3)

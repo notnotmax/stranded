@@ -42,6 +42,7 @@ func set_firing(value):
 		var tween = create_tween()
 		tween.tween_property($Line2D, "width", 0, 0.1)
 		set_collision_mask_value(2, false)
+		set_collision_mask_value(9, false)
 		ended.emit()
 	set_physics_process(is_firing)
 
@@ -50,6 +51,7 @@ func set_firing(value):
 func _on_timer_timeout():
 	$GPUParticles2D.emitting = true
 	set_collision_mask_value(2, true)
+	set_collision_mask_value(9, true)
 	var tween = create_tween()
 	tween.tween_property($Warning, "width", 0, 0)
 	tween.tween_property($Line2D, "width", 10.0, 0.1)

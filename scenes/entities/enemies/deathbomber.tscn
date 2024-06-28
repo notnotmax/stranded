@@ -31,6 +31,7 @@ animations = [{
 size = Vector2(32, 32)
 
 [node name="Deathbomber" instance=ExtResource("1_d1wfy")]
+collision_mask = 10
 script = ExtResource("2_kafn5")
 Bullet = ExtResource("3_gnjbd")
 health = 30

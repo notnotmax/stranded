@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/entities/base-classes/obstacle.gd" id="1_qtbkr"]
 
 [node name="Obstacle" type="Area2D"]
-collision_mask = 10
+collision_mask = 266
 script = ExtResource("1_qtbkr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

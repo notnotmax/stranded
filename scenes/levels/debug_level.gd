@@ -9,6 +9,7 @@ class_name DebugLevel
 @export var fighter2: PackedScene
 @export var medium_enemy: PackedScene
 @export var powerup_shield: PackedScene
+@export var powerup_life: PackedScene
 
 var fighter1
 
@@ -30,9 +31,13 @@ func _ready():
 	await delay(5)
 	medium.move_by(Vector2(0,100), 2)
 	
-	#var shield = powerup_shield.instantiate()
-	#shield.init(Vector2(1200, 360))
-	#add_child(shield)
+	var shield = powerup_shield.instantiate()
+	shield.init(Vector2(1200, 360))
+	add_child(shield)
+	
+	var life = powerup_life.instantiate()
+	life.init(Vector2(1200, 500))
+	add_child(life)
 
 #func _on_timer_timeout():
 	#fighter1.move_on_path($Path2D, 1, 1)

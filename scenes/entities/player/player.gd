@@ -120,6 +120,9 @@ func get_powerup(powerup):
 	match powerup:
 		Powerup.Types.SHIELD:
 			$Shield.enable()
+		Powerup.Types.LIFE_UP:
+			lives += 1
+			on_damaged.emit()
 
 
 func _on_invulnerability_animation_finished():
