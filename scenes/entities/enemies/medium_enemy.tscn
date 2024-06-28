@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://dwakv3g8yoorg"]
+[gd_scene load_steps=12 format=3 uid="uid://dwakv3g8yoorg"]
 
 [ext_resource type="PackedScene" uid="uid://win6qvnp3tln" path="res://scenes/entities/base-classes/enemy.tscn" id="1_aw4ba"]
 [ext_resource type="Script" path="res://scenes/entities/enemies/medium_enemy.gd" id="2_7gc1s"]
 [ext_resource type="Texture2D" uid="uid://dqmouwab5v2cx" path="res://assets/enemies/enemy_medium.png" id="3_6d602"]
 [ext_resource type="PackedScene" uid="uid://bxjgg8h1ty86w" path="res://scenes/entities/enemies/bullet.tscn" id="3_7wmaj"]
 [ext_resource type="PackedScene" uid="uid://3l4h0vcm1enb" path="res://scenes/entities/enemies/laser.tscn" id="5_dxrtq"]
+[ext_resource type="PackedScene" uid="uid://c5t2rvsya3h3c" path="res://scenes/entities/enemies/gun.tscn" id="6_v1jvk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h3w0f"]
 atlas = ExtResource("3_6d602")
@@ -38,17 +39,13 @@ radius = 500.0
 [node name="MediumEnemy" instance=ExtResource("1_aw4ba")]
 script = ExtResource("2_7gc1s")
 Bullet = ExtResource("3_7wmaj")
-health = 100
+health = 300
 points = 1000
 
 [node name="Marker2D" type="Marker2D" parent="." index="0"]
 
 [node name="Laser" parent="." index="1" instance=ExtResource("5_dxrtq")]
 position = Vector2(-12, 0)
-
-[node name="LaserCooldown" type="Timer" parent="Laser" index="3"]
-wait_time = 10.0
-one_shot = true
 
 [node name="AnimatedSprite2D" parent="." index="2"]
 sprite_frames = SubResource("SpriteFrames_damjy")
@@ -70,7 +67,12 @@ collision_mask = 2
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Detector" index="0"]
 shape = SubResource("CircleShape2D_r7gc0")
 
+[node name="Gun" parent="." index="8" instance=ExtResource("6_v1jvk")]
+
+[node name="Cooldown" type="Timer" parent="." index="9"]
+one_shot = true
+
 [connection signal="ended" from="Laser" to="." method="_on_laser_ended"]
-[connection signal="timeout" from="Laser/LaserCooldown" to="." method="_on_laser_cooldown_timeout"]
 [connection signal="area_entered" from="Detector" to="." method="_on_detector_area_entered"]
 [connection signal="area_exited" from="Detector" to="." method="_on_detector_area_exited"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]
