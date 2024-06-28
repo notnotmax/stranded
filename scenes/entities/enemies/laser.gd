@@ -8,7 +8,7 @@ var is_firing: bool = false
 # the target towards which the laser aims
 var target: Vector2
 # duration for which it shoots before cooldown
-var duration: int
+var duration: float
 
 func _ready():
 	is_firing = false

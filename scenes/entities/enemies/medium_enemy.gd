@@ -63,11 +63,11 @@ func die():
 	super.die()
 
 # Enemy switches to bullets when player is in close range
-func _on_detector_area_entered(area):
+func _on_detector_area_entered(_area):
 	firing_bullets = true
 	firing_laser = false
 
 
-func _on_detector_area_exited(area):
+func _on_detector_area_exited(_area):
 	firing_bullets = false
 	firing_laser = true

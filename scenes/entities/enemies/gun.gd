@@ -23,7 +23,6 @@ func spread_shot(target: Node, speed: float, acceleration: float,
 		spread_degree: float, spacing_degree: float):
 	var angle = get_vec_to_target(target)
 	var curr_delta = 0
-	var delta = deg_to_rad(spacing_degree)
 	while curr_delta <= spread_degree:
 		var bullet = Bullet.instantiate()
 		bullet.init(

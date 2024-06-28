@@ -57,13 +57,17 @@ func set_parent(parent: Node, child: Node):
 	parent.add_child(child)
 
 
-# Makes the instance move back and forth between two points.
-# By default, slowly move up and down to make enemy ships look more natural
-# and further the illusion of moving through space
-func strafe(start: Vector2 = position - Vector2(0, 10),
-		end: Vector2 = position + Vector2(0, 10), duration: float = 3):
-	move_to(start, duration / 2.0)
+# Slowly move up and down to make enemy ships look more natural
+func strafe():
+	var start = position - Vector2(0, 10)
+	var end = position + Vector2(0, 10)
+	var duration = 3.0
+	
+	# move to start to get into position
+	var tween = create_tween().set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, 'position', start, duration / 2.0)
 	await delay(duration / 2.0)
+	
 	strafe_tween = create_tween().set_trans(Tween.TRANS_SINE).set_loops()
 	strafe_tween.tween_property(self, "position", end, duration).from(start)
 	strafe_tween.tween_property(self, "position", start, duration).from(end)
@@ -80,6 +84,8 @@ func move_by(vector: Vector2, duration: float):
 	stop_strafing()
 	var tween = create_tween().set_trans(Tween.TRANS_SINE)
 	tween.tween_property(self, 'position', position + vector, duration)
+	await delay(duration)
+	strafe()
 
 
 # Moves this instance to the given coordinates.
@@ -87,6 +93,8 @@ func move_to(dest: Vector2, duration: float):
 	stop_strafing()
 	var tween = create_tween().set_trans(Tween.TRANS_SINE)
 	tween.tween_property(self, 'position', dest, duration)
+	await delay(duration)
+	strafe()
 
 
 # Moves on the path exactly as visually described. Will teleport to the start
@@ -102,8 +110,11 @@ func move_on_path(path: Path2D, duration: float, endpoint: int = 1):
 	
 	var tween = create_tween().set_trans(Tween.TRANS_SINE)
 	tween.tween_property(path_follower, 'progress_ratio', endpoint, duration)
+	await delay(duration)
+	strafe()
 
 
 # Moves this instance off-screen towards the right to despawn.
 func exit(duration: float):
+	stop_strafing()
 	move_to(Vector2(1400, position.y), duration)

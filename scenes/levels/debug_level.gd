@@ -28,10 +28,7 @@ func _ready():
 	add_child(medium)
 	medium.strafe()
 	await delay(5)
-	#medium.stop_strafing()
 	medium.move_by(Vector2(0,100), 2)
-	await delay(2)
-	medium.strafe()
 	
 	#var shield = powerup_shield.instantiate()
 	#shield.init(Vector2(1200, 360))
