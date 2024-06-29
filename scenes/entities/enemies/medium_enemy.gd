@@ -58,8 +58,9 @@ func _on_laser_ended():
 
 
 func die():
-	$Laser.set_firing(false)
-	super.die()
+	if alive:
+		$Laser.call_deferred("set_firing", false)
+		super.die()
 
 # Enemy switches to bullets when player is in close range
 func _on_detector_area_entered(_area):
