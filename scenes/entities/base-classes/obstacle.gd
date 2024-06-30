@@ -9,7 +9,7 @@ func init(p_position: Vector2 = Vector2(0, 0)) -> void:
 
 # Utility function. Usage: await delay(seconds)
 func delay(seconds: float):
-	await get_tree().create_timer(seconds).timeout
+	await get_tree().create_timer(seconds, false).timeout
 
 
 # destroy the player on impact

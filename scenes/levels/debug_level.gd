@@ -15,6 +15,9 @@ var fighter1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print("start")
+	await delay(5)
+	print("END")
 	#fighter1 = fighter.instantiate()
 	#fighter1.init(Vector2(1000, 360), get_player())
 	#add_child(fighter1)
@@ -24,20 +27,20 @@ func _ready():
 	#fighter2.init(Vector2(1000, 360), get_player())
 	#add_child(fighter2)
 	
-	var medium = medium_enemy.instantiate()
-	medium.init(Vector2(1000, 180), get_player())
-	add_child(medium)
-	medium.strafe()
-	await delay(5)
-	medium.move_by(Vector2(0,100), 2)
-	
-	var shield = powerup_shield.instantiate()
-	shield.init(Vector2(1200, 360))
-	add_child(shield)
-	
-	var life = powerup_life.instantiate()
-	life.init(Vector2(1200, 500))
-	add_child(life)
+	#var medium = medium_enemy.instantiate()
+	#medium.init(Vector2(1000, 180), get_player())
+	#add_child(medium)
+	#medium.strafe()
+	#await delay(5)
+	#medium.move_by(Vector2(0,100), 2)
+	#
+	#var shield = powerup_shield.instantiate()
+	#shield.init(Vector2(1200, 360))
+	#add_child(shield)
+	#
+	#var life = powerup_life.instantiate()
+	#life.init(Vector2(1200, 500))
+	#add_child(life)
 
 #func _on_timer_timeout():
 	#fighter1.move_on_path($Path2D, 1, 1)

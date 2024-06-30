@@ -26,7 +26,7 @@ func add_score(p_score):
 
 # usage: await delay(seconds)
 func delay(seconds: float):
-	await get_tree().create_timer(seconds).timeout
+	await get_tree().create_timer(seconds, false).timeout
 
 
 # Signals the level as completed and show the clear screen
