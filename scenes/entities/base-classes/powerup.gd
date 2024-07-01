@@ -1,17 +1,18 @@
 extends Area2D
 class_name Powerup
-enum Types {NONE, SHIELD}
+enum Types {NONE, SHIELD, LIFE_UP}
 
-var speed: float = 3
+var speed: float = 0
 @export var type: Types
 
-# _init() does not work as a constructor, so this is a workaround
-func init_powerup(p_position: Vector2 = Vector2(0, 0)) -> void:
+
+func init(p_position: Vector2 = Vector2(0, 0)) -> void:
 	position = p_position
 
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	position += Vector2.LEFT * speed
+	speed += 2 * delta
 
 
 func _on_area_entered(area):

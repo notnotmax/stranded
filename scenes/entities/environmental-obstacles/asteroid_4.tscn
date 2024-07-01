@@ -1,58 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://dotn3aecygbwb"]
+[gd_scene load_steps=6 format=3 uid="uid://dotn3aecygbwb"]
 
 [ext_resource type="PackedScene" uid="uid://duync81kgfndw" path="res://scenes/entities/base-classes/asteroid.tscn" id="1_tkfpo"]
-[ext_resource type="Texture2D" uid="uid://o0rnoarmmj4t" path="res://assets/enemies/explosion.png" id="2_bfm8w"]
 [ext_resource type="Texture2D" uid="uid://jb7kd8fkltbh" path="res://assets/environment/asteroid_4.png" id="3_tage5"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_as2oy"]
-atlas = ExtResource("2_bfm8w")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ihp1s"]
-atlas = ExtResource("2_bfm8w")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ebuhd"]
-atlas = ExtResource("2_bfm8w")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jiwab"]
-atlas = ExtResource("2_bfm8w")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jwwnb"]
-atlas = ExtResource("2_bfm8w")
-region = Rect2(64, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_phdrt"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_w37pm"]
 atlas = ExtResource("3_tage5")
 region = Rect2(0, 0, 64, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_4gjht"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_lst13"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_as2oy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ihp1s")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ebuhd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jiwab")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jwwnb")
-}],
-"loop": false,
-"name": &"death",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_phdrt")
+"texture": SubResource("AtlasTexture_w37pm")
 }],
 "loop": false,
 "name": &"default",
@@ -68,14 +27,17 @@ health = 100
 points = 100
 
 [node name="AnimatedSprite2D" parent="." index="0"]
-sprite_frames = SubResource("SpriteFrames_4gjht")
+sprite_frames = SubResource("SpriteFrames_lst13")
 animation = &"default"
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="DeathAnimation" parent="." index="1"]
+scale = Vector2(5, 5)
+
+[node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(-1, 3)
 rotation = 1.44862
 shape = SubResource("CapsuleShape2D_kg2xw")
 
-[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
 position = Vector2(-9.53674e-07, 1.5)
 scale = Vector2(6.1, 3.15)

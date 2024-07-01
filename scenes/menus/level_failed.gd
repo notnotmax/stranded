@@ -11,6 +11,12 @@ func _ready():
 	self.hide()
 
 
+func appear():
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	get_tree().paused = true
+	self.show()
+
+
 func _on_retry_button_pressed():
 	self.hide()
 	get_tree().paused = false
@@ -21,9 +27,3 @@ func _on_quit_button_pressed():
 	self.hide()
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
-
-
-func _on_player_player_died():
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	get_tree().paused = true
-	self.show()

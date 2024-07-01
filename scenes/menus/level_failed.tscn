@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://b5rhxpvglaf3f"]
+[gd_scene load_steps=3 format=3 uid="uid://b5rhxpvglaf3f"]
 
+[ext_resource type="Theme" uid="uid://c6q5tn6lrdfpy" path="res://assets/ui/theme.tres" id="1_b01ub"]
 [ext_resource type="Script" path="res://scenes/menus/level_failed.gd" id="1_nbfhp"]
 
 [node name="LevelFailed" type="Control"]
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_b01ub")
 script = ExtResource("1_nbfhp")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -39,6 +41,7 @@ theme_override_constants/separation = 15
 
 [node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "You died"
 horizontal_alignment = 1
 

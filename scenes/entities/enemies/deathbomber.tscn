@@ -1,67 +1,26 @@
-[gd_scene load_steps=15 format=3 uid="uid://3tvkgdsry7de"]
+[gd_scene load_steps=9 format=3 uid="uid://3tvkgdsry7de"]
 
 [ext_resource type="PackedScene" uid="uid://win6qvnp3tln" path="res://scenes/entities/base-classes/enemy.tscn" id="1_d1wfy"]
 [ext_resource type="Script" path="res://scenes/entities/enemies/deathbomber.gd" id="2_kafn5"]
 [ext_resource type="PackedScene" uid="uid://bxjgg8h1ty86w" path="res://scenes/entities/enemies/bullet.tscn" id="3_gnjbd"]
 [ext_resource type="Texture2D" uid="uid://4auxqgystbtu" path="res://assets/enemies/enemy_small_red.png" id="4_0i2xg"]
-[ext_resource type="Texture2D" uid="uid://o0rnoarmmj4t" path="res://assets/enemies/explosion.png" id="4_eymv1"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xyxuv"]
-atlas = ExtResource("4_eymv1")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rmgpr"]
-atlas = ExtResource("4_eymv1")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4ncpa"]
-atlas = ExtResource("4_eymv1")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cxcgu"]
-atlas = ExtResource("4_eymv1")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6alpw"]
-atlas = ExtResource("4_eymv1")
-region = Rect2(64, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dx5oq"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtcql"]
 atlas = ExtResource("4_0i2xg")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cnmv8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_m0k0x"]
 atlas = ExtResource("4_0i2xg")
 region = Rect2(0, 16, 16, 16)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_dtqmy"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_nx7ep"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xyxuv")
+"texture": SubResource("AtlasTexture_qtcql")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rmgpr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4ncpa")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cxcgu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6alpw")
-}],
-"loop": false,
-"name": &"death",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dx5oq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cnmv8")
+"texture": SubResource("AtlasTexture_m0k0x")
 }],
 "loop": true,
 "name": &"default",
@@ -78,15 +37,11 @@ health = 30
 points = 150
 
 [node name="AnimatedSprite2D" parent="." index="0"]
-sprite_frames = SubResource("SpriteFrames_dtqmy")
-animation = &"death"
+sprite_frames = SubResource("SpriteFrames_nx7ep")
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="CollisionShape2D" parent="." index="2"]
 shape = SubResource("RectangleShape2D_mxfig")
 
-[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
 position = Vector2(-9.53674e-07, 1.19209e-06)
 scale = Vector2(1.6, 1.6)
-
-[node name="ShootingStartDelay" parent="." index="3"]
-autostart = false

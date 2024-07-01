@@ -1,11 +1,15 @@
+"""
+Variant of fighter that does not shoot, but releases bullets upon death.
+Intended to charge at the player.
+"""
 extends Enemy
 class_name Deathbomber
 
 @export var Bullet: PackedScene
 
-func init_deathbomber(p_position: Vector2 = Vector2(0, 0),
-	p_target: Node = Node.new()):
-	super.init_enemy(p_position, p_target)
+func init(p_position: Vector2 = Vector2(0, 0), p_target: Node = Node.new(),
+		p_start_delay: float = 1.0):
+	super.init(p_position, p_target, p_start_delay)
 
 
 func die():
@@ -19,7 +23,7 @@ func on_death():
 	var incr = PI / 6
 	for i in range(12):
 		var bullet = Bullet.instantiate()
-		bullet.init_enemy_attack(
+		bullet.init(
 			self.global_position, 5, 0, angle
 		)
 		get_tree().current_scene.add_child(bullet)

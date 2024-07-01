@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://yrc4aif2a7tj"]
+[gd_scene load_steps=18 format=3 uid="uid://yrc4aif2a7tj"]
 
 [ext_resource type="PackedScene" uid="uid://d35ie48pllg52" path="res://scenes/levels/level.tscn" id="1_pexeh"]
 [ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="2_66nbv"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dk2w3ffxunsi8" path="res://scenes/entities/enemies/fighter.tscn" id="7_l5tg0"]
 [ext_resource type="PackedScene" uid="uid://3tvkgdsry7de" path="res://scenes/entities/enemies/deathbomber.tscn" id="8_bryk2"]
 [ext_resource type="PackedScene" uid="uid://bi2okcenc8w50" path="res://scenes/entities/enemies/fighter_2.tscn" id="8_p3jpn"]
+[ext_resource type="PackedScene" uid="uid://dwakv3g8yoorg" path="res://scenes/entities/enemies/medium_enemy.tscn" id="10_mbm2m"]
 
 [sub_resource type="Curve2D" id="Curve2D_gib1s"]
 _data = {
@@ -28,6 +29,30 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="Curve2D" id="Curve2D_calud"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1344, 64, 0, -0.636841, 0, 0.636841, 1024, 192)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_k3qxf"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1344, 640, 0, 0, 0, 0, 1024, 512)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_1dfkm"]
+_data = {
+"points": PackedVector2Array(0, -65, 0, 65, 1088, -96, 0.122462, -63.9803, -0.122462, 63.9803, 1024, 64, 0.292893, -64.6665, -0.292893, 64.6665, 1088, 192, 0.749154, -65.9255, -0.749154, 65.9255, 1024, 320, 0, -65, 0, 65, 1088, 448, -1, -63, 1, 63, 1024, 576, 1, -63, -1, 63, 1088, 736)
+}
+point_count = 7
+
+[sub_resource type="Curve2D" id="Curve2D_qvgwv"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1344, 352, 0, 0, 0, 0, 1152, 352)
+}
+point_count = 2
+
 [node name="Level1" instance=ExtResource("1_pexeh")]
 script = ExtResource("2_66nbv")
 asteroid1 = ExtResource("3_duu43")
@@ -37,16 +62,13 @@ asteroid4 = ExtResource("6_ows5l")
 fighter = ExtResource("7_l5tg0")
 fighter2 = ExtResource("8_p3jpn")
 deathbomber = ExtResource("8_bryk2")
+medium_enemy = ExtResource("10_mbm2m")
 
-[node name="StartTimer" type="Timer" parent="." index="5"]
-wait_time = 2.0
+[node name="LevelTimer" type="Timer" parent="." index="5"]
+wait_time = 60.0
 one_shot = true
 
-[node name="LevelTimer" type="Timer" parent="." index="6"]
-wait_time = 20.0
-one_shot = true
-
-[node name="Asteroids" type="Node" parent="." index="7"]
+[node name="Asteroids" type="Node" parent="." index="6"]
 
 [node name="Path2D" type="Path2D" parent="Asteroids" index="0"]
 visible = false
@@ -59,7 +81,7 @@ rotation = 1.5708
 [node name="AsteroidTimer" type="Timer" parent="Asteroids" index="1"]
 wait_time = 0.5
 
-[node name="Wave1" type="Node" parent="." index="8"]
+[node name="Wave1" type="Node" parent="." index="7"]
 
 [node name="Path2D" type="Path2D" parent="Wave1" index="0"]
 position = Vector2(-232, 256)
@@ -68,9 +90,22 @@ curve = SubResource("Curve2D_f7cf1")
 [node name="Path2D2" type="Path2D" parent="Wave1" index="1"]
 curve = SubResource("Curve2D_utlsj")
 
-[node name="Timer" type="Timer" parent="Wave1" index="2"]
+[node name="Wave2" type="Node" parent="." index="8"]
 
-[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[node name="Path2D" type="Path2D" parent="Wave2" index="0"]
+curve = SubResource("Curve2D_calud")
+
+[node name="Path2D2" type="Path2D" parent="Wave2" index="1"]
+curve = SubResource("Curve2D_k3qxf")
+
+[node name="Path2D3" type="Path2D" parent="Wave2" index="2"]
+position = Vector2(-96, 32)
+curve = SubResource("Curve2D_1dfkm")
+
+[node name="Path2D4" type="Path2D" parent="Wave2" index="3"]
+curve = SubResource("Curve2D_qvgwv")
+
+[node name="Timer" type="Timer" parent="Wave2" index="4"]
+
 [connection signal="timeout" from="LevelTimer" to="." method="_on_level_timer_timeout"]
 [connection signal="timeout" from="Asteroids/AsteroidTimer" to="." method="_on_asteroid_timer_timeout"]
-[connection signal="timeout" from="Wave1/Timer" to="." method="_on_wave_1_timer_timeout"]

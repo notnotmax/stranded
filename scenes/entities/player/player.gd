@@ -1,9 +1,11 @@
 extends Area2D
 @export var Bullet : PackedScene
-signal player_died
+signal on_damaged # player gets damaged
+signal player_died # player dies
 
+var can_move = true
 var alive: bool = true
-var shields: int = 0
+var lives: int = 3
 var inverted_movement: bool = false
 var is_invulnerable: bool = false
 var is_firing: bool = false
@@ -42,7 +44,7 @@ func _physics_process(_delta):
 
 
 func _input(event):
-	if alive:
+	if can_move and alive:
 		# Player movement
 		if event is InputEventMouseMotion:
 			var movement: Vector2 = event.relative
@@ -69,7 +71,6 @@ func _input(event):
 				is_firing = event.pressed
 
 
-# for picking up things like powerups/effects only
 # death collision is handled by the enemy instance
 func _on_area_entered(_area):
 	pass
@@ -83,18 +84,27 @@ func _on_animated_sprite_2d_animation_finished():
 
 func take_damage():
 	if not is_invulnerable:
-		if shields > 0:
-			shields -= 1
-			if shields == 0:
-				modulate.b = 1
-			is_invulnerable = true
-			modulate.a = 0.5
-			$InvulnerabilityTimer.start(3)
-		else:
+		lives -= 1
+		on_damaged.emit()
+		if lives == 0:
 			die()
+		else:
+			is_invulnerable = true
+			$Invulnerability.show()
+			$Invulnerability.play("explosion")
+			$Invulnerability/InvulnerabilityTimer.start(3)
+			$Invulnerability/InvulnerabilityFlash.start(0.25)
+
+
+func _on_invulnerability_flash_timeout():
+	if modulate.a == 1:
+		modulate.a = 0.5
+	else:
+		modulate.a = 1
 
 
 func _on_invulnerability_timer_timeout():
+	$Invulnerability/InvulnerabilityFlash.stop()
 	modulate.a = 1
 	is_invulnerable = false
 
@@ -109,9 +119,11 @@ func die():
 func get_powerup(powerup):
 	match powerup:
 		Powerup.Types.SHIELD:
-			print(shields)
-			shields += 1
-			modulate.b = 10
+			$Shield.enable()
+		Powerup.Types.LIFE_UP:
+			lives += 1
+			on_damaged.emit()
 
 
-
+func _on_invulnerability_animation_finished():
+	$Invulnerability.hide()

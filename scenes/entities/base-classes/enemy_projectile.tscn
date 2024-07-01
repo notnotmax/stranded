@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://kp6xsg4r0c1w"]
+
+[ext_resource type="PackedScene" uid="uid://b1q003oo6cf0f" path="res://scenes/entities/base-classes/obstacle.tscn" id="1_srlab"]
+[ext_resource type="Script" path="res://scenes/entities/base-classes/enemy_projectile.gd" id="2_6d11p"]
+
+[node name="EnemyProjectile" instance=ExtResource("1_srlab")]
+script = ExtResource("2_6d11p")

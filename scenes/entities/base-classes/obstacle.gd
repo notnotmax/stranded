@@ -1,9 +1,15 @@
 extends Area2D
 class_name Obstacle
 
-# _init() does not work as a constructor, so this is a workaround
-func init_obstacle(p_position: Vector2 = Vector2(0, 0)) -> void:
+# _init() does not work properly as a constructor (things may be null instance)
+# so this is a workaround
+func init(p_position: Vector2 = Vector2(0, 0)) -> void:
 	position = p_position
+
+
+# Utility function. Usage: await delay(seconds)
+func delay(seconds: float):
+	await get_tree().create_timer(seconds, false).timeout
 
 
 # destroy the player on impact

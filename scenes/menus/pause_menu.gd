@@ -3,6 +3,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	set_process_input(true)
 	var resume_button = $MarginContainer/VBoxContainer/ResumeButton
 	var restart_button = $MarginContainer/VBoxContainer/RestartButton
 	var quit_button = $MarginContainer/VBoxContainer/QuitButton
@@ -12,6 +13,10 @@ func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	get_tree().paused = false
 	self.hide()
+
+
+func disable():
+	set_process_input(false)
 
 
 func _input(event):
