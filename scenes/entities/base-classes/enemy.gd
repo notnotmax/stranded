@@ -4,6 +4,7 @@ Also provides simple movement functions.
 """
 extends DestroyableObstacle
 class_name Enemy
+signal death
 
 
 # target node to fire at, usually the player
@@ -47,6 +48,12 @@ func _on_shooting_start_delay_timeout():
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	path_follower.queue_free()
 	queue_free()
+
+
+func die():
+	if alive:
+		death.emit()
+		super.die()
 
 
 # Custom set_parent function to properly reparent regardless whether or not

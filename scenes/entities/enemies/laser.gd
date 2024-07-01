@@ -22,6 +22,7 @@ func _physics_process(_delta):
 		cast_point = to_local(get_collision_point())
 	$Line2D.points[1] = cast_point
 	$Warning.points[1] = cast_point
+	$GPUParticles2D2.position = cast_point
 	
 	var collider = get_collider()
 	if collider:
@@ -39,6 +40,7 @@ func set_firing(value):
 	else:
 		# disable laser
 		$GPUParticles2D.emitting = false
+		$GPUParticles2D2.emitting = false
 		var tween = create_tween()
 		tween.tween_property($Line2D, "width", 0, 0.1)
 		set_collision_mask_value(2, false)
@@ -50,6 +52,7 @@ func set_firing(value):
 # fires the deadly laser
 func _on_timer_timeout():
 	$GPUParticles2D.emitting = true
+	$GPUParticles2D2.emitting = true
 	set_collision_mask_value(2, true)
 	set_collision_mask_value(9, true)
 	var tween = create_tween()

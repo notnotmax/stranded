@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://win6qvnp3tln" path="res://scenes/entities/base-classes/enemy.tscn" id="1_govrp"]
 [ext_resource type="Script" path="res://scenes/entities/enemies/fighter_2.gd" id="2_mysfj"]
-[ext_resource type="PackedScene" uid="uid://bxjgg8h1ty86w" path="res://scenes/entities/enemies/bullet.tscn" id="3_23tlu"]
+[ext_resource type="PackedScene" uid="uid://b0gpsrkb5ixb0" path="res://scenes/entities/player/powerup_shield.tscn" id="3_iy8fq"]
 [ext_resource type="Texture2D" uid="uid://dy10cdffd5lgx" path="res://assets/enemies/enemy_small_orange.png" id="4_8p2jo"]
 [ext_resource type="PackedScene" uid="uid://c5t2rvsya3h3c" path="res://scenes/entities/enemies/gun.tscn" id="5_ckqa8"]
 
@@ -33,7 +33,7 @@ size = Vector2(32, 32)
 
 [node name="Fighter2" instance=ExtResource("1_govrp")]
 script = ExtResource("2_mysfj")
-Bullet = ExtResource("3_23tlu")
+powerup_shield = ExtResource("3_iy8fq")
 health = 50
 points = 250
 

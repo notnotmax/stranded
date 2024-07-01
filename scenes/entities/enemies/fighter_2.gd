@@ -5,7 +5,7 @@ rather than a single bullet, and slightly more sturdy.
 extends Enemy
 class_name Fighter2
 
-@export var Bullet: PackedScene
+@export var powerup_shield: PackedScene
 
 func init(p_position: Vector2 = Vector2(0, 0), p_target: Node = Node.new(),
 		p_start_delay: float = 1.0):
@@ -24,3 +24,14 @@ func _on_cooldown_timeout():
 func shoot():
 	if alive:
 		$Gun.spread_shot(target, 1, 2, 50, 10)
+
+
+func on_death():
+	var shield = powerup_shield.instantiate()
+	shield.init(global_position)
+	get_tree().current_scene.add_child(shield)
+
+func die():
+	if alive:
+		call_deferred("on_death")
+		super.die()

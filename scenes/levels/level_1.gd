@@ -18,7 +18,8 @@ func _ready():
 
 
 func _on_level_timer_timeout():
-	complete_level()
+	pass
+	#complete_level()
 
 ## Asteroids
 
@@ -113,3 +114,9 @@ func spawn_wave_2():
 	var medium = medium_enemy.instantiate()
 	medium.init(Vector2(0,0), get_player(), 3)
 	medium.move_on_path($Wave2/Path2D4, 3, 1)
+	medium.connect("death", temp)
+
+
+func temp():
+	await delay(2)
+	complete_level()

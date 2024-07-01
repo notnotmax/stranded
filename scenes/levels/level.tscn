@@ -32,4 +32,4 @@ z_index = 1
 script = ExtResource("8_5e2od")
 
 [connection signal="on_damaged" from="Player" to="." method="_on_player_on_damaged"]
-[connection signal="player_died" from="Player" to="LevelFailed" method="_on_player_player_died"]
+[connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
