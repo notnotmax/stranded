@@ -16,6 +16,7 @@ var start_delay: float = 1.0
 @onready var shooting_start_delay = $ShootingStartDelay
 # tween used for minor strafing
 @onready var strafe_tween: Tween
+var strafing: bool = true
 
 
 # Pseudo-constructor
@@ -64,8 +65,16 @@ func set_parent(parent: Node, child: Node):
 	parent.add_child(child)
 
 
+# strafing causes issues with successive rapid movement, so
+# this function is to temporarily disable/enable it
+func set_strafing(value: bool):
+	strafing = value
+
+
 # Slowly move up and down to make enemy ships look more natural
 func strafe():
+	if not strafing:
+		return
 	var start = position - Vector2(0, 10)
 	var end = position + Vector2(0, 10)
 	var duration = 3.0
@@ -91,7 +100,7 @@ func move_by(vector: Vector2, duration: float):
 	stop_strafing()
 	var tween = create_tween().set_trans(Tween.TRANS_SINE)
 	tween.tween_property(self, 'position', position + vector, duration)
-	await delay(duration)
+	await delay(duration + 0.5)
 	strafe()
 
 
@@ -117,7 +126,7 @@ func move_on_path(path: Path2D, duration: float, endpoint: int = 1):
 	
 	var tween = create_tween().set_trans(Tween.TRANS_SINE)
 	tween.tween_property(path_follower, 'progress_ratio', endpoint, duration)
-	await delay(duration)
+	await delay(duration + 0.5)
 	strafe()
 
 

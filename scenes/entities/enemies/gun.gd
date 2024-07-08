@@ -22,6 +22,17 @@ func one_shot(target: Node, speed: float, acceleration: float):
 	get_tree().current_scene.add_child(bullet)
 
 
+func one_shot_direction(direction: Vector2, speed: float, acceleration: float):
+	var bullet = Bullet.instantiate()
+	bullet.init(
+		global_position,
+		speed,
+		acceleration, 
+		direction
+	)
+	get_tree().current_scene.add_child(bullet)
+
+
 # Fires a spread of bullets in a cone with a deviation from the center
 # of spread_degree.
 func spread_shot(target: Node, speed: float, acceleration: float,
