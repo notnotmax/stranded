@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c6volrvtcb6yx"]
+[gd_scene load_steps=11 format=3 uid="uid://c6volrvtcb6yx"]
 
 [ext_resource type="PackedScene" uid="uid://d35ie48pllg52" path="res://scenes/levels/level.tscn" id="1_vjkjm"]
 [ext_resource type="Script" path="res://scenes/levels/debug_level.gd" id="2_a4jps"]
@@ -15,6 +15,12 @@ _data = {
 }
 point_count = 5
 
+[sub_resource type="Curve2D" id="Curve2D_7w2kf"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1344, 352, 0, 0, 0, 0, 1088, 352)
+}
+point_count = 2
+
 [node name="Level" instance=ExtResource("1_vjkjm")]
 script = ExtResource("2_a4jps")
 fighter = ExtResource("3_sklon")
@@ -24,6 +30,9 @@ boss_enemy = ExtResource("6_aw04y")
 powerup_shield = ExtResource("3_eaori")
 powerup_life = ExtResource("7_xqdlm")
 
-[node name="Path2D" type="Path2D" parent="." index="5"]
+[node name="TestPath" type="Path2D" parent="." index="5"]
 position = Vector2(128, 192)
 curve = SubResource("Curve2D_myivx")
+
+[node name="Path2D" type="Path2D" parent="." index="7"]
+curve = SubResource("Curve2D_7w2kf")

@@ -14,10 +14,6 @@ class_name DebugLevel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#var medium = medium_enemy.instantiate()
-	#medium.init(Vector2(1000, 180), get_player())
-	#add_child(medium)
-	
 	var boss = boss_enemy.instantiate()
-	boss.init(Vector2(1000, 180), get_player())
-	add_child(boss)
+	boss.init(Vector2(1000, 360), get_player())
+	boss.move_on_path($Path2D, 1, 1)
