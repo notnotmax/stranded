@@ -27,19 +27,16 @@ func _on_cooldown_timeout():
 
 # spreadshots from random positions
 func normal_1():
-	strafing = false
 	for i in range(3):
 		await move_to(Vector2(position.x, randi_range(120, 600)), 1)
 		$Gun.spread_shot_direction(Vector2.LEFT, 6, 0, 90, 10)
 		$Gun.spread_shot_direction(Vector2.LEFT, 8, 0, 90, 10)
 		$Gun.spread_shot_direction(Vector2.LEFT, 10, 0, 90, 10)
 	await delay(0.5)
-	strafing = true
 	strafe()
 
 # spray in player's general direction while moving down
 func normal_2():
-	strafing = false
 	# move to edge that the boss is closer to and strafe across the screen
 	if position.y < 360:
 		await move_to(Vector2(position.x, 120), 1)
@@ -59,7 +56,6 @@ func normal_2():
 			5, 1)
 		await delay(0.05)
 	await delay(0.5)
-	strafing = true
 	strafe()
 
 # 2 lasers, spreadshots, arrows
@@ -95,7 +91,6 @@ func arrow_shots(rounds):
 func twin_laser():
 	if not alive:
 		return
-	var direction = [1, -1][randi() % 2]
 	$Laser.sweep(
 		Vector2.LEFT.rotated(deg_to_rad(45)),
 		Vector2.LEFT.rotated(deg_to_rad(5)),

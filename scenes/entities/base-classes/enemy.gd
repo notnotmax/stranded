@@ -16,7 +16,6 @@ var start_delay: float = 1.0
 @onready var shooting_start_delay = $ShootingStartDelay
 # tween used for minor strafing
 @onready var strafe_tween: Tween
-var strafing: bool = true
 
 
 # Pseudo-constructor
@@ -65,16 +64,8 @@ func set_parent(parent: Node, child: Node):
 	parent.add_child(child)
 
 
-# strafing causes issues with successive rapid movement, so
-# this function is to temporarily disable/enable it
-func set_strafing(value: bool):
-	strafing = value
-
-
 # Slowly move up and down to make enemy ships look more natural
 func strafe():
-	if not strafing:
-		return
 	var start = position - Vector2(0, 10)
 	var end = position + Vector2(0, 10)
 	var duration = 3.0
@@ -96,26 +87,29 @@ func stop_strafing():
 
 
 # Moves this instance according to the given direction vector.
-func move_by(vector: Vector2, duration: float):
+func move_by(vector: Vector2, duration: float, p_strafe: bool = false):
 	stop_strafing()
 	var tween = create_tween().set_trans(Tween.TRANS_SINE)
 	tween.tween_property(self, 'position', position + vector, duration)
 	await delay(duration + 0.5)
-	strafe()
+	if p_strafe:
+		strafe()
 
 
 # Moves this instance to the given coordinates.
-func move_to(dest: Vector2, duration: float):
+func move_to(dest: Vector2, duration: float, p_strafe: bool = false):
 	stop_strafing()
 	var tween = create_tween().set_trans(Tween.TRANS_SINE)
 	tween.tween_property(self, 'position', dest, duration)
 	await delay(duration)
-	strafe()
+	if p_strafe:
+		strafe()
 
 
 # Moves on the path exactly as visually described. Will teleport to the start
 # of the path.
-func move_on_path(path: Path2D, duration: float, endpoint: int = 1):
+func move_on_path(path: Path2D, duration: float, endpoint: int = 1,
+		p_strafe: bool = false):
 	stop_strafing()
 	# remove the offset caused by local position
 	position = Vector2(0, 0)
@@ -126,8 +120,9 @@ func move_on_path(path: Path2D, duration: float, endpoint: int = 1):
 	
 	var tween = create_tween().set_trans(Tween.TRANS_SINE)
 	tween.tween_property(path_follower, 'progress_ratio', endpoint, duration)
-	await delay(duration + 0.5)
-	strafe()
+	await delay(duration)
+	if p_strafe:
+		strafe()
 
 
 # Moves this instance off-screen towards the right to despawn.

@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://vvcqpjf6g165"]
+
+[ext_resource type="PackedScene" uid="uid://win6qvnp3tln" path="res://scenes/entities/base-classes/enemy.tscn" id="1_c4c77"]
+[ext_resource type="Script" path="res://scenes/entities/enemies/probe_spiral.gd" id="2_doory"]
+[ext_resource type="PackedScene" uid="uid://bxjgg8h1ty86w" path="res://scenes/entities/enemies/bullet.tscn" id="3_m8str"]
+[ext_resource type="Texture2D" uid="uid://dvsccjq1px6as" path="res://assets/enemies/probes.png" id="4_2wuk0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jeg87"]
+atlas = ExtResource("4_2wuk0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gyn4"]
+atlas = ExtResource("4_2wuk0")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mckjh"]
+atlas = ExtResource("4_2wuk0")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w44it"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jeg87")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gyn4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mckjh")
+}],
+"loop": false,
+"name": &"inactive",
+"speed": 0.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bodr4"]
+radius = 17.0
+
+[node name="ProbeSpiral" instance=ExtResource("1_c4c77")]
+script = ExtResource("2_doory")
+Bullet = ExtResource("3_m8str")
+health = 750
+points = 3750
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_w44it")
+animation = &"inactive"
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource("CircleShape2D_bodr4")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
+position = Vector2(1.43051e-06, 1.43051e-06)
+scale = Vector2(1.6, 1.6)
+
+[node name="Duration" type="Timer" parent="." index="5"]
+one_shot = true
+
+[connection signal="timeout" from="Duration" to="." method="_on_duration_timeout"]
