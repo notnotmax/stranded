@@ -1,15 +1,37 @@
 extends Enemy
 class_name BossEnemy
 
+@export var HealthBar: PackedScene
+@export var SpiralProbe: PackedScene
+
+var health_bar
 var attack_counter = 0
 var NORMAL_ATTACKS = [normal_1, normal_2]
-var SPECIAL_ATTACKS = [special_1]
+var SPECIAL_ATTACKS = [special_1, special_2]
 
 
 func start_bossfight():
+	health_bar = HealthBar.instantiate()
+	health_bar.init(health)
 	position = Vector2(1400, 360)
-	move_to(Vector2(1000, 360), 3)
-	
+	move_to(Vector2(1000, 360), 3, true)
+	get_tree().current_scene.add_child(health_bar)
+	health_bar.appear()
+
+
+func take_damage(damage: int):
+	super.take_damage(damage)
+	health_bar.update(health)
+
+
+func on_death():
+	health_bar.disappear()
+
+
+func die():
+	call_deferred("on_death")
+	super.die()
+
 
 func _on_shooting_start_delay_timeout():
 	_on_cooldown_timeout()
@@ -67,6 +89,16 @@ func special_1():
 	await arrow_shots(5)
 	$Cooldown.start(5)
 
+# spiral probes
+func special_2():
+	for i in range(3):
+		var sp = SpiralProbe.instantiate()
+		sp.init(
+			global_position, target, 1, 5, 0.2, 5 + i, 10
+		)
+		get_tree().current_scene.add_child(sp)
+		sp.move_to(Vector2(randi_range(800, 1200), randi_range(20, 700)), 3)
+	await delay(5)
 
 func multi_spread_shot(rounds):
 	if not alive:

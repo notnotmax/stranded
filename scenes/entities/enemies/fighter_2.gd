@@ -31,6 +31,7 @@ func on_death():
 	shield.init(global_position)
 	get_tree().current_scene.add_child(shield)
 
+
 func die():
 	if alive:
 		call_deferred("on_death")

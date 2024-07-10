@@ -6,6 +6,8 @@ extends Enemy
 class_name ProbeSpiral
 
 @export var Bullet: PackedScene
+@export var PowerupShield: PackedScene
+
 var firing: bool = true
 # the degrees by which the angle is incremented per shot
 var angle_delta_deg: float
@@ -75,3 +77,16 @@ func fire():
 			)
 			get_tree().current_scene.add_child(bullet)
 		await delay(fire_rate)
+
+
+func on_death():
+	if randf() > 0.5:
+		var shield = PowerupShield.instantiate()
+		shield.init(global_position)
+		get_tree().current_scene.add_child(shield)
+
+
+func die():
+	if alive:
+		call_deferred("on_death")
+		super.die()

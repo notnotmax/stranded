@@ -23,7 +23,7 @@ func add_score(score):
 	get_tree().current_scene.add_score(score)
 
 
-func take_damage(damage: int = 0):
+func take_damage(damage: int):
 	health -= damage
 	if health <= 0:
 		die()

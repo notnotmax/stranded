@@ -20,8 +20,8 @@ func _ready():
 	add_child(boss)
 	boss.start_bossfight()
 	
-	var ps = probe_spiral.instantiate()
-	ps.init(
-		Vector2(1000, 360), get_player(), 2, 5, 0.1, 6, 1
-	)
-	add_child(ps)
+	#var ps = probe_spiral.instantiate()
+	#ps.init(
+		#Vector2(1000, 360), get_player(), 2, 5, 0.1, 6, 1
+	#)
+	#add_child(ps)

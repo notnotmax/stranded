@@ -1,10 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0gx8gqtwm8gk"]
+[gd_scene load_steps=12 format=3 uid="uid://d0gx8gqtwm8gk"]
 
 [ext_resource type="PackedScene" uid="uid://win6qvnp3tln" path="res://scenes/entities/base-classes/enemy.tscn" id="1_o1wwd"]
 [ext_resource type="Texture2D" uid="uid://com3skeyb33wg" path="res://assets/enemies/enemy_big.png" id="2_imim8"]
 [ext_resource type="Script" path="res://scenes/entities/enemies/boss_enemy.gd" id="2_j37ec"]
+[ext_resource type="PackedScene" uid="uid://vvcqpjf6g165" path="res://scenes/entities/enemies/probe_spiral.tscn" id="3_xpwcf"]
 [ext_resource type="PackedScene" uid="uid://c5t2rvsya3h3c" path="res://scenes/entities/enemies/gun.tscn" id="4_sykyl"]
 [ext_resource type="PackedScene" uid="uid://3l4h0vcm1enb" path="res://scenes/entities/enemies/laser.tscn" id="5_3xucs"]
+[ext_resource type="PackedScene" uid="uid://b30wggbooeid5" path="res://scenes/menus/boss_health_bar.tscn" id="7_n3b2v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_85flq"]
 atlas = ExtResource("2_imim8")
@@ -35,6 +37,8 @@ height = 52.0
 [node name="BossEnemy" instance=ExtResource("1_o1wwd")]
 scale = Vector2(2, 2)
 script = ExtResource("2_j37ec")
+HealthBar = ExtResource("7_n3b2v")
+SpiralProbe = ExtResource("3_xpwcf")
 health = 3000
 points = 15000
 
@@ -46,7 +50,6 @@ sprite_frames = SubResource("SpriteFrames_pn24b")
 scale = Vector2(3, 3)
 
 [node name="CollisionShape2D" parent="." index="2"]
-visible = false
 position = Vector2(-2, 0)
 shape = SubResource("CapsuleShape2D_25fxk")
 

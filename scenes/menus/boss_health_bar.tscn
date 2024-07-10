@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://b30wggbooeid5"]
+
+[ext_resource type="Script" path="res://scenes/menus/boss_health_bar.gd" id="1_lrlmv"]
+
+[sub_resource type="Gradient" id="Gradient_l0qq4"]
+offsets = PackedFloat32Array(0, 0.997863, 1)
+colors = PackedColorArray(0.4, 0, 0, 1, 0.4, 0, 0, 1, 0.5, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kfo7d"]
+gradient = SubResource("Gradient_l0qq4")
+width = 750
+height = 32
+
+[sub_resource type="Gradient" id="Gradient_m82hi"]
+offsets = PackedFloat32Array(0, 0.989316, 0.99359, 0.997863, 1)
+colors = PackedColorArray(0.75, 0.1875, 0, 1, 0.75, 0.1875, 0, 1, 0.75, 0.1875, 0, 1, 0.211538, 0.211538, 0.211538, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8qxsv"]
+gradient = SubResource("Gradient_m82hi")
+width = 750
+height = 32
+
+[node name="HealthBar" type="TextureProgressBar"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -375.0
+offset_right = 375.0
+offset_bottom = 32.0
+grow_horizontal = 2
+value = 100.0
+fill_mode = 6
+texture_under = SubResource("GradientTexture2D_kfo7d")
+texture_progress = SubResource("GradientTexture2D_8qxsv")
+script = ExtResource("1_lrlmv")
