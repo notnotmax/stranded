@@ -29,7 +29,7 @@ func take_damage(damage: int):
 		die()
 
 
-func die():
+func die(get_score: bool = false):
 	if alive:
 		alive = false
 		set_collision_layer_value(3, false)
@@ -37,4 +37,5 @@ func die():
 		$AnimatedSprite2D.hide()
 		$DeathAnimation.show()
 		$DeathAnimation.play()
-		add_score(points)
+		if get_score:
+			add_score(points)

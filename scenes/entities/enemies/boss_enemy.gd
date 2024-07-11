@@ -30,9 +30,9 @@ func on_death():
 	health_bar.disappear()
 
 
-func die():
+func die(get_score: bool = false):
 	call_deferred("on_death")
-	super.die()
+	super.die(get_score)
 
 
 func _on_shooting_start_delay_timeout():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c6volrvtcb6yx"]
+[gd_scene load_steps=13 format=3 uid="uid://c6volrvtcb6yx"]
 
 [ext_resource type="PackedScene" uid="uid://d35ie48pllg52" path="res://scenes/levels/level.tscn" id="1_vjkjm"]
 [ext_resource type="Script" path="res://scenes/levels/debug_level.gd" id="2_a4jps"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://d0gx8gqtwm8gk" path="res://scenes/entities/enemies/boss_enemy.tscn" id="6_aw04y"]
 [ext_resource type="PackedScene" uid="uid://vvcqpjf6g165" path="res://scenes/entities/enemies/probe_spiral.tscn" id="7_6bkif"]
 [ext_resource type="PackedScene" uid="uid://c6pudwqbohlu5" path="res://scenes/entities/player/powerup_heart.tscn" id="7_xqdlm"]
+[ext_resource type="PackedScene" uid="uid://dvsm6ie3l7xc6" path="res://scenes/entities/enemies/probe_bomb.tscn" id="7_xr8os"]
 
 [sub_resource type="Curve2D" id="Curve2D_myivx"]
 _data = {
@@ -28,6 +29,7 @@ fighter = ExtResource("3_sklon")
 fighter2 = ExtResource("4_xu2gk")
 medium_enemy = ExtResource("4_47knx")
 boss_enemy = ExtResource("6_aw04y")
+ProbeBomb = ExtResource("7_xr8os")
 probe_spiral = ExtResource("7_6bkif")
 powerup_shield = ExtResource("3_eaori")
 powerup_life = ExtResource("7_xqdlm")

@@ -50,10 +50,10 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
 
 
-func die():
+func die(get_score: bool = false):
 	if alive:
 		death.emit()
-		super.die()
+		super.die(get_score)
 
 
 # Custom set_parent function to properly reparent regardless whether or not

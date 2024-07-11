@@ -86,7 +86,7 @@ func on_death():
 		get_tree().current_scene.add_child(shield)
 
 
-func die():
+func die(get_score: bool = false):
 	if alive:
 		call_deferred("on_death")
-		super.die()
+		super.die(get_score)
