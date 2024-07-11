@@ -33,3 +33,11 @@ func disappear():
 
 func update(p_health: int):
 	value = float(p_health) / max_hp * 100
+
+
+func _on_area_2d_area_entered(area):
+	modulate.a = 0.25
+
+
+func _on_area_2d_area_exited(area):
+	modulate.a = 1

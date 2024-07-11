@@ -80,7 +80,7 @@ func fire():
 
 
 func on_death():
-	if randf() > 0.5:
+	if randf() < 0.25:
 		var shield = PowerupShield.instantiate()
 		shield.init(global_position)
 		get_tree().current_scene.add_child(shield)

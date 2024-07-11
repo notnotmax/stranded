@@ -15,7 +15,7 @@ func start_bossfight():
 	health_bar = HealthBar.instantiate()
 	health_bar.init(health)
 	position = Vector2(1400, 360)
-	move_to(Vector2(1000, 360), 3, true)
+	move_to(Vector2(1100, 360), 3, true)
 	get_tree().current_scene.add_child(health_bar)
 	health_bar.appear(start_delay)
 

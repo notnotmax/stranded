@@ -18,15 +18,12 @@ script = ExtResource("1_n64i4")
 
 [node name="PauseMenu" parent="." instance=ExtResource("4_s3y75")]
 visible = false
-z_index = 1
 
 [node name="LevelFailed" parent="." instance=ExtResource("5_5aexc")]
 visible = false
-z_index = 1
 
 [node name="LevelComplete" parent="." instance=ExtResource("6_hxcqo")]
 visible = false
-z_index = 1
 
 [node name="PlayerLifeDisplay" parent="." instance=ExtResource("7_lnynm")]
 script = ExtResource("8_5e2od")
