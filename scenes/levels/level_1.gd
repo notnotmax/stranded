@@ -8,6 +8,7 @@ extends Level
 @export var fighter2: PackedScene
 @export var deathbomber: PackedScene
 @export var medium_enemy: PackedScene
+@export var boss_enemy: PackedScene
 
 
 func _ready():
@@ -91,10 +92,10 @@ func spawn_wave_1():
 	for i in range(10):
 		var enemy = fighter.instantiate()
 		enemy.init(Vector2(0,0), get_player())
-		enemy.move_on_path($Wave1/Path2D, 5, 1)
+		enemy.move_on_path($Wave1/Path2D, 5, 1, true)
 		var enemy2 = fighter.instantiate()
 		enemy2.init(Vector2(0,0), get_player())
-		enemy2.move_on_path($Wave1/Path2D2, 5, 1)
+		enemy2.move_on_path($Wave1/Path2D2, 5, 1, true)
 		await delay(0.5)
 	spawn_wave_2()
 
@@ -103,20 +104,28 @@ func spawn_wave_2():
 	for i in range(10):
 		var wave_enemy = fighter.instantiate()
 		wave_enemy.init(Vector2(0,0), get_player())
-		wave_enemy.move_on_path($Wave2/Path2D3, 10, 1)
+		wave_enemy.move_on_path($Wave2/Path2D3, 10, 1, true)
 		await delay(0.5)
 	var enemy = fighter2.instantiate()
 	enemy.init(Vector2(0,0), get_player(), 2)
-	enemy.move_on_path($Wave2/Path2D, 2, 1)
+	enemy.move_on_path($Wave2/Path2D, 2, 1, true)
 	var enemy2 = fighter2.instantiate()
 	enemy2.init(Vector2(0,0), get_player(), 2)
-	enemy2.move_on_path($Wave2/Path2D2, 2, 1)
+	enemy2.move_on_path($Wave2/Path2D2, 2, 1, true)
 	var medium = medium_enemy.instantiate()
 	medium.init(Vector2(0,0), get_player(), 3)
-	medium.move_on_path($Wave2/Path2D4, 3, 1)
-	medium.connect("death", temp)
+	medium.move_on_path($Wave2/Path2D4, 3, 1, true)
+	medium.connect("death", spawn_wave_3)
+	
+
+func spawn_wave_3():
+	var boss = boss_enemy.instantiate()
+	boss.init(Vector2(0, 0), get_player(), 5)
+	add_child(boss)
+	boss.start_bossfight()
+	boss.connect("death", win)
 
 
-func temp():
-	await delay(2)
+func win():
+	await delay(3)
 	complete_level()

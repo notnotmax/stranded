@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://yrc4aif2a7tj"]
+[gd_scene load_steps=19 format=3 uid="uid://yrc4aif2a7tj"]
 
 [ext_resource type="PackedScene" uid="uid://d35ie48pllg52" path="res://scenes/levels/level.tscn" id="1_pexeh"]
 [ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="2_66nbv"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://3tvkgdsry7de" path="res://scenes/entities/enemies/deathbomber.tscn" id="8_bryk2"]
 [ext_resource type="PackedScene" uid="uid://bi2okcenc8w50" path="res://scenes/entities/enemies/fighter_2.tscn" id="8_p3jpn"]
 [ext_resource type="PackedScene" uid="uid://dwakv3g8yoorg" path="res://scenes/entities/enemies/medium_enemy.tscn" id="10_mbm2m"]
+[ext_resource type="PackedScene" uid="uid://d0gx8gqtwm8gk" path="res://scenes/entities/enemies/boss_enemy.tscn" id="11_j2s2f"]
 
 [sub_resource type="Curve2D" id="Curve2D_gib1s"]
 _data = {
@@ -63,6 +64,7 @@ fighter = ExtResource("7_l5tg0")
 fighter2 = ExtResource("8_p3jpn")
 deathbomber = ExtResource("8_bryk2")
 medium_enemy = ExtResource("10_mbm2m")
+boss_enemy = ExtResource("11_j2s2f")
 
 [node name="LevelTimer" type="Timer" parent="." index="5"]
 wait_time = 60.0

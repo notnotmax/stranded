@@ -9,7 +9,7 @@ class_name DebugLevel
 @export var fighter2: PackedScene
 @export var medium_enemy: PackedScene
 @export var boss_enemy: PackedScene
-@export var ProbeBomb: PackedScene
+@export var probe_bomb: PackedScene
 @export var probe_spiral: PackedScene
 @export var powerup_shield: PackedScene
 @export var powerup_life: PackedScene
@@ -18,16 +18,10 @@ var spawnpoint: Vector2 = Vector2(1000, 360) # spawn for testing
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#var boss = boss_enemy.instantiate()
-	#boss.init(Vector2(0, 0), get_player(), 5)
-	#add_child(boss)
-	#boss.start_bossfight()
-	
-	var pb = ProbeBomb.instantiate()
-	pb.init(
-		spawnpoint, get_player(), 3
-	)
-	add_child(pb)
+	var boss = boss_enemy.instantiate()
+	boss.init(Vector2(0, 0), get_player(), 5)
+	add_child(boss)
+	boss.start_bossfight()
 	
 	#var ps = probe_spiral.instantiate()
 	#ps.init(

@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://d0gx8gqtwm8gk"]
+[gd_scene load_steps=13 format=3 uid="uid://d0gx8gqtwm8gk"]
 
 [ext_resource type="PackedScene" uid="uid://win6qvnp3tln" path="res://scenes/entities/base-classes/enemy.tscn" id="1_o1wwd"]
 [ext_resource type="Texture2D" uid="uid://com3skeyb33wg" path="res://assets/enemies/enemy_big.png" id="2_imim8"]
 [ext_resource type="Script" path="res://scenes/entities/enemies/boss_enemy.gd" id="2_j37ec"]
+[ext_resource type="PackedScene" uid="uid://dwakv3g8yoorg" path="res://scenes/entities/enemies/medium_enemy.tscn" id="3_7xjdq"]
 [ext_resource type="PackedScene" uid="uid://vvcqpjf6g165" path="res://scenes/entities/enemies/probe_spiral.tscn" id="3_xpwcf"]
 [ext_resource type="PackedScene" uid="uid://c5t2rvsya3h3c" path="res://scenes/entities/enemies/gun.tscn" id="4_sykyl"]
 [ext_resource type="PackedScene" uid="uid://3l4h0vcm1enb" path="res://scenes/entities/enemies/laser.tscn" id="5_3xucs"]
@@ -37,6 +38,7 @@ height = 52.0
 [node name="BossEnemy" instance=ExtResource("1_o1wwd")]
 scale = Vector2(2, 2)
 script = ExtResource("2_j37ec")
+medium_enemy = ExtResource("3_7xjdq")
 HealthBar = ExtResource("7_n3b2v")
 SpiralProbe = ExtResource("3_xpwcf")
 health = 3000

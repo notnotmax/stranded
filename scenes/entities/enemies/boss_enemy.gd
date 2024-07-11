@@ -1,13 +1,14 @@
 extends Enemy
 class_name BossEnemy
 
+@export var medium_enemy: PackedScene
 @export var HealthBar: PackedScene
 @export var SpiralProbe: PackedScene
 
 var invulnerable: bool = true
 var health_bar # HealthBar instance
 var attack_counter = 0
-var NORMAL_ATTACKS = [normal_1, normal_2]
+var NORMAL_ATTACKS = [normal_1, normal_2, normal_3]
 var SPECIAL_ATTACKS = [special_1, special_2]
 
 
@@ -42,7 +43,8 @@ func _on_shooting_start_delay_timeout():
 
 func _on_cooldown_timeout():
 	if attack_counter < 3:
-		await NORMAL_ATTACKS[randi() % len(NORMAL_ATTACKS)].call()
+		await special_3()
+		#await NORMAL_ATTACKS[randi() % len(NORMAL_ATTACKS)].call()
 		attack_counter += 1
 		$Cooldown.start(3)
 	else:
@@ -60,7 +62,7 @@ func normal_1():
 	await delay(0.5)
 	strafe()
 
-# spray in player's general direction while moving down
+# spray in player's general direction while moving up/down
 func normal_2():
 	# move to edge that the boss is closer to and strafe across the screen
 	if position.y < 360:
@@ -83,6 +85,15 @@ func normal_2():
 	await delay(0.5)
 	strafe()
 
+# summon 2 single target probes that orbit the boss
+# TODO: add orbital probe enemies
+func normal_3():
+	var medium = medium_enemy.instantiate()
+	medium.init(Vector2(1400, randi_range(100, 620)), target, 3)
+	get_tree().current_scene.add_child(medium)
+	medium.move_by(Vector2.LEFT * randi_range(0,300), 3, true)
+
+
 # 2 lasers, spreadshots, arrows
 func special_1():
 	await move_to(Vector2(1000, 360), 1)
@@ -92,7 +103,7 @@ func special_1():
 	await arrow_shots(5)
 	$Cooldown.start(5)
 
-# spiral probes
+# 3 spiral probes on the right area of the screen
 func special_2():
 	for i in range(3):
 		var sp = SpiralProbe.instantiate()
@@ -102,6 +113,34 @@ func special_2():
 		get_tree().current_scene.add_child(sp)
 		sp.move_to(Vector2(randi_range(800, 1200), randi_range(20, 700)), 3)
 	await delay(5)
+
+# 2 spiral probes at the right side with several bomb probes
+# TODO: replace with special spiral probe that accel and decel spinrate
+func special_3():
+	move_to(Vector2(1100, 360), 3, true)
+	var sp = SpiralProbe.instantiate()
+	sp.init(
+		global_position, target, 3, 5, 0.05, 3, 30
+	)
+	get_tree().current_scene.add_child(sp)
+	#sp.move_to(Vector2(randi_range(1000, 1200), randi_range(60, 300)), 3)
+	sp.move_by(Vector2.LEFT * 1280, 30)
+	#sp.move_to(Vector2(randi_range(1000, 1200), randi_range(60, 300)), 3)
+	#var sp2 = SpiralProbe.instantiate()
+	#sp2.init(
+		#global_position, target, 3, 5, 0.05, 2, 15
+	#)
+	#get_tree().current_scene.add_child(sp2)
+	#sp2.move_to(Vector2(randi_range(1000, 1200), randi_range(420, 660)), 3)
+	# TODO: spawn bomb probes
+	await delay(15)
+
+# summon 1 medium enemy and 2 orange enemies
+func special_4():
+	var medium = medium_enemy.instantiate()
+	medium.init(Vector2(1400, randi_range(100, 620)), target, 3)
+	get_tree().current_scene.add_child(medium)
+	medium.move_by(Vector2.LEFT * randi_range(0,300), 3, true)
 
 func multi_spread_shot(rounds):
 	if not alive:
