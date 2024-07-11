@@ -35,9 +35,9 @@ func update(p_health: int):
 	value = float(p_health) / max_hp * 100
 
 
-func _on_area_2d_area_entered(area):
+func _on_area_2d_area_entered(_area):
 	modulate.a = 0.25
 
 
-func _on_area_2d_area_exited(area):
+func _on_area_2d_area_exited(_area):
 	modulate.a = 1

@@ -25,7 +25,7 @@ func _ready():
 	
 	var pb = ProbeBomb.instantiate()
 	pb.init(
-		spawnpoint, get_player(), 1
+		spawnpoint, get_player(), 3
 	)
 	add_child(pb)
 	

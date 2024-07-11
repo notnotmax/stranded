@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dvsm6ie3l7xc6"]
+[gd_scene load_steps=11 format=3 uid="uid://dvsm6ie3l7xc6"]
 
 [ext_resource type="PackedScene" uid="uid://win6qvnp3tln" path="res://scenes/entities/base-classes/enemy.tscn" id="1_5g5k4"]
 [ext_resource type="Script" path="res://scenes/entities/enemies/probe_bomb.gd" id="2_iapxp"]
@@ -40,10 +40,14 @@ animations = [{
 "speed": 0.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wb3fu"]
+radius = 17.0
+
 [node name="ProbeBomb" instance=ExtResource("1_5g5k4")]
 script = ExtResource("2_iapxp")
 Bullet = ExtResource("3_bms51")
-health = 0
+health = 100
+points = 500
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_h2s1h")
@@ -53,5 +57,12 @@ frame_progress = 0.53978
 
 [node name="DeathAnimation" parent="." index="1"]
 scale = Vector2(3, 3)
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource("CircleShape2D_wb3fu")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
+position = Vector2(2.38419e-07, -7.15256e-07)
+scale = Vector2(1.6, 1.6)
 
 [node name="Gun" parent="." index="5" instance=ExtResource("5_e0srp")]
