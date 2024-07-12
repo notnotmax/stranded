@@ -46,8 +46,8 @@ radius = 17.0
 [node name="ProbeBomb" instance=ExtResource("1_5g5k4")]
 script = ExtResource("2_iapxp")
 Bullet = ExtResource("3_bms51")
-health = 100
-points = 500
+health = 50
+points = 250
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_h2s1h")

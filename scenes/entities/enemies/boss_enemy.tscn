@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d0gx8gqtwm8gk"]
+[gd_scene load_steps=14 format=3 uid="uid://d0gx8gqtwm8gk"]
 
 [ext_resource type="PackedScene" uid="uid://win6qvnp3tln" path="res://scenes/entities/base-classes/enemy.tscn" id="1_o1wwd"]
 [ext_resource type="Texture2D" uid="uid://com3skeyb33wg" path="res://assets/enemies/enemy_big.png" id="2_imim8"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://vvcqpjf6g165" path="res://scenes/entities/enemies/probe_spiral.tscn" id="3_xpwcf"]
 [ext_resource type="PackedScene" uid="uid://c5t2rvsya3h3c" path="res://scenes/entities/enemies/gun.tscn" id="4_sykyl"]
 [ext_resource type="PackedScene" uid="uid://3l4h0vcm1enb" path="res://scenes/entities/enemies/laser.tscn" id="5_3xucs"]
+[ext_resource type="PackedScene" uid="uid://dvsm6ie3l7xc6" path="res://scenes/entities/enemies/probe_bomb.tscn" id="6_78ue0"]
 [ext_resource type="PackedScene" uid="uid://b30wggbooeid5" path="res://scenes/menus/boss_health_bar.tscn" id="7_n3b2v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_85flq"]
@@ -41,6 +42,7 @@ script = ExtResource("2_j37ec")
 medium_enemy = ExtResource("3_7xjdq")
 HealthBar = ExtResource("7_n3b2v")
 SpiralProbe = ExtResource("3_xpwcf")
+bomb_probe = ExtResource("6_78ue0")
 health = 3000
 points = 15000
 

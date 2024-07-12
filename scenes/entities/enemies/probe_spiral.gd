@@ -23,12 +23,12 @@ var bullet_accel: float = 1
 
 
 func init(p_position: Vector2 = Vector2(0, 0), p_target: Node = Node.new(),
-		p_start_delay: float = 1.0, p_angle_delta_deg: float = 0,
-		p_fire_rate: float = 0.25, p_arms: int = 1, p_duration: float = 5.0):
+		p_start_delay: float = 1.0, p_arms: int = 1,
+		p_fire_rate: float = 0.25, p_delta: float = 0, p_duration: float = 5.0):
 	super.init(p_position, p_target, p_start_delay)
-	angle_delta_deg = p_angle_delta_deg
-	fire_rate = p_fire_rate
 	arms = p_arms
+	fire_rate = p_fire_rate
+	angle_delta_deg = p_delta
 	duration = p_duration
 
 

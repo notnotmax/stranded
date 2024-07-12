@@ -65,19 +65,15 @@ func set_parent(parent: Node, child: Node):
 
 
 # Slowly move up and down to make enemy ships look more natural
-func strafe():
-	var start = position - Vector2(0, 10)
-	var end = position + Vector2(0, 10)
-	var duration = 3.0
-	
-	# move to start to get into position
-	var tween = create_tween().set_trans(Tween.TRANS_SINE)
-	tween.tween_property(self, 'position', start, duration / 2.0)
-	await delay(duration / 2.0)
+func strafe(center: Vector2 = global_position, delta: Vector2 = Vector2(0, 10),
+		duration: float = 3.0):
+	stop_strafing()
+	var start = center - delta
+	var end = center + delta
 	
 	strafe_tween = create_tween().set_trans(Tween.TRANS_SINE).set_loops()
-	strafe_tween.tween_property(self, "position", end, duration).from(start)
-	strafe_tween.tween_property(self, "position", start, duration).from(end)
+	strafe_tween.tween_property(self, "global_position", start, duration)
+	strafe_tween.tween_property(self, "global_position", end, duration)
 
 
 # Stops this instance from strafing
