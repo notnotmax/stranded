@@ -43,11 +43,15 @@ func _on_resume_button_pressed():
 
 func _on_restart_button_pressed():
 	self.hide()
+	await Fade.fade_out().finished
 	get_tree().paused = false
 	get_tree().reload_current_scene()
+	Fade.fade_in()
 
 
 func _on_quit_button_pressed():
 	self.hide()
+	await Fade.fade_out().finished
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
+	Fade.fade_in()

@@ -1,6 +1,6 @@
 extends Area2D
 @export var Bullet : PackedScene
-signal on_damaged # player gets damaged
+signal life_change # change in player's life count
 signal player_died # player dies
 
 var can_move = true
@@ -85,7 +85,7 @@ func _on_animated_sprite_2d_animation_finished():
 func take_damage():
 	if not is_invulnerable:
 		lives -= 1
-		on_damaged.emit()
+		life_change.emit()
 		if lives == 0:
 			die()
 		else:
@@ -122,7 +122,8 @@ func get_powerup(powerup):
 			$Shield.enable()
 		Powerup.Types.LIFE_UP:
 			lives += 1
-			on_damaged.emit()
+			lives = min(5, lives) # lives are capped at 5
+			life_change.emit()
 
 
 func _on_invulnerability_animation_finished():

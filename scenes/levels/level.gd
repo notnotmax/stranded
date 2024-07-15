@@ -35,10 +35,10 @@ func complete_level():
 	$LevelComplete.complete_level(score)
 
 
-func _on_player_on_damaged():
-	$PlayerLifeDisplay.update_display($Player.lives)
-
-
 func _on_player_player_died():
 	$PauseMenu.disable()
 	$LevelFailed.appear()
+
+
+func _on_player_life_change():
+	$PlayerLifeDisplay.update_display($Player.lives)
