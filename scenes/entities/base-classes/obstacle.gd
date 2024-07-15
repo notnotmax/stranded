@@ -12,6 +12,12 @@ func delay(seconds: float):
 	await get_tree().create_timer(seconds, false).timeout
 
 
+# Call a function after a specified number of seconds have passed
+func call_delayed(callable: Callable, seconds: float):
+	await delay(seconds)
+	callable.call()
+
+
 # destroy the player on impact
 func _on_area_entered(area):
 	if area.get_collision_layer_value(2):

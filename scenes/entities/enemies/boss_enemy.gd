@@ -68,10 +68,10 @@ func normal_1():
 func normal_2():
 	# move to edge that the boss is closer to and strafe across the screen
 	if position.y < 360:
-		await move_to(Vector2(position.x, 120), 1)
+		await move_to(Vector2(position.x, 120), 2)
 		move_to(Vector2(position.x, 600), 7)
 	else:
-		await move_to(Vector2(position.x, 600), 1)
+		await move_to(Vector2(position.x, 600), 2)
 		move_to(Vector2(position.x, 120), 7)
 	
 	for i in range(100):
@@ -120,15 +120,23 @@ func special_2():
 	sp3.move_to(Vector2(randi_range(900, 1200), randi_range(420, 620)), 10)
 	await delay(15)
 
-# throws bomb probes toward the center of the screen
+# summons a ring of bomb probes that drift to random positions
 func special_3():
-	for i in range(10):
+	var num = 12
+	for i in range(num):
 		var bp = bomb_probe.instantiate()
-		bp.init($Gun.global_position, target, 3)
+		bp.init(global_position, target, 8)
 		get_tree().current_scene.add_child(bp)
-		bp.move_to(Vector2(randi_range(300, 1000), randi_range(100, 620)), 3, true)
-		await delay(0.2)
-	await delay(3)
+		bp.move_to(
+			global_position + Vector2.LEFT.rotated(i * 2 * PI / num) * 100,
+			1, true
+		)
+		var lambda = func():
+			bp.move_to(Vector2(randi_range(300, 1000), randi_range(100, 620)),
+			5, true)
+		bp.call_delayed(lambda, 1 + num * 0.1)
+		await delay(0.1)
+	await delay(10)
 
 # summons several medium enemies to use horizontal lasers
 func special_4():

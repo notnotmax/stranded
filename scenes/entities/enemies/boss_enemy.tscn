@@ -47,6 +47,8 @@ health = 3000
 points = 15000
 
 [node name="AnimatedSprite2D" parent="." index="0"]
+z_index = 1
+z_as_relative = false
 position = Vector2(12, 0)
 sprite_frames = SubResource("SpriteFrames_pn24b")
 
