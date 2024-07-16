@@ -19,6 +19,10 @@ run/main_scene="res://scenes/menus/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://assets/player/icon.png"
 
+[autoload]
+
+Global="*res://utility_scripts/global.gd"
+
 [display]
 
 window/size/viewport_width=1280

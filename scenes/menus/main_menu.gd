@@ -6,11 +6,12 @@ signal return_to_main_menu
 
 func _ready():
 	level_select.hide()
+	Global.load_data()
 
 
 func _on_play_button_pressed():
 	main_menu_buttons.hide()
-	level_select.show()
+	level_select.appear()
 
 
 func _on_quit_button_pressed():
@@ -20,3 +21,11 @@ func _on_quit_button_pressed():
 func _on_level_select_back():
 	level_select.hide()
 	main_menu_buttons.show()
+
+
+func _on_save_button_pressed():
+	Global.save_data()
+
+
+func _on_load_button_pressed():
+	Global.load_data()

@@ -17,11 +17,6 @@ func _ready():
 	spawn_asteroids()
 	spawn_wave_1()
 
-
-func _on_level_timer_timeout():
-	pass
-	#complete_level()
-
 ## Asteroids
 
 @onready var asteroid_spawnpoint = $Asteroids/Path2D/PathFollow2D
@@ -128,4 +123,6 @@ func spawn_wave_3():
 
 func win():
 	await delay(3)
+	Global.level_1_score = score
+	Global.save_data()
 	complete_level()
