@@ -26,7 +26,7 @@ func add_score(score):
 func take_damage(damage: int):
 	health -= damage
 	if health <= 0:
-		die()
+		die(true)
 
 
 func die(get_score: bool = false):

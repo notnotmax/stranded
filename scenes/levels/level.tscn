@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d35ie48pllg52"]
+[gd_scene load_steps=10 format=3 uid="uid://d35ie48pllg52"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_n64i4"]
 [ext_resource type="PackedScene" uid="uid://d3lstvim7ia7x" path="res://scenes/backgrounds/background_1.tscn" id="2_xgdqi"]
@@ -7,6 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://b5rhxpvglaf3f" path="res://scenes/menus/level_failed.tscn" id="5_5aexc"]
 [ext_resource type="PackedScene" uid="uid://gjr8inabdhiu" path="res://scenes/menus/level_complete.tscn" id="6_hxcqo"]
 [ext_resource type="PackedScene" uid="uid://c6ov8fvestk60" path="res://scenes/menus/player_life_display.tscn" id="7_lnynm"]
+[ext_resource type="Theme" uid="uid://c6q5tn6lrdfpy" path="res://assets/ui/theme.tres" id="8_2ajr5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vv8o0"]
+font_size = 32
 
 [node name="Level" type="Node"]
 script = ExtResource("1_n64i4")
@@ -25,6 +29,16 @@ visible = false
 visible = false
 
 [node name="PlayerLifeDisplay" parent="." instance=ExtResource("7_lnynm")]
+
+[node name="Score" type="Label" parent="."]
+offset_left = 1120.0
+offset_right = 1274.0
+offset_bottom = 36.0
+theme = ExtResource("8_2ajr5")
+text = "0000000"
+label_settings = SubResource("LabelSettings_vv8o0")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="life_change" from="Player" to="." method="_on_player_life_change"]
 [connection signal="player_died" from="Player" to="." method="_on_player_player_died"]

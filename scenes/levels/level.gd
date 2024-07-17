@@ -23,6 +23,8 @@ func get_player():
 
 func add_score(p_score):
 	score += p_score
+	$Score.text = str(score).pad_zeros(7)
+
 
 # usage: await delay(seconds)
 func delay(seconds: float):

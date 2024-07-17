@@ -45,7 +45,6 @@ func _on_shooting_start_delay_timeout():
 
 func _on_cooldown_timeout():
 	if attack_counter < 3:
-		await special_3()
 		await NORMAL_ATTACKS[randi() % len(NORMAL_ATTACKS)].call()
 		attack_counter += 1
 		$Cooldown.start(3) # mandatory minimum cooldown
