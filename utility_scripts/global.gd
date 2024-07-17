@@ -34,6 +34,7 @@ func get_level_score(level: int):
 	return savedata.get(key, 0)
 
 
-func set_level_score(level: int, score: int):
-	var key = "level_" + str(level) + "_score"
-	savedata[key] = score
+func set_level_score(level: int, score: int, overwrite_high_score: bool = false):
+	if overwrite_high_score or score > get_level_score(level):
+		var key = "level_" + str(level) + "_score"
+		savedata[key] = score
