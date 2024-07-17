@@ -123,6 +123,6 @@ func spawn_wave_3():
 
 func win():
 	await delay(3)
-	Global.level_1_score = score
+	Global.set_level_score(1, score)
 	Global.save_data()
 	complete_level()
