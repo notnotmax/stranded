@@ -8,11 +8,6 @@ var alive: bool = true
 var lives: int = 3
 var inverted_movement: bool = false
 var is_invulnerable: bool = false
-var is_firing: bool = false
-# cooldown timer before next shot
-var shot_cooldown: int = 0
-# fire rate in 1/60ths of a second
-var fire_rate: int = 6
 
 
 # Called when the node enters the scene tree for the first time.
@@ -23,24 +18,6 @@ func _ready():
 	position.x = 100
 	position.y = 360
 	$AnimatedSprite2D.play("default")
-
-
-func _physics_process(_delta):
-	if alive:
-		# decrease shooting cooldown
-		if shot_cooldown > 0:
-			shot_cooldown -= 1
-		# shoot
-		if shot_cooldown <= 0:
-			if is_firing:
-				var bullet = Bullet.instantiate().with_params(
-					$Marker2D.global_position,
-					20,
-					Vector2(1, 0),
-					10
-				)
-				get_tree().current_scene.add_child(bullet)
-			shot_cooldown += fire_rate
 
 
 func _input(event):
@@ -68,7 +45,10 @@ func _input(event):
 		# toggle fire mode
 		elif event is InputEventMouseButton:
 			if event.button_index == MOUSE_BUTTON_LEFT:
-				is_firing = event.pressed
+				if event.pressed:
+					$PlayerGun.enable()
+				else:
+					$PlayerGun.disable()
 
 
 # death collision is handled by the enemy instance

@@ -3,6 +3,7 @@ extends Node
 var save_path = "res://savefile.txt"
 
 var savedata: Dictionary
+var level_count: int = 3
 
 
 func save_data():
@@ -38,3 +39,9 @@ func set_level_score(level: int, score: int, overwrite_high_score: bool = false)
 	if overwrite_high_score or score > get_level_score(level):
 		var key = "level_" + str(level) + "_score"
 		savedata[key] = score
+
+
+func reset_scores():
+	for i in range(1, level_count + 1):
+		set_level_score(i, 0, true)
+	save_data()

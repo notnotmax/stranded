@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cr72y7mattyj1"]
+
+[ext_resource type="Script" path="res://scenes/entities/player/player_gun.gd" id="1_bu278"]
+[ext_resource type="PackedScene" uid="uid://c071cjqtub7m5" path="res://scenes/entities/player/bullet.tscn" id="2_jlgrs"]
+
+[node name="PlayerGun" type="Marker2D"]
+position = Vector2(25, 0)
+script = ExtResource("1_bu278")
+Bullet = ExtResource("2_jlgrs")
