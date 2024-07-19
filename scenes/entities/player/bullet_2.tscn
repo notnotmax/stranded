@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://c07mcty7gfqud"]
+
+[ext_resource type="PackedScene" uid="uid://c071cjqtub7m5" path="res://scenes/entities/player/bullet.tscn" id="1_vm5ws"]
+[ext_resource type="Texture2D" uid="uid://b873l73b3iwtc" path="res://assets/player/attack.png" id="2_eww53"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccbao"]
+atlas = ExtResource("2_eww53")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akxke"]
+atlas = ExtResource("2_eww53")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_16cjs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccbao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akxke")
+}],
+"loop": false,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="Bullet" instance=ExtResource("1_vm5ws")]
+damage = 20
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_16cjs")
+autoplay = "default"

@@ -1,5 +1,4 @@
 extends Area2D
-@export var Bullet : PackedScene
 signal life_change # change in player's life count
 signal player_died # player dies
 
@@ -100,6 +99,7 @@ func get_powerup(powerup):
 	match powerup:
 		Powerup.Types.SHIELD:
 			$Shield.enable()
+			$PlayerGun.upgrade()
 		Powerup.Types.LIFE_UP:
 			lives += 1
 			lives = min(5, lives) # lives are capped at 5

@@ -1,18 +1,16 @@
 extends Area2D
-class_name Bullet
+class_name PlayerBullet
 
-var speed: float = 0
-var direction: Vector2 = Vector2.ZERO
-var damage: int = 10
+@export var damage: int
 
+var speed: float
+var direction: Vector2
 
-func with_params(p_position: Vector2, p_speed: float,
-	p_direction: Vector2, p_damage: int):
+func init(p_position: Vector2 = Vector2(0, 0), p_speed: float = 0,
+		p_direction: Vector2 = Vector2.RIGHT):
 	position = p_position
 	speed = p_speed
 	direction = p_direction.normalized()
-	damage = p_damage
-	return self
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
