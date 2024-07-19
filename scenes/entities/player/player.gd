@@ -104,6 +104,10 @@ func get_powerup(powerup):
 			lives += 1
 			lives = min(5, lives) # lives are capped at 5
 			life_change.emit()
+		Powerup.Types.WEAPON_UPGRADE:
+			$PlayerGun.upgrade()
+		Powerup.Types.ATTACK_SPEED:
+			$PlayerGun.double_speed(10)
 
 
 func _on_invulnerability_animation_finished():
