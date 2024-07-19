@@ -65,6 +65,7 @@ func take_damage():
 	if not is_invulnerable:
 		lives -= 1
 		life_change.emit()
+		$PlayerGun.downgrade()
 		if lives == 0:
 			die()
 		else:
@@ -99,7 +100,6 @@ func get_powerup(powerup):
 	match powerup:
 		Powerup.Types.SHIELD:
 			$Shield.enable()
-			$PlayerGun.upgrade()
 		Powerup.Types.LIFE_UP:
 			lives += 1
 			lives = min(5, lives) # lives are capped at 5

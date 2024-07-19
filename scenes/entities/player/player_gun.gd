@@ -42,6 +42,11 @@ func upgrade():
 	level = min(level, FIRING_LEVELS.size() - 1)
 
 
+# downgrade by roughly half of the current level when the player gets hit
+func downgrade():
+	level = floor((level + 1) / 2.0)
+
+
 func double_speed(duration: float):
 	var temp = fire_rate
 	fire_rate = floor(temp / 2.0)
