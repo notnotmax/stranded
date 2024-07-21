@@ -30,6 +30,9 @@ func take_damage(damage: int):
 
 
 func on_death():
+	$Laser.queue_free()
+	$Laser2.queue_free()
+	$BigLaser.queue_free()
 	health_bar.disappear()
 
 
@@ -45,6 +48,7 @@ func _on_shooting_start_delay_timeout():
 
 func _on_cooldown_timeout():
 	if attack_counter < 3:
+		await normal_3()
 		await NORMAL_ATTACKS[randi() % len(NORMAL_ATTACKS)].call()
 		attack_counter += 1
 		$Cooldown.start(3) # mandatory minimum cooldown
@@ -88,7 +92,8 @@ func normal_2():
 
 # summons a small wave of enemies to attack in tandem
 func normal_3():
-	pass
+	$Laser.sweep_destructive(Vector2(-1, 1), Vector2(-1, -1), 5)
+	await delay(10)
 
 
 # 2 lasers, spreadshots, arrows

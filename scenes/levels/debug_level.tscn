@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://c6volrvtcb6yx"]
+[gd_scene load_steps=16 format=3 uid="uid://c6volrvtcb6yx"]
 
 [ext_resource type="PackedScene" uid="uid://d35ie48pllg52" path="res://scenes/levels/level.tscn" id="1_vjkjm"]
 [ext_resource type="Script" path="res://scenes/levels/debug_level.gd" id="2_a4jps"]
 [ext_resource type="PackedScene" uid="uid://b0gpsrkb5ixb0" path="res://scenes/entities/player/powerup_shield.tscn" id="3_eaori"]
+[ext_resource type="PackedScene" uid="uid://dcu718cvw155k" path="res://scenes/entities/environmental-obstacles/asteroid_3.tscn" id="3_fadca"]
 [ext_resource type="PackedScene" uid="uid://dk2w3ffxunsi8" path="res://scenes/entities/enemies/fighter.tscn" id="3_sklon"]
 [ext_resource type="PackedScene" uid="uid://dwakv3g8yoorg" path="res://scenes/entities/enemies/medium_enemy.tscn" id="4_47knx"]
 [ext_resource type="PackedScene" uid="uid://bi2okcenc8w50" path="res://scenes/entities/enemies/fighter_2.tscn" id="4_xu2gk"]
@@ -27,6 +28,7 @@ point_count = 2
 
 [node name="Level" instance=ExtResource("1_vjkjm")]
 script = ExtResource("2_a4jps")
+asteroid = ExtResource("3_fadca")
 fighter = ExtResource("3_sklon")
 fighter2 = ExtResource("4_xu2gk")
 medium_enemy = ExtResource("4_47knx")

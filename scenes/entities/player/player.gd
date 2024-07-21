@@ -61,7 +61,7 @@ func _on_animated_sprite_2d_animation_finished():
 		queue_free()
 
 
-func take_damage():
+func take_damage(_damage: int = 0):
 	if not is_invulnerable:
 		lives -= 1
 		life_change.emit()

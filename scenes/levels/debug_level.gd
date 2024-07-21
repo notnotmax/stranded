@@ -5,6 +5,7 @@ Sandbox level to test new features.
 extends Level
 class_name DebugLevel
 
+@export var asteroid: PackedScene
 @export var fighter: PackedScene
 @export var fighter2: PackedScene
 @export var medium_enemy: PackedScene
@@ -24,6 +25,14 @@ func _ready():
 	boss.init(Vector2(0, 0), get_player(), 5)
 	add_child(boss)
 	boss.start_bossfight()
+	
+	var ast = asteroid.instantiate()
+	ast.init(
+		spawnpoint + 100 * Vector2.LEFT,
+		1,
+		Vector2.LEFT
+	)
+	add_child(ast)
 	#
 	#var ps = probe_spiral.instantiate()
 	#ps.init(
