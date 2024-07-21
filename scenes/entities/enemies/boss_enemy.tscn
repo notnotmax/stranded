@@ -69,10 +69,13 @@ position = Vector2(-18, 0)
 [node name="Laser" parent="." index="6" instance=ExtResource("5_3xucs")]
 position = Vector2(-19.5, -15.5)
 
-[node name="Laser2" parent="." index="7" instance=ExtResource("5_3xucs")]
+[node name="LaserCenter" parent="." index="7" instance=ExtResource("5_3xucs")]
+position = Vector2(-18, 0)
+
+[node name="Laser2" parent="." index="8" instance=ExtResource("5_3xucs")]
 position = Vector2(-19, 15)
 
-[node name="Cooldown" type="Timer" parent="." index="8"]
+[node name="Cooldown" type="Timer" parent="." index="9"]
 wait_time = 5.0
 one_shot = true
 

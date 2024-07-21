@@ -92,7 +92,8 @@ func normal_2():
 
 # summons a small wave of enemies to attack in tandem
 func normal_3():
-	$Laser.sweep_destructive(Vector2(-1, 1), Vector2(-1, -1), 5)
+	$Laser2.sweep(Vector2.LEFT, Vector2.UP, 5)
+	$LaserCenter.sweep_destructive(Vector2(-1, 1), Vector2(-1, -1), 5)
 	await delay(10)
 
 

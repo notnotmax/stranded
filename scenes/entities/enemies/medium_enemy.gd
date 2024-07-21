@@ -59,7 +59,7 @@ func _on_laser_ended():
 
 func die(get_score: bool = false):
 	if alive:
-		$Laser.call_deferred("set_firing", false)
+		$Laser.call_deferred("queue_free")
 		super.die(get_score)
 
 # Enemy switches to bullets when player is in close range

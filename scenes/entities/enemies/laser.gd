@@ -1,14 +1,14 @@
 """
 Enemy laser. Fires a warning beam before shooting.
 """
-extends RayCast2D
+extends ShapeCast2D
 class_name Laser
 signal ended
 
 # shrapnel when asteroids are destroyed
 @export var Bullet: PackedScene
 
-var is_firing: bool = false
+
 # the target towards which the laser aims
 var target: Vector2
 # duration for which the laser fires (excluding warning shot)
@@ -22,56 +22,56 @@ var destructive: bool = false
 
 
 func _ready():
-	is_firing = false
-	set_collision_mask_value(2, false)
+	set_physics_process(false)
 
 
 func _physics_process(_delta):
+	self.shape.size.y = max(1, $Line2D.width)
 	var cast_point: Vector2 = target_position
-	force_raycast_update()
+	force_shapecast_update()
 	if is_colliding():
-		cast_point = to_local(get_collision_point())
+		var collider = get_collider(0)
+		if collider:
+			var layer = collider.get_collision_layer()
+			if destructive and layer == 32: # layer 6, asteroids
+				var size = collider.health / 10
+				for i in range(3 + size):
+					var bullet = Bullet.instantiate()
+					bullet.init(
+						collider.global_position,
+						randf_range(3, 5),
+						0,
+						Vector2.LEFT.rotated(randf_range(0, 2 * PI)),
+					)
+					get_tree().current_scene.add_child(bullet)
+			# putting this at the back so can check asteroid health first
+			collider.take_damage(999) # should instakill
+		cast_point = target_position * \
+			get_closest_collision_unsafe_fraction()
 	$Line2D.points[1] = cast_point
 	$Warning.points[1] = cast_point
 	$GPUParticles2D2.position = cast_point
-	
-	var collider = get_collider()
-	if collider:
-		var layer = collider.get_collision_layer()
-		if destructive and layer == 32: # layer 6, asteroids
-			var size = collider.health / 10
-			for i in range(3 + size):
-				var bullet = Bullet.instantiate()
-				bullet.init(
-					collider.global_position,
-					randf_range(3, 5),
-					0,
-					Vector2.LEFT.rotated(randf_range(0, 2 * PI)),
-				)
-				get_tree().current_scene.add_child(bullet)
-		# putting this at the back so can check asteroid health first
-		collider.take_damage(999) # should instakill
 
 
-# Turns the laser on/off
-func set_firing(value):
-	is_firing = value
-	if is_firing:
-		# show warning laser
-		var tween = create_tween()
-		tween.tween_property($Warning, "width", 1.5, 0.1)
-		$WarningTimer.start() # timer to actually shoot deadly laser
-	else:
-		# disable laser
-		$GPUParticles2D.emitting = false
-		$GPUParticles2D2.emitting = false
-		var tween = create_tween()
-		tween.tween_property($Line2D, "width", 0, 0.1)
-		set_collision_mask_value(2, false)
-		set_collision_mask_value(6, false)
-		set_collision_mask_value(9, false)
-		ended.emit()
-	set_physics_process(is_firing)
+# show warning laser and start timer for deadly laser
+func _fire():
+	var tween = create_tween()
+	tween.tween_property($Warning, "width", 1.5, 0.1)
+	$WarningTimer.start() # timer to actually shoot deadly laser
+	set_physics_process(true)
+
+# disable laser, may cause visual issues if disabled too early
+# due to tweens (untested)
+func _stop_firing():
+	$GPUParticles2D.emitting = false
+	$GPUParticles2D2.emitting = false
+	var tween = create_tween()
+	tween.tween_property($Line2D, "width", 0, 0.1)
+	set_collision_mask_value(2, false)
+	set_collision_mask_value(6, false)
+	set_collision_mask_value(9, false)
+	ended.emit()
+	set_physics_process(false)
 
 
 func set_color(color: Color):
@@ -97,7 +97,7 @@ func _on_timer_timeout():
 
 # stops firing after a certain duration
 func _on_duration_timeout():
-	set_firing(false)
+	_stop_firing()
 
 
 func sweep(p_from: Vector2, p_to: Vector2, p_duration: float):
@@ -115,7 +115,7 @@ func sweep(p_from: Vector2, p_to: Vector2, p_duration: float):
 	$Line2D.points[1] = from
 	$Warning.points[1] = from
 	# shoot
-	set_firing(true)
+	_fire()
 
 
 # sweep, but fires a thicker laser that destroys asteroids
@@ -125,8 +125,8 @@ func sweep_destructive(p_from: Vector2, p_to: Vector2, p_duration: float):
 	self.target = to
 	self.duration = p_duration
 	$Duration.wait_time = p_duration
-	self.thickness = 30
-	self.widening_duration = 1
+	self.thickness = 20
+	self.widening_duration = 1.5
 	self.destructive = true
 	
 	# set initial position to sweep from
@@ -134,4 +134,4 @@ func sweep_destructive(p_from: Vector2, p_to: Vector2, p_duration: float):
 	$Line2D.points[1] = from
 	$Warning.points[1] = from
 	# shoot
-	set_firing(true)
+	_fire()
