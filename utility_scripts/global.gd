@@ -46,6 +46,12 @@ func set_level_score(level: int, score: int, overwrite_high_score: bool = false)
 		savedata[key] = score
 
 
+func unlock_all_levels():
+	for i in range(1, level_count + 1):
+		set_level_score(i, 1, false) # unlock by putting score > 0
+	save_data()
+
+
 func reset_scores():
 	for i in range(1, level_count + 1):
 		set_level_score(i, 0, true)

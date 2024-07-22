@@ -3,6 +3,7 @@ signal return_to_main_menu
 
 @onready var main_menu_buttons = $MainMenuButtons
 @onready var level_select = $LevelSelect
+@onready var options_menu = $OptionsMenu
 
 func _ready():
 	level_select.hide()
@@ -20,6 +21,16 @@ func _on_quit_button_pressed():
 
 func _on_level_select_back():
 	level_select.hide()
+	main_menu_buttons.show()
+
+
+func _on_options_button_pressed():
+	main_menu_buttons.hide()
+	options_menu.show()
+
+
+func _on_options_menu_back():
+	options_menu.hide()
 	main_menu_buttons.show()
 
 
