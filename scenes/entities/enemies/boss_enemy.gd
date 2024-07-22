@@ -12,6 +12,7 @@ var health_bar # HealthBar instance
 var attack_counter = 0
 var NORMAL_ATTACKS = [normal_1, normal_2, normal_3]
 var SPECIAL_ATTACKS = [special_1, special_2, special_3]
+var time_bonus = 30000
 
 
 func start_bossfight():
@@ -21,6 +22,18 @@ func start_bossfight():
 	move_to(CENTER, start_delay)
 	get_tree().current_scene.add_child(health_bar)
 	health_bar.appear(start_delay)
+	await delay(start_delay)
+	start_time_bonus()
+
+
+var is_timing: bool = false
+func start_time_bonus():
+	if not is_timing:
+		is_timing = true
+		while alive and time_bonus > 0:
+			print(time_bonus)
+			await delay(1)
+			time_bonus -= 100
 
 
 func take_damage(damage: int):
@@ -31,6 +44,7 @@ func take_damage(damage: int):
 
 func on_death():
 	health_bar.disappear()
+	add_score(time_bonus)
 
 
 func die(get_score: bool = false):
