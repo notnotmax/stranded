@@ -43,6 +43,7 @@ func _on_shooting_start_delay_timeout():
 	_on_cooldown_timeout()
 
 
+var specials = []
 func _on_cooldown_timeout():
 	if attack_counter < 3:
 		special_3()
@@ -50,7 +51,11 @@ func _on_cooldown_timeout():
 		attack_counter += 1
 		$Cooldown.start(3) # mandatory minimum cooldown
 	else:
-		await SPECIAL_ATTACKS[randi() % len(SPECIAL_ATTACKS)].call()
+		if len(specials) == 0:
+			specials = SPECIAL_ATTACKS.duplicate()
+			specials.shuffle()
+		var attack = specials.pop_front()
+		await attack.call()
 		attack_counter = 0
 		$Cooldown.start(5)
 

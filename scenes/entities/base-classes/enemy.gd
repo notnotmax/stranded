@@ -40,6 +40,7 @@ func get_vec_towards_player() -> Vector2:
 
 
 func _ready():
+	randomize()
 	shooting_start_delay.wait_time = start_delay
 	shooting_start_delay.start()
 
