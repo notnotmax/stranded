@@ -6,6 +6,11 @@ extends DestroyableObstacle
 class_name Enemy
 signal death
 
+@export var powerup_shield: PackedScene
+@export var powerup_health: PackedScene
+@export var powerup_weapon: PackedScene
+@export var powerup_speed: PackedScene
+
 
 # target node to fire at, usually the player
 var target: Node
@@ -54,6 +59,13 @@ func die(get_score: bool = false):
 	if alive:
 		death.emit()
 		super.die(get_score)
+
+
+func drop_powerup(powerup):
+	if powerup:
+		var p = powerup.instantiate()
+		p.init(global_position)
+		get_tree().current_scene.add_child(p)
 
 
 # Custom set_parent function to properly reparent regardless whether or not

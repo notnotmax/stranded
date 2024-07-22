@@ -45,8 +45,7 @@ func _on_shooting_start_delay_timeout():
 
 func _on_cooldown_timeout():
 	if attack_counter < 3:
-		await special_1()
-		await delay(10)
+		special_3()
 		await NORMAL_ATTACKS[randi() % len(NORMAL_ATTACKS)].call()
 		attack_counter += 1
 		$Cooldown.start(3) # mandatory minimum cooldown
@@ -88,7 +87,7 @@ func normal_2():
 	await delay(0.5)
 	strafe()
 
-# 
+# 3 comet shots aimed at the player with spaced timing
 func normal_3():
 	var shots = 3
 	for i in range(shots):
@@ -108,6 +107,7 @@ func special_1():
 		Vector2.LEFT, 30, 0, 1
 	)
 	await delay(1)
+	drop_powerup(powerup_weapon)
 
 
 # 3 spiral probes on the right area of the screen

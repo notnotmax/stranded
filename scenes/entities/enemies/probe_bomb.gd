@@ -30,7 +30,14 @@ func explode():
 		)
 
 
+@onready var powerups = [powerup_shield, powerup_speed]
+func on_death():
+	if randf() < 0.2:
+		drop_powerup(powerups.pick_random())
+
+
 func die(get_score: bool = false):
 	if armed:
 		call_deferred("explode")
+	call_deferred("on_death")
 	super.die(get_score)
