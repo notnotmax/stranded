@@ -46,10 +46,9 @@ func _on_shooting_start_delay_timeout():
 var specials = []
 func _on_cooldown_timeout():
 	if attack_counter < 3:
-		special_3()
 		await NORMAL_ATTACKS[randi() % len(NORMAL_ATTACKS)].call()
 		attack_counter += 1
-		$Cooldown.start(3) # mandatory minimum cooldown
+		$Cooldown.start(1)
 	else:
 		if len(specials) == 0:
 			specials = SPECIAL_ATTACKS.duplicate()
@@ -121,13 +120,13 @@ func special_1():
 func special_2():
 	strafe(CENTER, Vector2(0, 200), 10)
 	var sp = SpiralProbe.instantiate()
-	sp.init(global_position, target, 3, 6, 0.2, 10, 15)
+	sp.init(global_position, target, 3, 6, 0.3, 10, 15)
 	get_tree().current_scene.add_child(sp)
 	var sp2 = SpiralProbe.instantiate()
-	sp2.init(global_position, target, 3, 5, 0.1, 5, 15)
+	sp2.init(global_position, target, 3, 5, 0.2, 5, 15)
 	get_tree().current_scene.add_child(sp2)
 	var sp3 = SpiralProbe.instantiate()
-	sp3.init(global_position, target, 3, 5, 0.1, -5, 15)
+	sp3.init(global_position, target, 3, 5, 0.2, -5, 15)
 	get_tree().current_scene.add_child(sp3)
 	sp.move_to(Vector2(randi_range(600, 900), randi_range(300, 420)), 10)
 	sp2.move_to(Vector2(randi_range(900, 1200), randi_range(100, 300)), 10)

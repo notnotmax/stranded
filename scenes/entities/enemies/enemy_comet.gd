@@ -13,6 +13,8 @@ func init(p_position: Vector2 = Vector2(0,0),
 	p_speed: float = 0, p_acc: float = 0, p_direction: Vector2 = Vector2(-1,0)):
 	super.init(p_position, p_speed, p_acc, p_direction)
 	rate = ceil(30 / speed)
+	rotation = get_angle_to(p_position + p_direction) + PI
+
 
 var frame = 0
 func _physics_process(delta):
@@ -33,3 +35,4 @@ func _physics_process(delta):
 func _on_area_entered(area):
 	if area.get_collision_layer_value(2):
 		area.take_damage()
+		queue_free()

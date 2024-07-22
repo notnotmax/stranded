@@ -47,14 +47,17 @@ func upgrade():
 
 # downgrade by roughly half of the current level when the player gets hit
 func downgrade():
-	level = floor((level + 1) / 2.0)
+	level = floor(level / 2.0)
 
-
+var is_double_speed: bool = false
 func double_speed(duration: float):
-	var temp = fire_rate
-	fire_rate = floor(temp / 2.0)
-	await delay(duration)
-	fire_rate = temp
+	if not is_double_speed: # prevent stacking
+		is_double_speed = true
+		var temp = fire_rate
+		fire_rate = floor(temp / 2.0)
+		await delay(duration)
+		fire_rate = temp
+		is_double_speed = false
 
 
 # one lv1 bullet - 10dmg
@@ -86,7 +89,7 @@ func fire_2():
 	get_tree().current_scene.add_child(bullet2)
 
 
-# 1 lv2 bullet and 2 lv1 bullets at a slight angle - 40dmg
+# 1 lv2 bullet and 2 lv1 bullets at a slight angle - 35dmg
 func fire_3():
 	var bullet = Bullet2.instantiate()
 	bullet.init(
@@ -111,7 +114,7 @@ func fire_3():
 	get_tree().current_scene.add_child(bullet3)
 
 
-# 2 lv2, 2 lv1 bullets - 60dmg
+# 2 lv2, 2 lv1 bullets - 50dmg
 func fire_4():
 	var bullet = Bullet2.instantiate()
 	bullet.init(
@@ -143,7 +146,7 @@ func fire_4():
 	get_tree().current_scene.add_child(bullet4)
 
 
-# 1 lv3, 2 lv2, 2 lv1 bullets (spread) - 90dmg
+# 1 lv3, 2 lv2, 2 lv1 bullets (spread) - 70dmg
 func fire_5():
 	var bullet = Bullet3.instantiate()
 	bullet.init(
