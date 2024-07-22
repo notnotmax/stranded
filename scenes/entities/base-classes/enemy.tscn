@@ -17,7 +17,7 @@ powerup_weapon = ExtResource("5_jm8xx")
 powerup_speed = ExtResource("6_ywfg5")
 health = 10
 
-[node name="ShootingStartDelay" type="Timer" parent="." index="4"]
+[node name="ShootingStartDelay" type="Timer" parent="." index="3"]
 one_shot = true
 
 [connection signal="timeout" from="ShootingStartDelay" to="." method="_on_shooting_start_delay_timeout"]
