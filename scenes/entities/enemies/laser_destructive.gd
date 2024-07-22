@@ -2,7 +2,7 @@
 Enemy laser. Fires a warning beam before shooting.
 """
 extends ShapeCast2D
-class_name Laser
+class_name DestructiveLaser
 signal ended
 
 # shrapnel when asteroids are destroyed
@@ -10,9 +10,9 @@ signal ended
 
 
 # collides with these layers
-var COLLISION_MASKS = [2, 9]
+var COLLISION_MASKS = [2, 6, 9]
 # default maximum thickness of the deadly laser
-var thickness: float = 10
+var thickness: float = 20
 
 
 func _ready():
@@ -27,7 +27,19 @@ func _physics_process(_delta):
 	if is_colliding():
 		var collider = get_collider(0)
 		if collider:
-			collider.take_damage()
+			# spawn bullets if an asteroid is hit
+			if collider.get_collision_layer() == 32: # 2^6 = 32
+				var size = collider.health / 10
+				for i in range(3 + size):
+					var bullet = Bullet.instantiate()
+					bullet.init(
+						collider.global_position,
+						randf_range(3, 5),
+						0,
+						Vector2.LEFT.rotated(randf_range(0, 2 * PI)),
+					)
+					get_tree().current_scene.add_child(bullet)
+			collider.take_damage(1000)
 		collision_point = target_position * \
 			get_closest_collision_unsafe_fraction()
 	$Line2D.points[1] = collision_point

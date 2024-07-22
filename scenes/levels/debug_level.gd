@@ -26,13 +26,14 @@ func _ready():
 	add_child(boss)
 	boss.start_bossfight()
 	
-	var ast = asteroid.instantiate()
-	ast.init(
-		spawnpoint + 100 * Vector2.LEFT,
-		1,
-		Vector2.LEFT
-	)
-	add_child(ast)
+	for i in range(3):
+		var ast = asteroid.instantiate()
+		ast.init(
+			spawnpoint + i * 50 * Vector2.LEFT,
+			1,
+			Vector2.LEFT
+		)
+		add_child(ast)
 	#
 	#var ps = probe_spiral.instantiate()
 	#ps.init(

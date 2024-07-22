@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d0gx8gqtwm8gk"]
+[gd_scene load_steps=15 format=3 uid="uid://d0gx8gqtwm8gk"]
 
 [ext_resource type="PackedScene" uid="uid://win6qvnp3tln" path="res://scenes/entities/base-classes/enemy.tscn" id="1_o1wwd"]
 [ext_resource type="Texture2D" uid="uid://com3skeyb33wg" path="res://assets/enemies/enemy_big.png" id="2_imim8"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://3l4h0vcm1enb" path="res://scenes/entities/enemies/laser.tscn" id="5_3xucs"]
 [ext_resource type="PackedScene" uid="uid://dvsm6ie3l7xc6" path="res://scenes/entities/enemies/probe_bomb.tscn" id="6_78ue0"]
 [ext_resource type="PackedScene" uid="uid://b30wggbooeid5" path="res://scenes/menus/boss_health_bar.tscn" id="7_n3b2v"]
+[ext_resource type="PackedScene" uid="uid://bl0f88iag5vpd" path="res://scenes/entities/enemies/laser_destructive.tscn" id="10_uxjgi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_85flq"]
 atlas = ExtResource("2_imim8")
@@ -69,14 +70,14 @@ position = Vector2(-18, 0)
 [node name="Laser" parent="." index="6" instance=ExtResource("5_3xucs")]
 position = Vector2(-19.5, -15.5)
 
-[node name="LaserCenter" parent="." index="7" instance=ExtResource("5_3xucs")]
-position = Vector2(-18, 0)
-
-[node name="Laser2" parent="." index="8" instance=ExtResource("5_3xucs")]
+[node name="Laser2" parent="." index="7" instance=ExtResource("5_3xucs")]
 position = Vector2(-19, 15)
 
-[node name="Cooldown" type="Timer" parent="." index="9"]
+[node name="Cooldown" type="Timer" parent="." index="8"]
 wait_time = 5.0
 one_shot = true
+
+[node name="DestructiveLaser" parent="." index="9" instance=ExtResource("10_uxjgi")]
+position = Vector2(-13, 0)
 
 [connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

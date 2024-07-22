@@ -6,6 +6,11 @@ var savedata: Dictionary
 var level_count: int = 3
 
 
+# Utility function. Usage: await delay(seconds)
+func delay(seconds: float):
+	await get_tree().create_timer(seconds, false).timeout
+
+
 func save_data():
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
 	var data = {
