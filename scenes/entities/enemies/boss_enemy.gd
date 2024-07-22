@@ -30,9 +30,6 @@ func take_damage(damage: int):
 
 
 func on_death():
-	$Laser.queue_free()
-	$Laser2.queue_free()
-	$BigLaser.queue_free()
 	health_bar.disappear()
 
 

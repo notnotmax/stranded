@@ -17,6 +17,7 @@ func _ready():
 	position.x = 100
 	position.y = 360
 	$AnimatedSprite2D.play("default")
+	$PlayerGun.reset()
 
 
 func _input(event):

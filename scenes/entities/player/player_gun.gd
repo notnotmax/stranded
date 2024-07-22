@@ -18,7 +18,10 @@ func delay(seconds: float):
 	await get_tree().create_timer(seconds, false).timeout
 
 
-# Using a 
+func reset():
+	level = 0
+
+
 func _physics_process(_delta):
 	if cooldown > 0:
 		cooldown -= 1
