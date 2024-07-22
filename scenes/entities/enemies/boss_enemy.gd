@@ -48,7 +48,8 @@ func _on_shooting_start_delay_timeout():
 
 func _on_cooldown_timeout():
 	if attack_counter < 3:
-		await normal_3()
+		await special_1()
+		await delay(10)
 		await NORMAL_ATTACKS[randi() % len(NORMAL_ATTACKS)].call()
 		attack_counter += 1
 		$Cooldown.start(3) # mandatory minimum cooldown
@@ -77,7 +78,7 @@ func normal_2():
 		await move_to(Vector2(position.x, 600), 2)
 		move_to(Vector2(position.x, 120), 7)
 	
-	for i in range(100):
+	for i in range(50):
 		$Gun.one_shot_direction(
 			get_vec_towards_player().rotated(
 					deg_to_rad(randf_range(-30, 30))),
@@ -86,25 +87,31 @@ func normal_2():
 			get_vec_towards_player().rotated(
 					deg_to_rad(randf_range(-30, 30))),
 			5, 1)
-		await delay(0.05)
+		await delay(0.1)
 	await delay(0.5)
 	strafe()
 
-# summons a small wave of enemies to attack in tandem
+# 
 func normal_3():
-	$Laser2.sweep(Vector2.DOWN, Vector2.DOWN, 10)
-	$DestructiveLaser.sweep(Vector2.LEFT, Vector2.LEFT, 10)
-	await delay(10)
+	var shots = 3
+	for i in range(shots):
+		$Gun.comet_shot(
+			get_vec_towards_player(), 10, 0, shots - i)
+		await delay(1)
 
 
-# 2 lasers, spreadshots, arrows
+# lasers, spreadshots, arrows
 func special_1():
-	await move_to(Vector2(1000, 360), 1)
+	await move_to(CENTER, 3)
 	twin_laser()
 	multi_spread_shot(6)
 	await delay(1)
 	await arrow_shots(5)
-	$Cooldown.start(5)
+	$Gun.comet_shot(
+		Vector2.LEFT, 30, 0, 1
+	)
+	await delay(1)
+
 
 # 3 spiral probes on the right area of the screen
 # semi-random spawning in 3 designated areas to avoid the rare case

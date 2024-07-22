@@ -97,4 +97,4 @@ func set_color(color: Color):
 
 
 func sweep(from: Vector2, to: Vector2, duration: float):
-	_fire(from.normalized() * 1920, to.normalized() * 1920, duration)
+	await _fire(from.normalized() * 1920, to.normalized() * 1920, duration)

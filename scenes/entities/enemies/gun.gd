@@ -1,6 +1,8 @@
 extends Node2D
 
 @export var Bullet: PackedScene
+@export var BigBullet: PackedScene
+@export var Warning: PackedScene
 
 
 func delay(seconds: float):
@@ -98,3 +100,19 @@ func arrow_shot(target: Node, spread_degree: float, bullet_count: int):
 		)
 		get_tree().current_scene.add_child(bullet)
 		bullet_count -= 1
+
+
+func comet_shot(direction: Vector2, speed: float, acceleration: float,
+		warning_duration: float = 1):
+	var warning = Warning.instantiate()
+	warning.init(direction, warning_duration)
+	add_child(warning) # should be rooted at the gun in case of movement
+	await warning.appear()
+	var bullet = BigBullet.instantiate()
+	bullet.init(
+		global_position,
+		speed,
+		acceleration, 
+		direction
+	)
+	get_tree().current_scene.add_child(bullet)
