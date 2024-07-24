@@ -39,9 +39,10 @@ func _physics_process(_delta):
 						Vector2.LEFT.rotated(randf_range(0, 2 * PI)),
 					)
 					get_tree().current_scene.add_child(bullet)
+			else:
+				collision_point = target_position * \
+						get_closest_collision_unsafe_fraction()
 			collider.take_damage(1000)
-		collision_point = target_position * \
-			get_closest_collision_unsafe_fraction()
 	$Line2D.points[1] = collision_point
 	$Warning.points[1] = collision_point
 	$GPUParticles2D2.position = collision_point

@@ -23,7 +23,3 @@ func _on_timer_timeout():
 
 func take_damage(_damage):
 	pass
-
-
-func _on_area_entered(area):
-	area.queue_free()

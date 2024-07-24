@@ -31,6 +31,7 @@ visible = false
 [node name="PlayerLifeDisplay" parent="." instance=ExtResource("7_lnynm")]
 
 [node name="Score" type="Label" parent="."]
+z_index = 1
 offset_left = 1120.0
 offset_right = 1274.0
 offset_bottom = 36.0

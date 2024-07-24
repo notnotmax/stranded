@@ -6,11 +6,11 @@ class_name BossEnemy
 @export var SpiralProbe: PackedScene
 @export var bomb_probe: PackedScene
 
-const CENTER: Vector2 = Vector2(1100, 360)
+const CENTER: Vector2 = Vector2(1200, 360)
 var invulnerable: bool = true
 var health_bar # HealthBar instance
 var attack_counter = 0
-var NORMAL_ATTACKS = [normal_1, normal_2, normal_3, normal_4, normal_5]
+var NORMAL_ATTACKS = [normal_5]#[normal_1, normal_2, normal_3, normal_4, normal_5]
 var SPECIAL_ATTACKS = [special_1, special_2, special_3]
 var time_bonus: int = 0
 
@@ -22,7 +22,7 @@ func start_bossfight():
 	move_to(CENTER, start_delay)
 	get_tree().current_scene.add_child(health_bar)
 	health_bar.appear(start_delay)
-	await delay(start_delay)
+	await delay(start_delay + 1)
 	time_bonus = 30000
 	start_time_bonus()
 
@@ -61,7 +61,7 @@ var normals = []
 var specials = []
 func _on_cooldown_timeout():
 	if attack_counter < 3:
-		if attack_counter == 0:
+		if len(normals) == 0 or attack_counter == 0:
 			normals = NORMAL_ATTACKS.duplicate()
 			normals.shuffle()
 		var attack = normals.pop_front()
@@ -115,23 +115,32 @@ func normal_3():
 	var shots = 3
 	for i in range(shots):
 		$Gun.comet_shot(
-			get_vec_towards_player(), 10, 0, shots - i)
-		await delay(1)
-
-# 3 arrow shots
-func normal_4():
-	await arrow_shots(3)
-
-# asteroid-destroying laser
-func normal_5():
-	$DestructiveLaser.sweep(
-			Vector2.LEFT, Vector2.LEFT, 5
+			get_vec_towards_player(), 15, 0, 1
 		)
-	await delay(2)
-	if global_position.y < 360:
-		await move_by(Vector2.DOWN * 200, 5)
+		await delay(0.5)
+	#for i in range(shots):
+		#$Gun.comet_shot(
+			#get_vec_towards_player(), 10, 0, shots - i)
+		#await delay(1)
+
+# 5 arrow shots
+func normal_4():
+	for i in range(5):
+		$Gun.arrow_shot(target, 2.5, 30)
+		await delay(0.7)
+
+# asteroid-destroying laser, sweep across the screen
+func normal_5():
+	if position.y < 360:
+		await move_to(Vector2(position.x, 100), 2)
+		$DestructiveLaser.sweep(Vector2.LEFT, Vector2.LEFT, 2)
+		await delay(1)
+		await move_to(Vector2(position.x, 520), 3)
 	else:
-		await move_by(Vector2.UP * 200, 5)
+		await move_to(Vector2(position.x, 620), 2)
+		$DestructiveLaser.sweep(Vector2.LEFT, Vector2.LEFT, 2)
+		await delay(1)
+		await move_to(Vector2(position.x, 200), 3)
 
 
 # lasers, spreadshots, arrows
@@ -146,6 +155,7 @@ func special_1():
 	)
 	await delay(1)
 	drop_powerup(powerup_weapon)
+	strafe(CENTER, Vector2(0, 200), 10)
 
 
 # 3 spiral probes on the right area of the screen
@@ -169,6 +179,7 @@ func special_2():
 
 # summons a ring of bomb probes that drift to random positions
 func special_3():
+	stop_strafing()
 	var num = 12
 	for i in range(num):
 		var bp = bomb_probe.instantiate()
@@ -183,6 +194,7 @@ func special_3():
 			5, true)
 		bp.call_delayed(lambda, 1 + num * 0.1)
 		await delay(0.1)
+	strafe(CENTER, Vector2(0, 200), 10)
 	await delay(10)
 
 

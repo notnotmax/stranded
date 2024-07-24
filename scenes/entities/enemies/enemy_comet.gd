@@ -32,7 +32,19 @@ func _physics_process(delta):
 	frame += 1
 
 
+func explode():
+	for i in range(10):
+		var bullet = Bullet.instantiate()
+		bullet.init(
+			$BulletSpawn.global_position,
+			randf_range(5, 10),
+			0,
+			self.direction.rotated(PI).rotated(randf_range(-PI / 4, PI / 4))
+		)
+		get_tree().current_scene.add_child(bullet)
+
+
 func _on_area_entered(area):
-	if area.get_collision_layer_value(2):
-		area.take_damage()
-		queue_free()
+	# upon colliding, explode into bullets
+	call_deferred("explode")
+	super._on_area_entered(area)

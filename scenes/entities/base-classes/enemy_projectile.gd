@@ -25,3 +25,5 @@ func _on_area_entered(area):
 	if area.get_collision_layer_value(2):
 		area.take_damage()
 		queue_free()
+	elif area.get_collision_layer_value(9):
+		queue_free()

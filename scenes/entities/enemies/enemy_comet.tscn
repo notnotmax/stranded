@@ -47,3 +47,6 @@ shape = SubResource("CapsuleShape2D_mhr0a")
 [node name="VisibleOnScreenNotifier2D" parent="." index="2"]
 position = Vector2(2.5, 0)
 scale = Vector2(2.75, 1)
+
+[node name="BulletSpawn" type="Marker2D" parent="." index="3"]
+position = Vector2(15, 0)

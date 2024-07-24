@@ -45,7 +45,7 @@ func _ready():
 	#ps.call_delayed(lambda, 2)
 	
 	for i in range(5):
-		var atkup = powerup_weapon.instantiate()
+		var atkup = powerup_shield.instantiate()
 		atkup.init(spawnpoint)
 		add_child(atkup)
 		await delay(2)
