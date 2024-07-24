@@ -102,8 +102,11 @@ func get_powerup(powerup):
 		Powerup.Types.SHIELD:
 			$Shield.enable()
 		Powerup.Types.LIFE_UP:
-			lives += 1
-			lives = min(5, lives) # lives are capped at 5
+			if lives < 5:
+				lives += 1
+				lives = min(5, lives) # lives are capped at 5
+			else:
+				get_tree().current_scene.add_score(10000)
 			life_change.emit()
 		Powerup.Types.WEAPON_UPGRADE:
 			$PlayerGun.upgrade()
