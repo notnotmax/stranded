@@ -195,7 +195,6 @@ func spawn_wave_4():
 var medium_killed: bool = false
 func on_medium_killed():
 	medium_killed = true
-	print(wave_4_killed)
 	if wave_4_killed >= 10:
 		complete_level()
 
@@ -205,7 +204,6 @@ var wave_4_killed: int = 0
 # until 10 are killed
 func wave_4_on_orange_death():
 	wave_4_killed += 1
-	print(wave_4_killed)
 	if wave_4_killed >= 10 and medium_killed:
 		complete_level()
 	elif wave_4_killed <= 7:
