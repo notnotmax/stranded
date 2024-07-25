@@ -1,17 +1,5 @@
 extends Level
 
-@export var asteroid1: PackedScene
-@export var asteroid2: PackedScene
-@export var asteroid3: PackedScene
-@export var asteroid4: PackedScene
-@export var fighter: PackedScene
-@export var fighter2: PackedScene
-@export var deathbomber: PackedScene
-@export var medium_enemy: PackedScene
-@export var boss_enemy: PackedScene
-
-@export var level_number: int
-
 
 func _ready():
 	await super._ready()
@@ -129,7 +117,7 @@ func wave_2_helper_1():
 		await delay(0.5)
 
 
-# duration: ~25s
+# duration: ~20s
 func spawn_wave_3():
 	wave_3_helper_1()
 	for i in range(3): # 5s
@@ -158,7 +146,7 @@ func spawn_wave_3():
 			e1.move_on_path($Wave3/Path2D2, 10, 1, true)
 			await delay(0.25)
 		await delay(1)
-	await delay(9)
+	await delay(5)
 	spawn_wave_4()
 
 
@@ -173,32 +161,63 @@ func wave_3_helper_1():
 		await delay(1)
 
 
+# final wave
 func spawn_wave_4():
+	# orange enemies in formation
+	var orange = fighter2.instantiate()
+	orange.init(Vector2(1300, 360), get_player(), 3)
+	add_child(orange)
+	orange.move_by(Vector2(-300, 0), 3, true)
+	orange.connect("death", wave_4_on_orange_death)
+	await delay(1)
+	for i in range(2): # 2nd layer of enemies
+		var orange_2 = fighter2.instantiate()
+		orange_2.init(Vector2(1300, 460 - 200 * i), get_player(), 4)
+		add_child(orange_2)
+		orange_2.move_by(Vector2(-200, 0), 2, true)
+		orange_2.connect("death", wave_4_on_orange_death)
+	await delay(1)
+	## nerfed due to difficulty feedback
+	#for i in range(2): # 3rd layer of enemies
+		#var orange_3 = fighter2.instantiate()
+		#orange_3.init(Vector2(1300, 560 - 400 * i), get_player(), 5)
+		#add_child(orange_3)
+		#orange_3.move_by(Vector2(-100, 0), 1, true)
+		#orange_3.connect("death", wave_4_on_orange_death)
+	#await delay(1)
 	# medium enemy serves as the final enemy
 	var medium = medium_enemy.instantiate()
 	medium.init(Vector2(0, 0), get_player(), 5)
 	medium.move_on_path($Wave4/Path2D, 5, 1, true)
-	medium.connect("death", complete_level)
-	# flanked by 5 orange enemies
-	var orange = fighter2.instantiate()
-	orange.init(Vector2(1300, 360), get_player(), 1)
-	add_child(orange)
-	orange.move_by(Vector2(-300, 0), 1, true)
-	for i in range(2):
-		var orange_top = fighter2.instantiate()
-		orange_top.init(Vector2(1300, 300 - 60 * i), get_player(), 1)
-		add_child(orange_top)
-		orange_top.move_by(Vector2(-200 + 100 * i, 0), 1, true)
-	for i in range(2):
-		var orange_bot = fighter2.instantiate()
-		orange_bot.init(Vector2(1300, 420 + 60 * i), get_player(), 1)
-		add_child(orange_bot)
-		orange_bot.move_by(Vector2(-200 + 100 * i, 0), 1, true)
+	medium.connect("death", on_medium_killed)
 
 
-func spawn_wave_boss():
-	var boss = boss_enemy.instantiate()
-	boss.init(Vector2(0, 0), get_player(), 5)
-	add_child(boss)
-	boss.start_bossfight()
-	#boss.connect("death", win)
+var medium_killed: bool = false
+func on_medium_killed():
+	medium_killed = true
+	print(wave_4_killed)
+	if wave_4_killed >= 10:
+		complete_level()
+
+
+var wave_4_killed: int = 0
+# when an orange enemy dies, summon another one in random position
+# until 10 are killed
+func wave_4_on_orange_death():
+	wave_4_killed += 1
+	print(wave_4_killed)
+	if wave_4_killed >= 10 and medium_killed:
+		complete_level()
+	elif wave_4_killed <= 7:
+		await delay(1)
+		var orange = fighter2.instantiate()
+		orange.init(
+			Vector2(1300, randi_range(100, 620)),
+			get_player(),
+			3)
+		add_child(orange)
+		var rng = randf_range(1, 3)
+		orange.move_by(Vector2.LEFT * 100 * rng, rng, true)
+		orange.connect("death", wave_4_on_orange_death)
+	else:
+		pass

@@ -56,9 +56,13 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
 
 
+func death_signal():
+	death.emit()
+
+
 func die(get_score: bool = false):
 	if alive:
-		death.emit()
+		call_deferred("death_signal")
 		super.die(get_score)
 
 
@@ -138,3 +142,8 @@ func move_on_path(path: Path2D, duration: float, endpoint: int = 1,
 func exit(duration: float):
 	stop_strafing()
 	move_to(Vector2(1400, position.y), duration)
+
+
+func exit_after(p_delay: float, movement_duration: float):
+	await delay(p_delay)
+	exit(movement_duration)

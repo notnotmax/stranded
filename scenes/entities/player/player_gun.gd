@@ -7,7 +7,7 @@ class_name PlayerGun
 
 var firing: bool = false
 var cooldown: int = 0
-var fire_rate: int = 15 # in 60ths of a second
+var fire_rate: int = 10 # in 60ths of a second
 var level: int = 0
 # upgrade the gun to get to higher levels of firing
 var FIRING_LEVELS: = [fire_1, fire_2, fire_3, fire_4, fire_5]

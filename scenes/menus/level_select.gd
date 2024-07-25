@@ -34,14 +34,14 @@ func _on_level_1_pressed():
 func _on_level_2_pressed():
 	if Global.get_level_score(1) > 0:
 		await Fade.fade_out().finished
-		back.emit()
+		get_tree().change_scene_to_file("res://scenes/levels/level_2.tscn")
 		Fade.fade_in()
 
 
 func _on_level_3_pressed():
 	if Global.get_level_score(2) > 0:
 		await Fade.fade_out().finished
-		back.emit()
+		get_tree().change_scene_to_file("res://scenes/levels/level_3.tscn")
 		Fade.fade_in()
 
 

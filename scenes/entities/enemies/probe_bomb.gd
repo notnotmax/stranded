@@ -32,7 +32,9 @@ func explode():
 
 @onready var powerups = [powerup_shield, powerup_speed]
 func on_death():
-	if randf() < 0.2:
+	if randf() < 0.05:
+		drop_powerup(powerup_weapon)
+	elif randf() < 0.2:
 		drop_powerup(powerups.pick_random())
 
 

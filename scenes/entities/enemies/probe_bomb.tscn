@@ -55,14 +55,11 @@ animation = &"armed"
 autoplay = "inactive"
 frame_progress = 0.53978
 
-[node name="DeathAnimation" parent="." index="1"]
-scale = Vector2(3, 3)
-
-[node name="CollisionShape2D" parent="." index="2"]
+[node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("CircleShape2D_wb3fu")
 
-[node name="VisibleOnScreenNotifier2D" parent="." index="3"]
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
 position = Vector2(2.38419e-07, -7.15256e-07)
 scale = Vector2(1.6, 1.6)
 
-[node name="Gun" parent="." index="5" instance=ExtResource("5_e0srp")]
+[node name="Gun" parent="." index="4" instance=ExtResource("5_e0srp")]

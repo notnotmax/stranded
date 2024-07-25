@@ -1,16 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://yrc4aif2a7tj"]
+[gd_scene load_steps=13 format=3 uid="uid://cn4dsmjc1x8u0"]
 
-[ext_resource type="PackedScene" uid="uid://d35ie48pllg52" path="res://scenes/levels/level.tscn" id="1_pexeh"]
-[ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="2_66nbv"]
-[ext_resource type="PackedScene" uid="uid://ck0q1cnv4ny10" path="res://scenes/entities/environmental-obstacles/asteroid_1.tscn" id="3_duu43"]
-[ext_resource type="PackedScene" uid="uid://cd1exa2j6a0vt" path="res://scenes/entities/environmental-obstacles/asteroid_2.tscn" id="4_244ai"]
-[ext_resource type="PackedScene" uid="uid://dcu718cvw155k" path="res://scenes/entities/environmental-obstacles/asteroid_3.tscn" id="5_ho7r6"]
-[ext_resource type="PackedScene" uid="uid://dotn3aecygbwb" path="res://scenes/entities/environmental-obstacles/asteroid_4.tscn" id="6_ows5l"]
-[ext_resource type="PackedScene" uid="uid://dk2w3ffxunsi8" path="res://scenes/entities/enemies/fighter.tscn" id="7_l5tg0"]
-[ext_resource type="PackedScene" uid="uid://3tvkgdsry7de" path="res://scenes/entities/enemies/deathbomber.tscn" id="8_bryk2"]
-[ext_resource type="PackedScene" uid="uid://bi2okcenc8w50" path="res://scenes/entities/enemies/fighter_2.tscn" id="8_p3jpn"]
-[ext_resource type="PackedScene" uid="uid://dwakv3g8yoorg" path="res://scenes/entities/enemies/medium_enemy.tscn" id="10_mbm2m"]
-[ext_resource type="PackedScene" uid="uid://d0gx8gqtwm8gk" path="res://scenes/entities/enemies/boss_enemy.tscn" id="11_j2s2f"]
+[ext_resource type="PackedScene" uid="uid://d35ie48pllg52" path="res://scenes/levels/level.tscn" id="1_fv7hy"]
+[ext_resource type="Script" path="res://scenes/levels/level_3.gd" id="2_hxev1"]
 
 [sub_resource type="Curve2D" id="Curve2D_gib1s"]
 _data = {
@@ -72,17 +63,9 @@ _data = {
 }
 point_count = 2
 
-[node name="Level1" instance=ExtResource("1_pexeh")]
-script = ExtResource("2_66nbv")
-asteroid1 = ExtResource("3_duu43")
-asteroid2 = ExtResource("4_244ai")
-asteroid3 = ExtResource("5_ho7r6")
-asteroid4 = ExtResource("6_ows5l")
-fighter = ExtResource("7_l5tg0")
-fighter2 = ExtResource("8_p3jpn")
-deathbomber = ExtResource("8_bryk2")
-medium_enemy = ExtResource("10_mbm2m")
-boss_enemy = ExtResource("11_j2s2f")
+[node name="Level3" instance=ExtResource("1_fv7hy")]
+script = ExtResource("2_hxev1")
+level_number = 3
 
 [node name="Asteroids" type="Node" parent="." index="7"]
 

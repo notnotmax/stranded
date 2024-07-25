@@ -1,19 +1,37 @@
-[gd_scene load_steps=10 format=3 uid="uid://d35ie48pllg52"]
+[gd_scene load_steps=19 format=3 uid="uid://d35ie48pllg52"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_n64i4"]
+[ext_resource type="PackedScene" uid="uid://ck0q1cnv4ny10" path="res://scenes/entities/environmental-obstacles/asteroid_1.tscn" id="2_nyf0e"]
 [ext_resource type="PackedScene" uid="uid://d3lstvim7ia7x" path="res://scenes/backgrounds/background_1.tscn" id="2_xgdqi"]
 [ext_resource type="PackedScene" uid="uid://ul0krf1vltwb" path="res://scenes/entities/player/player.tscn" id="3_42f1v"]
+[ext_resource type="PackedScene" uid="uid://cd1exa2j6a0vt" path="res://scenes/entities/environmental-obstacles/asteroid_2.tscn" id="3_lelbu"]
+[ext_resource type="PackedScene" uid="uid://dcu718cvw155k" path="res://scenes/entities/environmental-obstacles/asteroid_3.tscn" id="4_2ohti"]
 [ext_resource type="PackedScene" uid="uid://74jno6cnh4s4" path="res://scenes/menus/pause_menu.tscn" id="4_s3y75"]
 [ext_resource type="PackedScene" uid="uid://b5rhxpvglaf3f" path="res://scenes/menus/level_failed.tscn" id="5_5aexc"]
+[ext_resource type="PackedScene" uid="uid://dotn3aecygbwb" path="res://scenes/entities/environmental-obstacles/asteroid_4.tscn" id="5_e7ddk"]
 [ext_resource type="PackedScene" uid="uid://gjr8inabdhiu" path="res://scenes/menus/level_complete.tscn" id="6_hxcqo"]
+[ext_resource type="PackedScene" uid="uid://dk2w3ffxunsi8" path="res://scenes/entities/enemies/fighter.tscn" id="6_py134"]
+[ext_resource type="PackedScene" uid="uid://bi2okcenc8w50" path="res://scenes/entities/enemies/fighter_2.tscn" id="7_gsvdr"]
 [ext_resource type="PackedScene" uid="uid://c6ov8fvestk60" path="res://scenes/menus/player_life_display.tscn" id="7_lnynm"]
 [ext_resource type="Theme" uid="uid://c6q5tn6lrdfpy" path="res://assets/ui/theme.tres" id="8_2ajr5"]
+[ext_resource type="PackedScene" uid="uid://3tvkgdsry7de" path="res://scenes/entities/enemies/deathbomber.tscn" id="8_hla2g"]
+[ext_resource type="PackedScene" uid="uid://dwakv3g8yoorg" path="res://scenes/entities/enemies/medium_enemy.tscn" id="9_6efhq"]
+[ext_resource type="PackedScene" uid="uid://d0gx8gqtwm8gk" path="res://scenes/entities/enemies/boss_enemy.tscn" id="10_7f7m5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_vv8o0"]
 font_size = 32
 
 [node name="Level" type="Node"]
 script = ExtResource("1_n64i4")
+asteroid1 = ExtResource("2_nyf0e")
+asteroid2 = ExtResource("3_lelbu")
+asteroid3 = ExtResource("4_2ohti")
+asteroid4 = ExtResource("5_e7ddk")
+fighter = ExtResource("6_py134")
+fighter2 = ExtResource("7_gsvdr")
+deathbomber = ExtResource("8_hla2g")
+medium_enemy = ExtResource("9_6efhq")
+boss_enemy = ExtResource("10_7f7m5")
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("2_xgdqi")]
 

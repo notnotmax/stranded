@@ -27,7 +27,7 @@ func _physics_process(_delta):
 	if is_colliding():
 		var collider = get_collider(0)
 		if collider:
-			collider.take_damage()
+			collider.take_damage(1)
 		collision_point = target_position * \
 			get_closest_collision_unsafe_fraction()
 	$Line2D.points[1] = collision_point

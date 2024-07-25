@@ -64,7 +64,7 @@ func _on_animated_sprite_2d_animation_finished():
 
 func take_damage(_damage: int = 0):
 	if not is_invulnerable:
-		lives -= 1
+		lives -= 1 ## TODO
 		life_change.emit()
 		$PlayerGun.downgrade()
 		if lives == 0:
@@ -116,3 +116,13 @@ func get_powerup(powerup):
 
 func _on_invulnerability_animation_finished():
 	$Invulnerability.hide()
+
+
+# used to leave a level upon completion
+func exit():
+	can_move = false
+	$PlayerGun.disable()
+	is_invulnerable = true
+	var tween = create_tween().set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, "position:x", 1400, 5)
+	await get_tree().create_timer(5, false).timeout

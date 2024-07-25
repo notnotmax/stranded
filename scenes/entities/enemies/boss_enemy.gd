@@ -10,7 +10,7 @@ const CENTER: Vector2 = Vector2(1200, 360)
 var invulnerable: bool = true
 var health_bar # HealthBar instance
 var attack_counter = 0
-var NORMAL_ATTACKS = [normal_5]#[normal_1, normal_2, normal_3, normal_4, normal_5]
+var NORMAL_ATTACKS = [normal_1, normal_2, normal_3, normal_4, normal_5]
 var SPECIAL_ATTACKS = [special_1, special_2, special_3]
 var time_bonus: int = 0
 

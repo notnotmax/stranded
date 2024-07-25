@@ -6,6 +6,17 @@ player, pause menu, failure and completion screens.
 extends Node
 class_name Level
 
+@export var level_number: int
+@export var asteroid1: PackedScene
+@export var asteroid2: PackedScene
+@export var asteroid3: PackedScene
+@export var asteroid4: PackedScene
+@export var fighter: PackedScene
+@export var fighter2: PackedScene
+@export var deathbomber: PackedScene
+@export var medium_enemy: PackedScene
+@export var boss_enemy: PackedScene
+
 var score: int = 0
 
 func _ready():
@@ -33,8 +44,12 @@ func delay(seconds: float):
 
 # Signals the level as completed and show the clear screen
 func complete_level():
-	$PauseMenu.disable()
+	$PauseMenu.disable() # to prevent the player from pausing anymore
+	await delay(1)
+	await $Player.exit()
 	$LevelComplete.complete_level(score)
+	Global.set_level_score(level_number, score)
+	Global.save_data()
 
 
 func _on_player_player_died():

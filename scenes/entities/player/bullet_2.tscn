@@ -26,7 +26,7 @@ animations = [{
 }]
 
 [node name="Bullet" instance=ExtResource("1_vm5ws")]
-damage = 15
+damage = 10
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_16cjs")

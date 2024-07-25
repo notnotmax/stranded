@@ -27,10 +27,14 @@ func shoot():
 
 func on_death():
 	var rng = randf()
-	if rng < 0.3:
-		drop_powerup(powerup_weapon)
-	elif rng < 0.5:
+	if rng < 0.05:
+		drop_powerup(powerup_health)
+	elif rng < 0.1:
+		drop_powerup(powerup_shield)
+	elif rng < 0.2:
 		drop_powerup(powerup_speed)
+	elif rng < 0.5:
+		drop_powerup(powerup_weapon)
 
 
 func die(get_score: bool = false):
