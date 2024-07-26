@@ -122,7 +122,10 @@ func _on_invulnerability_animation_finished():
 func exit():
 	can_move = false
 	$PlayerGun.disable()
+	# there is an edge case where the player gets hit right before level
+	# completion, so the invul timer sets their invul back to false
 	is_invulnerable = true
+	set_collision_layer_value(2, false) # disable hitbox as temp workaround
 	var tween = create_tween().set_trans(Tween.TRANS_SINE)
 	tween.tween_property(self, "position:x", 1400, 5)
 	await get_tree().create_timer(5, false).timeout

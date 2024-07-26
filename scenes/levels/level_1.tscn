@@ -1,16 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://yrc4aif2a7tj"]
+[gd_scene load_steps=9 format=3 uid="uid://yrc4aif2a7tj"]
 
 [ext_resource type="PackedScene" uid="uid://d35ie48pllg52" path="res://scenes/levels/level.tscn" id="1_pexeh"]
 [ext_resource type="Script" path="res://scenes/levels/level_1.gd" id="2_66nbv"]
-[ext_resource type="PackedScene" uid="uid://ck0q1cnv4ny10" path="res://scenes/entities/environmental-obstacles/asteroid_1.tscn" id="3_duu43"]
-[ext_resource type="PackedScene" uid="uid://cd1exa2j6a0vt" path="res://scenes/entities/environmental-obstacles/asteroid_2.tscn" id="4_244ai"]
-[ext_resource type="PackedScene" uid="uid://dcu718cvw155k" path="res://scenes/entities/environmental-obstacles/asteroid_3.tscn" id="5_ho7r6"]
-[ext_resource type="PackedScene" uid="uid://dotn3aecygbwb" path="res://scenes/entities/environmental-obstacles/asteroid_4.tscn" id="6_ows5l"]
-[ext_resource type="PackedScene" uid="uid://dk2w3ffxunsi8" path="res://scenes/entities/enemies/fighter.tscn" id="7_l5tg0"]
-[ext_resource type="PackedScene" uid="uid://3tvkgdsry7de" path="res://scenes/entities/enemies/deathbomber.tscn" id="8_bryk2"]
-[ext_resource type="PackedScene" uid="uid://bi2okcenc8w50" path="res://scenes/entities/enemies/fighter_2.tscn" id="8_p3jpn"]
-[ext_resource type="PackedScene" uid="uid://dwakv3g8yoorg" path="res://scenes/entities/enemies/medium_enemy.tscn" id="10_mbm2m"]
-[ext_resource type="PackedScene" uid="uid://d0gx8gqtwm8gk" path="res://scenes/entities/enemies/boss_enemy.tscn" id="11_j2s2f"]
 
 [sub_resource type="Curve2D" id="Curve2D_gib1s"]
 _data = {
@@ -18,71 +9,39 @@ _data = {
 }
 point_count = 3
 
-[sub_resource type="Curve2D" id="Curve2D_f7cf1"]
+[sub_resource type="Curve2D" id="Curve2D_vvgi6"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1576, 64, 0, 384.151, 0, -384.151, 1128, -320)
+"points": PackedVector2Array(0, 0, 0, 0, 1312, 320, 0, 0, 0, 0, 1024, 64)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_utlsj"]
+[sub_resource type="Curve2D" id="Curve2D_iunba"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1344, 384, 0.738045, -383.863, -0.738045, 383.863, 896, 768)
+"points": PackedVector2Array(0, 0, 0, 0, 1312, 384, 0, 0, 0, 0, 1024, 640)
 }
 point_count = 2
 
-[sub_resource type="Curve2D" id="Curve2D_u3hcf"]
+[sub_resource type="Curve2D" id="Curve2D_vi86p"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1024, -64, 0, 0, 0, 0, 1024, 768)
-}
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_akkv7"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1152, 768, 0, 0, 0, 0, 1152, -64)
-}
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_gjseq"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1344, 192, 0, -320, 0, 320, 704, 320, 0, 0, 0, 0, 320, 768)
+"points": PackedVector2Array(0, 0, 0, 0, 1152, -64, 0, -352.796, 0, 352.796, 1024, 352, 0, 0, 0, 0, 1152, 768)
 }
 point_count = 3
 
-[sub_resource type="Curve2D" id="Curve2D_0jgxq"]
+[sub_resource type="Curve2D" id="Curve2D_cydl1"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1344, 512, 0, 330.356, 0, -330.356, 704, 384, 0, 0, 0, 0, 320, -64)
+"points": PackedVector2Array(0, 0, 0, 0, 1152, 768, 0.211903, 352.041, -0.211903, -352.041, 1024, 352, 0, 0, 0, 0, 1152, -64)
 }
 point_count = 3
 
-[sub_resource type="Curve2D" id="Curve2D_44evw"]
+[sub_resource type="Curve2D" id="Curve2D_ywy7b"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1344, 352, 0, 0, 0, 0, 1152, 352)
-}
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_dfw52"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1344, 256, -0.0282249, 383.83, 0.0282249, -383.83, 832, -64)
-}
-point_count = 2
-
-[sub_resource type="Curve2D" id="Curve2D_pq2sy"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1344, 448, 0.260673, -383.95, -0.260673, 383.95, 832, 768)
+"points": PackedVector2Array(0, 0, 0, 0, 1312, 352, 0, 0, 0, 0, 1152, 352)
 }
 point_count = 2
 
 [node name="Level1" instance=ExtResource("1_pexeh")]
 script = ExtResource("2_66nbv")
-asteroid1 = ExtResource("3_duu43")
-asteroid2 = ExtResource("4_244ai")
-asteroid3 = ExtResource("5_ho7r6")
-asteroid4 = ExtResource("6_ows5l")
-fighter = ExtResource("7_l5tg0")
-fighter2 = ExtResource("8_p3jpn")
-deathbomber = ExtResource("8_bryk2")
-medium_enemy = ExtResource("10_mbm2m")
-boss_enemy = ExtResource("11_j2s2f")
+level_number = 1
 
 [node name="Asteroids" type="Node" parent="." index="7"]
 
@@ -100,41 +59,20 @@ wait_time = 0.5
 [node name="Wave1" type="Node" parent="." index="8"]
 
 [node name="Path2D" type="Path2D" parent="Wave1" index="0"]
-position = Vector2(-232, 256)
-curve = SubResource("Curve2D_f7cf1")
+curve = SubResource("Curve2D_vvgi6")
 
 [node name="Path2D2" type="Path2D" parent="Wave1" index="1"]
-curve = SubResource("Curve2D_utlsj")
+curve = SubResource("Curve2D_iunba")
 
 [node name="Wave2" type="Node" parent="." index="9"]
 
 [node name="DownPath" type="Path2D" parent="Wave2" index="0"]
-position = Vector2(-64, 0)
-curve = SubResource("Curve2D_u3hcf")
+curve = SubResource("Curve2D_vi86p")
 
 [node name="UpPath" type="Path2D" parent="Wave2" index="1"]
-position = Vector2(-64, 0)
-curve = SubResource("Curve2D_akkv7")
+curve = SubResource("Curve2D_cydl1")
 
-[node name="Wave3" type="Node" parent="." index="10"]
-
-[node name="Path2D" type="Path2D" parent="Wave3" index="0"]
-visible = false
-curve = SubResource("Curve2D_gjseq")
-
-[node name="Path2D2" type="Path2D" parent="Wave3" index="1"]
-visible = false
-curve = SubResource("Curve2D_0jgxq")
-
-[node name="Wave4" type="Node" parent="." index="11"]
-
-[node name="Path2D" type="Path2D" parent="Wave4" index="0"]
-curve = SubResource("Curve2D_44evw")
-
-[node name="Path2D2" type="Path2D" parent="Wave4" index="1"]
-curve = SubResource("Curve2D_dfw52")
-
-[node name="Path2D3" type="Path2D" parent="Wave4" index="2"]
-curve = SubResource("Curve2D_pq2sy")
+[node name="CenterPath" type="Path2D" parent="Wave2" index="2"]
+curve = SubResource("Curve2D_ywy7b")
 
 [connection signal="timeout" from="Asteroids/AsteroidTimer" to="." method="_on_asteroid_timer_timeout"]

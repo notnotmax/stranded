@@ -121,7 +121,7 @@ func move_to(dest: Vector2, duration: float, p_strafe: bool = false):
 
 # Moves on the path exactly as visually described. Will teleport to the start
 # of the path.
-func move_on_path(path: Path2D, duration: float, endpoint: int = 1,
+func move_on_path(path: Path2D, duration: float, endpoint: float = 1,
 		p_strafe: bool = false):
 	stop_strafing()
 	# remove the offset caused by local position
