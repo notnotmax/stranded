@@ -120,6 +120,7 @@ func _on_invulnerability_animation_finished():
 
 # used to leave a level upon completion
 func exit():
+	get_tree().current_scene.add_score(10000 * lives)
 	can_move = false
 	$PlayerGun.disable()
 	# there is an edge case where the player gets hit right before level
