@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6ov8fvestk60"]
+[gd_scene load_steps=3 format=3 uid="uid://c6ov8fvestk60"]
 
+[ext_resource type="Script" path="res://scenes/menus/player_life_display.gd" id="1_82q2m"]
 [ext_resource type="Texture2D" uid="uid://ct15b0amo0vc7" path="res://assets/player/heart.png" id="1_61752"]
 
 [node name="PlayerLifeDisplay" type="HBoxContainer"]
@@ -7,6 +8,7 @@ offset_right = 36.0
 offset_bottom = 16.0
 scale = Vector2(2, 2)
 size_flags_horizontal = 0
+script = ExtResource("1_82q2m")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 2

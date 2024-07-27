@@ -1,15 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://win6qvnp3tln"]
+[gd_scene load_steps=7 format=3 uid="uid://win6qvnp3tln"]
 
 [ext_resource type="PackedScene" uid="uid://c625q0wg78pwh" path="res://scenes/entities/base-classes/destroyable_obstacle.tscn" id="1_8q3yl"]
 [ext_resource type="Script" path="res://scenes/entities/base-classes/enemy.gd" id="2_sq7a7"]
+[ext_resource type="PackedScene" uid="uid://b0gpsrkb5ixb0" path="res://scenes/entities/player/powerup_shield.tscn" id="3_1m52h"]
+[ext_resource type="PackedScene" uid="uid://c6pudwqbohlu5" path="res://scenes/entities/player/powerup_heart.tscn" id="4_wq30r"]
+[ext_resource type="PackedScene" uid="uid://c5yl0450w2v3h" path="res://scenes/entities/player/powerup_weapon_upgrade.tscn" id="5_jm8xx"]
+[ext_resource type="PackedScene" uid="uid://bkfttnfeoe7f3" path="res://scenes/entities/player/powerup_attack_speed.tscn" id="6_ywfg5"]
 
 [node name="Enemy" instance=ExtResource("1_8q3yl")]
 collision_layer = 4
 collision_mask = 10
 script = ExtResource("2_sq7a7")
+powerup_shield = ExtResource("3_1m52h")
+powerup_health = ExtResource("4_wq30r")
+powerup_weapon = ExtResource("5_jm8xx")
+powerup_speed = ExtResource("6_ywfg5")
 health = 10
 
-[node name="ShootingStartDelay" type="Timer" parent="." index="4"]
+[node name="ShootingStartDelay" type="Timer" parent="." index="3"]
 one_shot = true
 
 [connection signal="timeout" from="ShootingStartDelay" to="." method="_on_shooting_start_delay_timeout"]

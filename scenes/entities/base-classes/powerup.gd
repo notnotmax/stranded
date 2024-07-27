@@ -1,6 +1,7 @@
 extends Area2D
 class_name Powerup
-enum Types {NONE, SHIELD, LIFE_UP}
+enum Types {NONE, SHIELD, LIFE_UP, WEAPON_UPGRADE, ATTACK_SPEED}
+
 
 var speed: float = 0
 @export var type: Types

@@ -1,12 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://c6volrvtcb6yx"]
+[gd_scene load_steps=17 format=3 uid="uid://c6volrvtcb6yx"]
 
 [ext_resource type="PackedScene" uid="uid://d35ie48pllg52" path="res://scenes/levels/level.tscn" id="1_vjkjm"]
 [ext_resource type="Script" path="res://scenes/levels/debug_level.gd" id="2_a4jps"]
 [ext_resource type="PackedScene" uid="uid://b0gpsrkb5ixb0" path="res://scenes/entities/player/powerup_shield.tscn" id="3_eaori"]
+[ext_resource type="PackedScene" uid="uid://dcu718cvw155k" path="res://scenes/entities/environmental-obstacles/asteroid_3.tscn" id="3_fadca"]
 [ext_resource type="PackedScene" uid="uid://dk2w3ffxunsi8" path="res://scenes/entities/enemies/fighter.tscn" id="3_sklon"]
 [ext_resource type="PackedScene" uid="uid://dwakv3g8yoorg" path="res://scenes/entities/enemies/medium_enemy.tscn" id="4_47knx"]
 [ext_resource type="PackedScene" uid="uid://bi2okcenc8w50" path="res://scenes/entities/enemies/fighter_2.tscn" id="4_xu2gk"]
+[ext_resource type="PackedScene" uid="uid://d0gx8gqtwm8gk" path="res://scenes/entities/enemies/boss_enemy.tscn" id="6_aw04y"]
+[ext_resource type="PackedScene" uid="uid://3tvkgdsry7de" path="res://scenes/entities/enemies/deathbomber.tscn" id="6_v0b4r"]
+[ext_resource type="PackedScene" uid="uid://vvcqpjf6g165" path="res://scenes/entities/enemies/probe_spiral.tscn" id="7_6bkif"]
 [ext_resource type="PackedScene" uid="uid://c6pudwqbohlu5" path="res://scenes/entities/player/powerup_heart.tscn" id="7_xqdlm"]
+[ext_resource type="PackedScene" uid="uid://dvsm6ie3l7xc6" path="res://scenes/entities/enemies/probe_bomb.tscn" id="7_xr8os"]
+[ext_resource type="PackedScene" uid="uid://c5yl0450w2v3h" path="res://scenes/entities/player/powerup_weapon_upgrade.tscn" id="11_dl723"]
+[ext_resource type="PackedScene" uid="uid://bkfttnfeoe7f3" path="res://scenes/entities/player/powerup_attack_speed.tscn" id="12_rvijx"]
 
 [sub_resource type="Curve2D" id="Curve2D_myivx"]
 _data = {
@@ -14,33 +21,30 @@ _data = {
 }
 point_count = 5
 
+[sub_resource type="Curve2D" id="Curve2D_7w2kf"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1344, 352, 0, 0, 0, 0, 1088, 352)
+}
+point_count = 2
+
 [node name="Level" instance=ExtResource("1_vjkjm")]
 script = ExtResource("2_a4jps")
+asteroid = ExtResource("3_fadca")
 fighter = ExtResource("3_sklon")
 fighter2 = ExtResource("4_xu2gk")
+deathbomber = ExtResource("6_v0b4r")
 medium_enemy = ExtResource("4_47knx")
+probe_bomb = ExtResource("7_xr8os")
+probe_spiral = ExtResource("7_6bkif")
+boss_enemy = ExtResource("6_aw04y")
 powerup_shield = ExtResource("3_eaori")
 powerup_life = ExtResource("7_xqdlm")
+powerup_weapon = ExtResource("11_dl723")
+powerup_speed = ExtResource("12_rvijx")
 
-[node name="Timer" type="Timer" parent="." index="5"]
-wait_time = 1.5
-one_shot = true
-autostart = true
-
-[node name="Path2D" type="Path2D" parent="." index="6"]
+[node name="TestPath" type="Path2D" parent="." index="7"]
 position = Vector2(128, 192)
 curve = SubResource("Curve2D_myivx")
 
-[node name="Timer2" type="Timer" parent="." index="7"]
-wait_time = 4.0
-one_shot = true
-autostart = true
-
-[node name="Timer3" type="Timer" parent="." index="8"]
-wait_time = 5.5
-one_shot = true
-autostart = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
-[connection signal="timeout" from="Timer3" to="." method="_on_timer_3_timeout"]
+[node name="Path2D" type="Path2D" parent="." index="8"]
+curve = SubResource("Curve2D_7w2kf")

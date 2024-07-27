@@ -1,8 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://c5t2rvsya3h3c"]
+[gd_scene load_steps=5 format=3 uid="uid://c5t2rvsya3h3c"]
 
 [ext_resource type="Script" path="res://scenes/entities/enemies/gun.gd" id="1_klvat"]
 [ext_resource type="PackedScene" uid="uid://bxjgg8h1ty86w" path="res://scenes/entities/enemies/bullet.tscn" id="2_slwdv"]
+[ext_resource type="PackedScene" uid="uid://dlyxxyv2cy70d" path="res://scenes/entities/enemies/enemy_comet.tscn" id="3_hasxp"]
+[ext_resource type="PackedScene" uid="uid://c84lwqrlxohsh" path="res://scenes/entities/enemies/warning_beam.tscn" id="4_s3ygb"]
 
 [node name="Gun" type="Node2D"]
 script = ExtResource("1_klvat")
 Bullet = ExtResource("2_slwdv")
+BigBullet = ExtResource("3_hasxp")
+Warning = ExtResource("4_s3ygb")
+
+[node name="WarningBeam" parent="." instance=ExtResource("4_s3ygb")]

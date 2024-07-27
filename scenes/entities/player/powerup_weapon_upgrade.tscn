@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5yl0450w2v3h"]
+
+[ext_resource type="PackedScene" uid="uid://b447bssx3v33w" path="res://scenes/entities/base-classes/powerup.tscn" id="1_a7d8e"]
+[ext_resource type="Texture2D" uid="uid://c013v1a4d8x8s" path="res://assets/player/attack_up.png" id="2_5ga4r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wsj3"]
+atlas = ExtResource("2_5ga4r")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uw1d2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wsj3")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ay2qr"]
+size = Vector2(22, 30)
+
+[node name="Powerup" instance=ExtResource("1_a7d8e")]
+type = 3
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_uw1d2")
+autoplay = "default"
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_ay2qr")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+position = Vector2(-1.07288e-06, 0)
+scale = Vector2(1.1, 1.5)

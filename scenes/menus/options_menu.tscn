@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://ducxg8ov71r17"]
+
+[ext_resource type="Theme" uid="uid://c6q5tn6lrdfpy" path="res://assets/ui/theme.tres" id="1_2clh2"]
+[ext_resource type="Script" path="res://scenes/menus/options_menu.gd" id="2_7fcl0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_h52fr"]
+font_size = 32
+
+[node name="OptionsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+theme = ExtResource("1_2clh2")
+script = ExtResource("2_7fcl0")
+
+[node name="MenuButtons" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -133.0
+offset_right = 64.0
+offset_bottom = 133.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuButtons"]
+layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="Label" type="Label" parent="MenuButtons/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+label_settings = SubResource("LabelSettings_h52fr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UnlockLevels" type="Button" parent="MenuButtons/VBoxContainer"]
+layout_mode = 2
+text = "Unlock Levels"
+
+[node name="ResetProgress" type="Button" parent="MenuButtons/VBoxContainer"]
+layout_mode = 2
+text = "Reset Progress"
+
+[node name="MainMenu" type="Button" parent="MenuButtons/VBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[connection signal="pressed" from="MenuButtons/VBoxContainer/UnlockLevels" to="." method="_on_unlock_levels_pressed"]
+[connection signal="pressed" from="MenuButtons/VBoxContainer/ResetProgress" to="." method="_on_reset_progress_pressed"]
+[connection signal="pressed" from="MenuButtons/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]

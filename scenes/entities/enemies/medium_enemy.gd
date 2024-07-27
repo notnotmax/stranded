@@ -57,10 +57,17 @@ func _on_laser_ended():
 	start_cooldown(laser_cooldown)
 
 
-func die():
+func on_death():
+	var powerup = powerup_health.instantiate()
+	powerup.init(global_position)
+	get_tree().current_scene.add_child(powerup)
+
+
+func die(get_score: bool = false):
 	if alive:
-		$Laser.call_deferred("set_firing", false)
-		super.die()
+		call_deferred("on_death")
+		super.die(get_score)
+
 
 # Enemy switches to bullets when player is in close range
 func _on_detector_area_entered(_area):

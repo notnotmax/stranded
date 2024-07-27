@@ -23,3 +23,14 @@ func _on_cooldown_timeout():
 func shoot():
 	if alive:
 		$Gun.one_shot(target, 4, 2)
+
+
+@onready var powerups = [powerup_weapon]
+func on_death():
+	if randf() < 0.1:
+		drop_powerup(powerups.pick_random())
+
+
+func die(get_score: bool = false):
+	call_deferred("on_death")
+	super.die(get_score)

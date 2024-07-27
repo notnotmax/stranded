@@ -19,6 +19,10 @@ run/main_scene="res://scenes/menus/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://assets/player/icon.png"
 
+[autoload]
+
+Global="*res://utility_scripts/global.gd"
+
 [display]
 
 window/size/viewport_width=1280
@@ -43,7 +47,7 @@ enabled=PackedStringArray()
 2d_physics/layer_5="Enemy attack"
 2d_physics/layer_6="Environmental obstacle"
 2d_physics/layer_7="Powerups"
-2d_physics/layer_8="Player detector (for enemy)"
+2d_physics/layer_8="Player detectors"
 2d_physics/layer_9="Player shield"
 
 [maaacks_menus_template]

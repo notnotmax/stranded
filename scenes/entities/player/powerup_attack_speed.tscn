@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://bkfttnfeoe7f3"]
+
+[ext_resource type="PackedScene" uid="uid://b447bssx3v33w" path="res://scenes/entities/base-classes/powerup.tscn" id="1_bosax"]
+[ext_resource type="Texture2D" uid="uid://cdilbqm6pk8ta" path="res://assets/player/speed_up.png" id="2_ya3dw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tl5b"]
+atlas = ExtResource("2_ya3dw")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_28pdp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tl5b")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hxfoi"]
+size = Vector2(27, 24)
+
+[node name="Powerup" instance=ExtResource("1_bosax")]
+type = 4
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = SubResource("SpriteFrames_28pdp")
+autoplay = "default"
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0.5, -1)
+shape = SubResource("RectangleShape2D_hxfoi")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+position = Vector2(0.5, -1)
+scale = Vector2(1.35, 1.2)

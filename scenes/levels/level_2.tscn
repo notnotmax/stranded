@@ -1,0 +1,121 @@
+[gd_scene load_steps=13 format=3 uid="uid://rbchmlqte0rb"]
+
+[ext_resource type="PackedScene" uid="uid://d35ie48pllg52" path="res://scenes/levels/level.tscn" id="1_h6qgd"]
+[ext_resource type="Script" path="res://scenes/levels/level_2.gd" id="2_vhgnm"]
+
+[sub_resource type="Curve2D" id="Curve2D_gib1s"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1280, 0, 0, 0, 0, 0, 1280, 720, 0, 0, 0, 0, 1280, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_f7cf1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1576, 64, 0, 384.151, 0, -384.151, 1128, -320)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_utlsj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1344, 384, 0.738045, -383.863, -0.738045, 383.863, 896, 768)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_u3hcf"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1024, -64, 0, 0, 0, 0, 1024, 768)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_akkv7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1152, 768, 0, 0, 0, 0, 1152, -64)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_gjseq"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1344, 192, 0, -320, 0, 320, 704, 320, 0, 0, 0, 0, 320, 768)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_0jgxq"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1344, 512, 0, 330.356, 0, -330.356, 704, 384, 0, 0, 0, 0, 320, -64)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_44evw"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1344, 352, 0, 0, 0, 0, 1152, 352)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_dfw52"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1344, 256, -0.0282249, 383.83, 0.0282249, -383.83, 832, -64)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_pq2sy"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1344, 448, 0.260673, -383.95, -0.260673, 383.95, 832, 768)
+}
+point_count = 2
+
+[node name="Level2" instance=ExtResource("1_h6qgd")]
+script = ExtResource("2_vhgnm")
+level_number = 2
+
+[node name="Asteroids" type="Node" parent="." index="7"]
+
+[node name="Path2D" type="Path2D" parent="Asteroids" index="0"]
+visible = false
+curve = SubResource("Curve2D_gib1s")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Asteroids/Path2D" index="0"]
+position = Vector2(1280, 0)
+rotation = 1.5708
+
+[node name="AsteroidTimer" type="Timer" parent="Asteroids" index="1"]
+wait_time = 0.5
+
+[node name="Wave1" type="Node" parent="." index="8"]
+
+[node name="Path2D" type="Path2D" parent="Wave1" index="0"]
+position = Vector2(-232, 256)
+curve = SubResource("Curve2D_f7cf1")
+
+[node name="Path2D2" type="Path2D" parent="Wave1" index="1"]
+curve = SubResource("Curve2D_utlsj")
+
+[node name="Wave2" type="Node" parent="." index="9"]
+
+[node name="DownPath" type="Path2D" parent="Wave2" index="0"]
+position = Vector2(-64, 0)
+curve = SubResource("Curve2D_u3hcf")
+
+[node name="UpPath" type="Path2D" parent="Wave2" index="1"]
+position = Vector2(-64, 0)
+curve = SubResource("Curve2D_akkv7")
+
+[node name="Wave3" type="Node" parent="." index="10"]
+
+[node name="Path2D" type="Path2D" parent="Wave3" index="0"]
+curve = SubResource("Curve2D_gjseq")
+
+[node name="Path2D2" type="Path2D" parent="Wave3" index="1"]
+curve = SubResource("Curve2D_0jgxq")
+
+[node name="Wave4" type="Node" parent="." index="11"]
+
+[node name="Path2D" type="Path2D" parent="Wave4" index="0"]
+curve = SubResource("Curve2D_44evw")
+
+[node name="Path2D2" type="Path2D" parent="Wave4" index="1"]
+curve = SubResource("Curve2D_dfw52")
+
+[node name="Path2D3" type="Path2D" parent="Wave4" index="2"]
+curve = SubResource("Curve2D_pq2sy")
+
+[connection signal="timeout" from="Asteroids/AsteroidTimer" to="." method="_on_asteroid_timer_timeout"]

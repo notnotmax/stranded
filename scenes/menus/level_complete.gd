@@ -10,8 +10,10 @@ func _ready():
 
 
 func _on_quit_button_pressed():
+	await Fade.fade_out().finished
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
+	Fade.fade_in()
 
 
 func complete_level(score):

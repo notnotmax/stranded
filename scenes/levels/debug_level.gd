@@ -5,47 +5,62 @@ Sandbox level to test new features.
 extends Level
 class_name DebugLevel
 
-@export var fighter: PackedScene
-@export var fighter2: PackedScene
-@export var medium_enemy: PackedScene
+# environmental obstacles (asteroids)
+@export var asteroid: PackedScene
+# enemies
+@export var probe_bomb: PackedScene
+@export var probe_spiral: PackedScene
+# powerups
 @export var powerup_shield: PackedScene
 @export var powerup_life: PackedScene
+@export var powerup_weapon: PackedScene
+@export var powerup_speed: PackedScene
 
-var fighter1
+var spawnpoint: Vector2 = Vector2(1000, 360) # spawn for testing
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#fighter1 = fighter.instantiate()
-	#fighter1.init(Vector2(1000, 360), get_player())
-	#add_child(fighter1)
-	#fighter1.move_by(Vector2(50,50), 1)
+	#var boss = boss_enemy.instantiate()
+	#boss.init(Vector2(0, 0), get_player(), 5)
+	#add_child(boss)
+	#boss.start_bossfight()
 	
-	#var fighter2 = fighter2.instantiate()
-	#fighter2.init(Vector2(1000, 360), get_player())
-	#add_child(fighter2)
-	
-	var medium = medium_enemy.instantiate()
-	medium.init(Vector2(1000, 180), get_player())
-	add_child(medium)
-	#medium.strafe()
-	#await delay(5)
-	#medium.move_by(Vector2(0,100), 2)
-	#
-	#var shield = powerup_shield.instantiate()
-	#shield.init(Vector2(1200, 360))
-	#add_child(shield)
-	#
-	#var life = powerup_life.instantiate()
-	#life.init(Vector2(1200, 500))
-	#add_child(life)
+	test_all()
 
-#func _on_timer_timeout():
-	#fighter1.move_on_path($Path2D, 1, 1)
-#
-#
-#func _on_timer_2_timeout():
-	#fighter1.move_by(Vector2(100,0), 1)
-#
-#
-#func _on_timer_3_timeout():
-	#fighter1.move_on_path($Path2D, 1, 1)
+
+func test_all():
+	var f1 = fighter.instantiate()
+	f1.init(Vector2(1000, 50), get_player(), 1)
+	add_child(f1)
+	var f2 = fighter2.instantiate()
+	f2.init(Vector2(1000, 100), get_player(), 1)
+	add_child(f2)
+	var db = deathbomber.instantiate()
+	db.init(Vector2(1000, 150), get_player(), 1)
+	add_child(db)
+	var med = medium_enemy.instantiate()
+	med.init(Vector2(1000, 200), get_player(), 1)
+	add_child(med)
+	var sp = probe_spiral.instantiate()
+	sp.init(Vector2(1000, 250), get_player(), 1, 3, 0.5, 15, 5)
+	add_child(sp)
+	var bp = probe_bomb.instantiate()
+	bp.init(Vector2(1000, 300), get_player(), 1)
+	add_child(bp)
+	var boss = boss_enemy.instantiate()
+	boss.init(Vector2(1000, 350), get_player(), 5)
+	add_child(boss)
+	boss.start_bossfight()
+	var pow_shield = powerup_shield.instantiate()
+	pow_shield.init(Vector2(1000, 400))
+	add_child(pow_shield)
+	var pow_life = powerup_life.instantiate()
+	pow_life.init(Vector2(1000, 450))
+	add_child(pow_life)
+	var pow_weapon = powerup_weapon.instantiate()
+	pow_weapon.init(Vector2(1000, 500))
+	add_child(pow_weapon)
+	var pow_speed = powerup_speed.instantiate()
+	pow_speed.init(Vector2(1000, 550))
+	add_child(pow_speed)
+	

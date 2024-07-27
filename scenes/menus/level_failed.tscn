@@ -5,6 +5,7 @@
 
 [node name="LevelFailed" type="Control"]
 top_level = true
+z_index = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

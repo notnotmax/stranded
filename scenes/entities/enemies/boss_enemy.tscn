@@ -1,0 +1,80 @@
+[gd_scene load_steps=15 format=3 uid="uid://d0gx8gqtwm8gk"]
+
+[ext_resource type="PackedScene" uid="uid://win6qvnp3tln" path="res://scenes/entities/base-classes/enemy.tscn" id="1_o1wwd"]
+[ext_resource type="Texture2D" uid="uid://com3skeyb33wg" path="res://assets/enemies/enemy_big.png" id="2_imim8"]
+[ext_resource type="Script" path="res://scenes/entities/enemies/boss_enemy.gd" id="2_j37ec"]
+[ext_resource type="PackedScene" uid="uid://dwakv3g8yoorg" path="res://scenes/entities/enemies/medium_enemy.tscn" id="3_7xjdq"]
+[ext_resource type="PackedScene" uid="uid://vvcqpjf6g165" path="res://scenes/entities/enemies/probe_spiral.tscn" id="3_xpwcf"]
+[ext_resource type="PackedScene" uid="uid://c5t2rvsya3h3c" path="res://scenes/entities/enemies/gun.tscn" id="4_sykyl"]
+[ext_resource type="PackedScene" uid="uid://3l4h0vcm1enb" path="res://scenes/entities/enemies/laser.tscn" id="5_3xucs"]
+[ext_resource type="PackedScene" uid="uid://dvsm6ie3l7xc6" path="res://scenes/entities/enemies/probe_bomb.tscn" id="6_78ue0"]
+[ext_resource type="PackedScene" uid="uid://b30wggbooeid5" path="res://scenes/menus/boss_health_bar.tscn" id="7_n3b2v"]
+[ext_resource type="PackedScene" uid="uid://bl0f88iag5vpd" path="res://scenes/entities/enemies/laser_destructive.tscn" id="10_uxjgi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85flq"]
+atlas = ExtResource("2_imim8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1kmy"]
+atlas = ExtResource("2_imim8")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pn24b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85flq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1kmy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_25fxk"]
+radius = 20.0
+height = 52.0
+
+[node name="BossEnemy" instance=ExtResource("1_o1wwd")]
+scale = Vector2(2, 2)
+script = ExtResource("2_j37ec")
+medium_enemy = ExtResource("3_7xjdq")
+HealthBar = ExtResource("7_n3b2v")
+SpiralProbe = ExtResource("3_xpwcf")
+bomb_probe = ExtResource("6_78ue0")
+health = 3000
+points = 15000
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+z_index = 1
+z_as_relative = false
+position = Vector2(12, 0)
+sprite_frames = SubResource("SpriteFrames_pn24b")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(-2, 0)
+shape = SubResource("CapsuleShape2D_25fxk")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="2"]
+position = Vector2(10, 0)
+scale = Vector2(3.05, 2.65)
+
+[node name="Gun" parent="." index="4" instance=ExtResource("4_sykyl")]
+position = Vector2(-18, 0)
+
+[node name="Laser" parent="." index="5" instance=ExtResource("5_3xucs")]
+position = Vector2(-19.5, -15.5)
+
+[node name="Laser2" parent="." index="6" instance=ExtResource("5_3xucs")]
+position = Vector2(-19, 15)
+
+[node name="Cooldown" type="Timer" parent="." index="7"]
+wait_time = 5.0
+one_shot = true
+
+[node name="DestructiveLaser" parent="." index="8" instance=ExtResource("10_uxjgi")]
+position = Vector2(-13, 0)
+
+[connection signal="timeout" from="Cooldown" to="." method="_on_cooldown_timeout"]

@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://bl0f88iag5vpd"]
+
+[ext_resource type="Script" path="res://scenes/entities/enemies/laser_destructive.gd" id="1_53igf"]
+[ext_resource type="PackedScene" uid="uid://bxjgg8h1ty86w" path="res://scenes/entities/enemies/bullet.tscn" id="2_i7ffb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vxbvw"]
+size = Vector2(1, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4q8w4"]
+particle_flag_disable_z = true
+angle_max = 180.0
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+scale_min = 10.0
+scale_max = 20.0
+color = Color(1, 0.6, 0.6, 1)
+
+[node name="DestructiveLaser" type="ShapeCast2D"]
+enabled = false
+shape = SubResource("RectangleShape2D_vxbvw")
+target_position = Vector2(-1280, 0)
+collision_mask = 0
+collide_with_areas = true
+script = ExtResource("1_53igf")
+Bullet = ExtResource("2_i7ffb")
+
+[node name="Warning" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 64, 0)
+width = 0.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_4q8w4")
+lifetime = 0.1
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_4q8w4")
+lifetime = 0.1
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 64, 0)
+width = 0.0
+default_color = Color(1, 0.25, 0.25, 1)

@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://csuqd7yr3wp8r"]
+[gd_scene load_steps=19 format=3 uid="uid://csuqd7yr3wp8r"]
 
 [ext_resource type="Theme" uid="uid://c6q5tn6lrdfpy" path="res://assets/ui/theme.tres" id="1_cisqr"]
 [ext_resource type="Script" path="res://scenes/menus/main_menu.gd" id="1_unqdc"]
 [ext_resource type="PackedScene" uid="uid://d3lstvim7ia7x" path="res://scenes/backgrounds/background_1.tscn" id="2_1h2no"]
 [ext_resource type="Texture2D" uid="uid://bw6iaxhfblh3" path="res://assets/player/ship.png" id="3_jejjc"]
 [ext_resource type="PackedScene" uid="uid://bauw3vtckwroo" path="res://scenes/menus/level_select.tscn" id="4_fmaha"]
+[ext_resource type="PackedScene" uid="uid://ducxg8ov71r17" path="res://scenes/menus/options_menu.tscn" id="6_v7di0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_88bbd"]
 atlas = ExtResource("3_jejjc")
@@ -141,9 +142,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -64.0
+offset_left = -78.5
 offset_top = -133.0
-offset_right = 64.0
+offset_right = 78.5
 offset_bottom = 133.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -164,13 +165,32 @@ vertical_alignment = 1
 layout_mode = 2
 text = "Play"
 
+[node name="OptionsButton" type="Button" parent="MainMenuButtons/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
 [node name="QuitButton" type="Button" parent="MainMenuButtons/VBoxContainer"]
 layout_mode = 2
 text = "Quit"
 
 [node name="LevelSelect" parent="." instance=ExtResource("4_fmaha")]
 visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.6
+anchor_right = 0.5
+anchor_bottom = 0.6
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionsMenu" parent="." instance=ExtResource("6_v7di0")]
+visible = false
 
 [connection signal="pressed" from="MainMenuButtons/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MainMenuButtons/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MainMenuButtons/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="back" from="LevelSelect" to="." method="_on_level_select_back"]
+[connection signal="back" from="OptionsMenu" to="." method="_on_options_menu_back"]

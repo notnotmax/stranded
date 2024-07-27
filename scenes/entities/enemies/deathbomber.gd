@@ -12,10 +12,10 @@ func init(p_position: Vector2 = Vector2(0, 0), p_target: Node = Node.new(),
 	super.init(p_position, p_target, p_start_delay)
 
 
-func die():
+func die(get_score: bool = false):
 	if alive:
 		call_deferred("on_death")
-		super.die()
+		super.die(get_score)
 
 
 func on_death():

@@ -1,81 +1,88 @@
 """
 Enemy laser. Fires a warning beam before shooting.
 """
-extends RayCast2D
+extends ShapeCast2D
+class_name Laser
 signal ended
 
-var is_firing: bool = false
-# the target towards which the laser aims
-var target: Vector2
-# duration for which it shoots before cooldown
-var duration: float
+# shrapnel when asteroids are destroyed
+@export var Bullet: PackedScene
+
+
+# collides with these layers
+var COLLISION_MASKS = [2, 9]
+# default maximum thickness of the deadly laser
+var thickness: float = 10
+
 
 func _ready():
-	is_firing = false
-	set_collision_mask_value(2, false)
+	set_physics_process(false)
 
 
 func _physics_process(_delta):
-	var cast_point: Vector2 = target_position
-	force_raycast_update()
+	# align the collision shape with the visual laser
+	self.shape.size.y = max(1, $Line2D.width)
+	var collision_point: Vector2 = target_position
+	force_shapecast_update()
 	if is_colliding():
-		cast_point = to_local(get_collision_point())
-	$Line2D.points[1] = cast_point
-	$Warning.points[1] = cast_point
-	$GPUParticles2D2.position = cast_point
-	
-	var collider = get_collider()
-	if collider:
-		collider.take_damage()
+		var collider = get_collider(0)
+		if collider:
+			collider.take_damage(1)
+		collision_point = target_position * \
+			get_closest_collision_unsafe_fraction()
+	$Line2D.points[1] = collision_point
+	$Warning.points[1] = collision_point
+	$GPUParticles2D2.position = collision_point
 
 
-# Turns the laser on/off
-func set_firing(value):
-	is_firing = value
-	if is_firing:
-		# show warning laser
-		var tween = create_tween()
-		tween.tween_property($Warning, "width", 1.5, 0.1)
-		$Timer.start() # timer to actually shoot deadly laser
-	else:
-		# disable laser
-		$GPUParticles2D.emitting = false
-		$GPUParticles2D2.emitting = false
-		var tween = create_tween()
-		tween.tween_property($Line2D, "width", 0, 0.1)
-		set_collision_mask_value(2, false)
-		set_collision_mask_value(9, false)
-		ended.emit()
-	set_physics_process(is_firing)
-
-
-# fires the deadly laser
-func _on_timer_timeout():
-	$GPUParticles2D.emitting = true
-	$GPUParticles2D2.emitting = true
-	set_collision_mask_value(2, true)
-	set_collision_mask_value(9, true)
-	var tween = create_tween()
-	tween.tween_property($Warning, "width", 0, 0)
-	tween.tween_property($Line2D, "width", 10.0, 0.1)
-	tween.tween_property(self, "target_position", target, duration)
-	$Duration.start()
-
-
-# stops firing after a certain duration
-func _on_duration_timeout():
-	set_firing(false)
-
-
-func sweep(p_from: Vector2, p_to: Vector2, p_duration: float):
-	var from = p_from.normalized() * 1920
-	var to = p_to.normalized() * 1920
-	self.target = to
-	self.duration = p_duration
-	$Duration.wait_time = p_duration
+# show warning laser and start timer for deadly laser
+func _fire(from: Vector2, to: Vector2, duration: float):
 	# set initial position to sweep from
 	target_position = from
 	$Line2D.points[1] = from
 	$Warning.points[1] = from
-	# shoot
-	set_firing(true)
+	
+	# fire warning shot
+	var warning_duration = 1
+	set_physics_process(true)
+	var tween = create_tween()
+	tween.tween_property($Warning, "width", 1.5, 0.1)
+	await Global.delay(warning_duration)
+	
+	# turn on deadly laser and sweep towards target
+	$GPUParticles2D.emitting = true
+	$GPUParticles2D2.emitting = true
+	for layer in COLLISION_MASKS:
+		set_collision_mask_value(layer, true)
+	var charge_time = thickness / 10.0
+	tween = create_tween()
+	tween.tween_property($Warning, "width", 0, 0)
+	tween.tween_property($Line2D, "width", thickness, charge_time)
+	tween.tween_property(self, "target_position", to, duration)
+	await Global.delay(charge_time + duration)
+	
+	# stop firing the laser
+	_stop_firing()
+
+
+# disable laser immediately, may cause visual issues if done
+# too early (untested)
+func _stop_firing():
+	$GPUParticles2D.emitting = false
+	$GPUParticles2D2.emitting = false
+	var tween = create_tween()
+	tween.tween_property($Line2D, "width", 0, 0.1)
+	for layer in COLLISION_MASKS:
+		set_collision_mask_value(layer, false)
+	ended.emit()
+	set_physics_process(false)
+
+
+func set_color(color: Color):
+	$Line2D.default_color = color
+	$GPUParticles2D.process_material.color = color
+	$GPUParticles2D2.process_material.color = color
+
+
+func sweep(from: Vector2, to: Vector2, duration: float):
+	await _fire(from.normalized() * 1920, to.normalized() * 1920, duration)

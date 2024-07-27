@@ -1,6 +1,5 @@
 extends Area2D
-@export var Bullet : PackedScene
-signal on_damaged # player gets damaged
+signal life_change # change in player's life count
 signal player_died # player dies
 
 var can_move = true
@@ -8,11 +7,6 @@ var alive: bool = true
 var lives: int = 3
 var inverted_movement: bool = false
 var is_invulnerable: bool = false
-var is_firing: bool = false
-# cooldown timer before next shot
-var shot_cooldown: int = 0
-# fire rate in 1/60ths of a second
-var fire_rate: int = 6
 
 
 # Called when the node enters the scene tree for the first time.
@@ -23,24 +17,7 @@ func _ready():
 	position.x = 100
 	position.y = 360
 	$AnimatedSprite2D.play("default")
-
-
-func _physics_process(_delta):
-	if alive:
-		# decrease shooting cooldown
-		if shot_cooldown > 0:
-			shot_cooldown -= 1
-		# shoot
-		if shot_cooldown <= 0:
-			if is_firing:
-				var bullet = Bullet.instantiate().with_params(
-					$Marker2D.global_position,
-					20,
-					Vector2(1, 0),
-					10
-				)
-				get_tree().current_scene.add_child(bullet)
-			shot_cooldown += fire_rate
+	$PlayerGun.reset()
 
 
 func _input(event):
@@ -68,7 +45,10 @@ func _input(event):
 		# toggle fire mode
 		elif event is InputEventMouseButton:
 			if event.button_index == MOUSE_BUTTON_LEFT:
-				is_firing = event.pressed
+				if event.pressed:
+					$PlayerGun.enable()
+				else:
+					$PlayerGun.disable()
 
 
 # death collision is handled by the enemy instance
@@ -82,10 +62,11 @@ func _on_animated_sprite_2d_animation_finished():
 		queue_free()
 
 
-func take_damage():
+func take_damage(_damage: int = 0):
 	if not is_invulnerable:
-		lives -= 1
-		on_damaged.emit()
+		lives -= 1 ## TODO
+		life_change.emit()
+		$PlayerGun.downgrade()
 		if lives == 0:
 			die()
 		else:
@@ -121,9 +102,31 @@ func get_powerup(powerup):
 		Powerup.Types.SHIELD:
 			$Shield.enable()
 		Powerup.Types.LIFE_UP:
-			lives += 1
-			on_damaged.emit()
+			if lives < 5:
+				lives += 1
+				lives = min(5, lives) # lives are capped at 5
+			else:
+				get_tree().current_scene.add_score(10000)
+			life_change.emit()
+		Powerup.Types.WEAPON_UPGRADE:
+			$PlayerGun.upgrade()
+		Powerup.Types.ATTACK_SPEED:
+			$PlayerGun.double_speed(10)
 
 
 func _on_invulnerability_animation_finished():
 	$Invulnerability.hide()
+
+
+# used to leave a level upon completion
+func exit():
+	get_tree().current_scene.add_score(10000 * lives)
+	can_move = false
+	$PlayerGun.disable()
+	# there is an edge case where the player gets hit right before level
+	# completion, so the invul timer sets their invul back to false
+	is_invulnerable = true
+	set_collision_layer_value(2, false) # disable hitbox as temp workaround
+	var tween = create_tween().set_trans(Tween.TRANS_SINE)
+	tween.tween_property(self, "position:x", 1400, 5)
+	await get_tree().create_timer(5, false).timeout

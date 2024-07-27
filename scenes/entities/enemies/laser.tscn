@@ -1,6 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://3l4h0vcm1enb"]
+[gd_scene load_steps=5 format=3 uid="uid://3l4h0vcm1enb"]
 
 [ext_resource type="Script" path="res://scenes/entities/enemies/laser.gd" id="1_gdxg7"]
+[ext_resource type="PackedScene" uid="uid://bxjgg8h1ty86w" path="res://scenes/entities/enemies/bullet.tscn" id="2_mkgr8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vxbvw"]
+size = Vector2(1, 1)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4q8w4"]
 particle_flag_disable_z = true
@@ -12,13 +16,14 @@ scale_min = 10.0
 scale_max = 20.0
 color = Color(1, 0.6, 0.6, 1)
 
-[node name="Laser" type="RayCast2D"]
+[node name="Laser" type="ShapeCast2D"]
 enabled = false
+shape = SubResource("RectangleShape2D_vxbvw")
 target_position = Vector2(-1280, 0)
 collision_mask = 0
-hit_from_inside = true
 collide_with_areas = true
 script = ExtResource("1_gdxg7")
+Bullet = ExtResource("2_mkgr8")
 
 [node name="Warning" type="Line2D" parent="."]
 points = PackedVector2Array(0, 0, 64, 0)
@@ -40,12 +45,3 @@ lifetime = 0.1
 points = PackedVector2Array(0, 0, 64, 0)
 width = 0.0
 default_color = Color(1, 0.25, 0.25, 1)
-
-[node name="Timer" type="Timer" parent="."]
-one_shot = true
-
-[node name="Duration" type="Timer" parent="."]
-one_shot = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="Duration" to="." method="_on_duration_timeout"]

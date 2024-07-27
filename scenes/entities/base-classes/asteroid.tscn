@@ -9,8 +9,6 @@
 collision_layer = 32
 collision_mask = 10
 script = ExtResource("2_osl3b")
-health = null
-points = null
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = SubResource("SpriteFrames_llht1")

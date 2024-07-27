@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c84lwqrlxohsh"]
+
+[ext_resource type="Script" path="res://scenes/entities/enemies/warning_beam.gd" id="1_h2m25"]
+
+[node name="WarningBeam" type="Line2D"]
+points = PackedVector2Array(0, 0, 0, 0)
+width = 1.0
+script = ExtResource("1_h2m25")
